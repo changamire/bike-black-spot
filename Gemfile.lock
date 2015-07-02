@@ -77,8 +77,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bson
   bundler-audit
-  json
   mongo
   mongoid
   rspec
