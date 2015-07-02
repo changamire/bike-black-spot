@@ -22,7 +22,7 @@ class BikeSpot < Sinatra::Base
     Person.new.get(params)
   end
   # post an issue to server(prints title)
-  post '/report' do
+  post '/report.?:description?.?:postcode?' do
     report = Report.new()
     report.post(params)
     report.show_message
