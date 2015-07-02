@@ -6,13 +6,13 @@ class Map
   end
 
   def get(params)
-    @lat = params[:lat]
-    @long = params[:long]
-    log = Logger.new($stdout)
-    log.warn('Initial lat is ')
-    log.warn(lat)
-    log.warn('Initial long is ')
-    log.warn(long)
+    # @lat = params[:lat]
+    # @long = params[:long]
+    # log = Logger.new($stdout)
+    # log.warn('Initial lat is ')
+    # log.warn(lat)
+    # log.warn('Initial long is ')
+    # log.warn(long)
     show_message
   end
 
