@@ -7,6 +7,4 @@ development:
 production:
   sessions:
     default:
-      database: bike-black-spot
-      hosts:
-        - localhost:27017 #Change to whatever the production ip is, possibly using env variables
+      uri: <%= ENV['MONGOLAB_URI'] %>
