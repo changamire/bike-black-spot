@@ -7,7 +7,7 @@ end
 desc 'Run the server'
 task :run do
   puts('------------ Running the server ------------')
-  system('rackup')
+  system('ruby app.rb')
 end
 
 desc 'Migrate the db'

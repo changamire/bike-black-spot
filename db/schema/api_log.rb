@@ -13,5 +13,6 @@ class ApiLog
   field :path, type: String
   field :status_code, type: String  #2xx = success, 3xx = redirect, 4xx client error, 5xx server error
   field :query, type: String
+  field :version, type: String
 
 end
