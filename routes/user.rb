@@ -1,4 +1,3 @@
-require 'sinatra'
 get '/map' do
   Map.new.get(params)
 end
