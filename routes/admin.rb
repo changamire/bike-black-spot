@@ -12,9 +12,7 @@ get '/recipient' do
 
 end
 
-# get '/' do
-# #   Root.new.get(params)
-# # end
+# not mvp
 post 'category' do
 
 end
