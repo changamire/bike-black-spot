@@ -1,32 +1,18 @@
 require 'sinatra'
 require 'mongoid'
 require 'json'
-require_relative 'app/person.rb'
-require_relative 'app/map.rb'
-require_relative 'app/root.rb'
-require_relative 'app/report.rb'
+
+require_relative 'routes/init'
 
 class BikeSpot < Sinatra::Base
+  # configure do
+  #   set :app_file, __FILE__
+  # end
+
   #Load DB Config
   Mongoid.load!('mongoid.yml')
 
-  get '/' do
-    Root.new.get(params)
-  end
 
-  get '/map' do
-    Map.new.get(params)
-  end
-
-  get '/person:title' do
-    Person.new.get(params)
-  end
-  # post an issue to server(prints title)
-  post '/report.?:description?.?:postcode?' do
-    report = Report.new()
-    report.post(params)
-    report.show_message
-  end
 
   #TESTING
   get '/add-data' do
