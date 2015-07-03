@@ -12,6 +12,7 @@ gem 'bson'
 
 group :development, :test do
   gem 'rspec', :require => 'test'
+  gem 'mongoid-rspec'
   gem 'bundler-audit'
   gem 'rubocop'
 end

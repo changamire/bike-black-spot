@@ -1,10 +1,5 @@
 require_relative '../helpers/api_logger'
 
-
-get '/map' do
-  Map.new.get(params)
-end
-
 post '/user' do
   # (params: name, email, category)
 end
@@ -15,16 +10,9 @@ end
 post '/report' do
   # (params: uuid, location:GeoJSON, category, (opt)notes, (opt)image)
 end
+
 get '/reports' do
   "reports page"
-end
-
-get '/reports/:report_id' do
-  "reports page with an id"
-end
-
-get '/reports/:report_id:full_report' do
-  "reports page with an id and full report"
 end
 
 get '/categories' do
@@ -32,8 +20,7 @@ get '/categories' do
 end
 
 get '/' do
-  logger = ApiLogger.new
-
-  logger.log_api_call(request,response,env)
+  # logger = ApiLogger.new
+  # logger.log_api_call(request,response,env)
   Root.new.get(params)
 end
