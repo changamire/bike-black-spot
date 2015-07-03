@@ -4,7 +4,7 @@ post '/recipient' do
   # params: name, email, location, category
 end
 
-update '/recipient' do
+patch '/recipient' do
 
 end
 
