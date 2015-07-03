@@ -1,0 +1,12 @@
+development:
+  sessions:
+    default:
+      database: bike-black-spot
+      hosts:
+        - localhost:27017
+production:
+  sessions:
+    default:
+      database: bike-black-spot
+      hosts:
+        - localhost:27017 #Change to whatever the production ip is, possibly using env variables
