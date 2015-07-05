@@ -16,7 +16,7 @@ require File.join(File.dirname(__FILE__), '../app')
 
 # establish in-memory database for testing
 # DataMapper.setup(:default, "sqlite3::memory:")
-Mongoid.load!("/Users/Claire/Documents/BikeBlackSpot/Temp/config/mongoid.yml")
+# Mongoid.load!("")
 RSpec.configure do |config|
 
   # reset database before each example is run
