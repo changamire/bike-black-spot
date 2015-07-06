@@ -23,3 +23,7 @@ RSpec.configure do |config|
   # reset database before each example is run
   # config.before(:each) { DataMapper.auto_migrate! }
 end
+
+def check_last_response_is_ok
+  expect(last_response).to be_ok
+end

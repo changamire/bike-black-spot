@@ -9,9 +9,9 @@ def app
   Sinatra::Application
 end
 
-describe 'Categories' do
-  it 'get /categories should return success code' do
-    get '/categories'
+describe 'Users' do
+  it 'get /user/confirm should return success code' do
+    post '/user/confirm'
     check_last_response_is_ok
   end
 end
