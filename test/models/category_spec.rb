@@ -7,7 +7,7 @@ describe 'Category' do
 
   describe 'show message' do
     it 'should return default message when called' do
-      expect(c.show_message).to be(Category::DEFAULT_MESSAGE)
+      expect(c.show_message).to eq(Category::DEFAULT_MESSAGE)
     end
   end
 end

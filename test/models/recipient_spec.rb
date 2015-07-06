@@ -7,7 +7,7 @@ describe 'Recipient' do
 
   describe 'show message' do
     it 'should return default message when called' do
-      expect(r.show_message).to be(Recipient::DEFAULT_MESSAGE)
+      expect(r.show_message).to eq(Recipient::DEFAULT_MESSAGE)
     end
   end
 end

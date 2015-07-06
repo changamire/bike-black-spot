@@ -7,7 +7,7 @@ describe 'Report' do
 
   describe 'show message' do
     it 'should return default message when called' do
-      expect(r.show_message).to be(Report::DEFAULT_MESSAGE)
+      expect(r.show_message).to eq(Report::DEFAULT_MESSAGE)
     end
   end
 

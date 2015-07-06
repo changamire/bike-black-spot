@@ -5,7 +5,7 @@ describe 'User' do
 
   describe 'show message' do
     it 'return default message when called' do
-      expect(u.show_message).to be(User::DEFAULT_MESSAGE)
+      expect(u.show_message).to eq(User::DEFAULT_MESSAGE)
     end
   end
 end
