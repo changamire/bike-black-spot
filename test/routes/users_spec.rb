@@ -9,9 +9,9 @@ def app
   Sinatra::Application
 end
 
-describe 'user' do
-  it 'root / should return success code' do
-    get '/'
+describe 'Users' do
+  it 'get /user/confirm should return success code' do
+    get '/user/confirm'
     check_last_response_is_ok
   end
 end
