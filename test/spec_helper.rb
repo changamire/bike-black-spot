@@ -3,14 +3,15 @@
 # Bundler.setup(:default, :test)
 require 'sinatra'
 require 'rspec'
-
+require 'mongoid'
+require 'json'
 
 
 # set test environment
 Sinatra::Base.set :environment, :test
 Sinatra::Base.set :run, false
 Sinatra::Base.set :raise_errors, true
-Sinatra::Base.set :logging, false
+Sinatra::Base.set :logging, false # ?? not using this logging?
 
 require File.join(File.dirname(__FILE__), '../app')
 

@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'mongoid'
 require 'json'
-require_relative 'app/init'
+require_relative 'models/init'
 require_relative 'helpers/api_logger.rb'
 require_relative 'routes/init'
 

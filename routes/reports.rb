@@ -1,7 +1,11 @@
 get '/reports' do
-  "reports page"
+	status 200
+  # @Report.all.to_json
 end
 
 post '/reports' do
-  # (params: uuid, location:GeoJSON, category, (opt)notes, (opt)image)
+	# r = Response.create(user: params[:uuid], location: params[:location],
+	# 										notes: params[:notes], image: param[:image])
+	status 201
+	# r.to_json
 end
