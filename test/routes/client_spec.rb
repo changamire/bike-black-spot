@@ -10,8 +10,6 @@ describe 'user' do
     Sinatra::Application
   end
 
-
-
   it 'root / should return success code' do
     get '/'
     check_last_response_is_ok

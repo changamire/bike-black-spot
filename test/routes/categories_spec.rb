@@ -1,0 +1,1 @@
+categories_spec.rb
