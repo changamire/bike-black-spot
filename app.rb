@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'mongoid'
 require 'json'
-require_relative 'app/person.rb'
+require_relative 'app/user.rb'
 require_relative 'app/map.rb'
 require_relative 'app/root.rb'
 require_relative 'app/report.rb'

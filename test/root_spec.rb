@@ -1,7 +1,6 @@
-require 'rspec'
-require 'sinatra'
 require 'mongoid'
 require 'json'
+require_relative 'spec_helper'
 require_relative '../app/root'
 
 describe 'Root' do

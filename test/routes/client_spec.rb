@@ -1,7 +1,6 @@
 ENV['RACK_ENV'] = 'test'
 
 require 'rack/test'
-require_relative '../../routes/user'
 require_relative '../spec_helper'
 
 describe 'user' do
@@ -11,15 +10,7 @@ describe 'user' do
     Sinatra::Application
   end
 
-  describe 'Post to /user' do
-    # it 'should have have params'
-    # it 'should handle optional params'
-    # it 'should return 200 (OK)'
-    # it 'should return 500 on errors'
-    # it 'should return UUID'
-    # it 'should send email'
-    # it 'should create user in db'
-  end
+
 
   it 'root / should return success code' do
     get '/'

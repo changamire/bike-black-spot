@@ -46,6 +46,8 @@ GEM
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
+    rack-test (0.6.3)
+      rack (>= 1.0)
     rainbow (2.0.0)
     rake (10.4.2)
     rspec (3.3.0)
@@ -87,6 +89,7 @@ DEPENDENCIES
   mongo
   mongoid
   mongoid-rspec
+  rack-test
   rspec
   rubocop
   sinatra
