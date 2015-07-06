@@ -20,7 +20,7 @@ get '/categories' do
 end
 
 get '/' do
-  # logger = ApiLogger.new
-  # logger.log_api_call(request,response,env)
+  logger = ApiLogger.new
+  logger.log_api_call(request,response,env)
   Root.new.get(params)
 end
