@@ -11,7 +11,7 @@ end
 
 describe 'Users' do
   it 'get /user/confirm should return success code' do
-    get '/user/confirm'
+    post '/user/confirm'
     check_last_response_is_ok
   end
 end

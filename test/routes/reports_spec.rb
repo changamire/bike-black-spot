@@ -18,9 +18,4 @@ describe 'Reports' do
     get '/reports', params={report_id:1, full_report:true}
     check_last_response_is_ok
   end
-
-  it 'post /report should return success code' do
-    post 'report'
-    check_last_response_is_ok
-  end
 end
