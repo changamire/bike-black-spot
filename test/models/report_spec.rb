@@ -3,11 +3,11 @@ require_relative '../spec_helper'
 describe 'Report' do
   # This really should have Model unit tests, on save, etc
 
-  report = Report.new
+  r = Report.new
 
   describe 'show message' do
     it 'should return default message when called' do
-      expect(report.show_message).to be(Report::DEFAULT_MESSAGE)
+      expect(r.show_message).to be(Report::DEFAULT_MESSAGE)
     end
   end
 
