@@ -1,3 +1,5 @@
+require "sinatra/activerecord/rake"
+
 desc 'Build the application'
 task :build do
   puts('------------ Bundling the reqs -------------')
@@ -9,19 +11,16 @@ task :run do
   puts('------------ Running the server ------------')
   system('ruby app.rb')
 end
+namespace :db do
+	desc 'Migrate the db'
+	task :migrate do
+	  puts('------------ Running Migrations ------------')
+	end
 
-desc 'Migrate the db'
-task :migrate do
-  puts('------------ Running Migrations ------------')
-end
-desc 'Run mongoDB'
-task :startDB do
-  system('mongod')
-end
-
-desc 'Stop mongoDB'
-task :stopDB do
-  sh("(echo 'use admin'; echo 'db.shutdownServer()') | mongo")
+	desc "load db configuration"
+	task :load_config do
+		require "./app.rb"
+	end
 end
 
 desc 'Run RSpec tests'
