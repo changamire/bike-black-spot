@@ -9,7 +9,7 @@ class CreateReports < ActiveRecord::Migration
   		t.text 			 	:description 
   		t.string 			:lat
   		t.string 			:long
-  		t.datetime 		:created_at
+  		t.timestamps
   		t.datetime 		:sent_at
   	end
   end

@@ -5,7 +5,7 @@ class CreateCategories < ActiveRecord::Migration
 			t.string 		:name
 			t.string 		:description 
 			t.string		:uuid
-			t.datetime 	:created_at 
+			t.timestamps
 		end
   end
 end

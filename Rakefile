@@ -11,12 +11,8 @@ task :run do
   puts('------------ Running the server ------------')
   system('rackup')
 end
-namespace :db do
-	desc 'Migrate the db'
-	task :migrate do
-	  puts('------------ Running Migrations ------------')
-	end
 
+namespace :db do
 	desc "load db configuration"
 	task :load_config do
 		require "./app.rb"

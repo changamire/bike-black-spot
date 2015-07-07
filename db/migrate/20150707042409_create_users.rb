@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration
   		t.string 		:email
   		t.string 		:postcode
   		t.string		:uuid
-  		t.datetime 	:created_at
+  		t.timestamps
   	end
   end
 end

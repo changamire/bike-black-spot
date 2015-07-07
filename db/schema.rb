@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20150707043354) do
     t.string   "description"
     t.string   "uuid"
     t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "categories", ["id"], name: "index_categories_on_id"
@@ -29,6 +30,7 @@ ActiveRecord::Schema.define(version: 20150707043354) do
     t.string   "long"
     t.string   "uuid"
     t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "recipients", ["id"], name: "index_recipients_on_id"
@@ -42,6 +44,7 @@ ActiveRecord::Schema.define(version: 20150707043354) do
     t.string   "lat"
     t.string   "long"
     t.datetime "created_at"
+    t.datetime "updated_at"
     t.datetime "sent_at"
   end
 
@@ -53,6 +56,7 @@ ActiveRecord::Schema.define(version: 20150707043354) do
     t.string   "postcode"
     t.string   "uuid"
     t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "users", ["id"], name: "index_users_on_id"

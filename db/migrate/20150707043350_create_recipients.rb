@@ -7,7 +7,7 @@ class CreateRecipients < ActiveRecord::Migration
 			t.string 		:lat
 			t.string 		:long
 			t.string		:uuid
-			t.datetime 	:created_at 
+			t.timestamps
 		end
   end
 end
