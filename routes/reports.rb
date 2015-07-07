@@ -4,12 +4,14 @@ get '/reports' do
 end
 
 get '/reports/:uuid' do
-	r = @Report.find(params[:uuid])
+	r = Report.find(params[:uuid])
+	r.to_json
 end
 
 post '/reports' do
-	# r = Response.create(user: params[:uuid], location: params[:location],
+	# r = Response.new(user: params[:uuid], location: params[:location],
 	# 										notes: params[:notes], image: param[:image])
+	r.create
 	status 201
 	# r.to_json
 end
