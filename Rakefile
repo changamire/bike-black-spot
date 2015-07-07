@@ -7,7 +7,7 @@ end
 desc 'Run the server'
 task :run do
   puts('------------ Running the server ------------')
-  system('ruby app.rb')
+  system('rackup')
 end
 
 desc 'Migrate the db'
@@ -26,7 +26,7 @@ end
 
 desc 'Run RSpec tests'
 task :test do
-  raise "failed" unless system('rspec test --color')
+  raise 'failed' unless system('rspec test --color')
 end
 
 desc 'I am lazy'
