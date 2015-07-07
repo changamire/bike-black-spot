@@ -1,3 +1,3 @@
 require './app'
 
-run BikeSpot
+Sinatra::Application.run!
