@@ -4,6 +4,11 @@ ruby '2.1.3'
 gem 'bundler', '1.10.5'
 gem 'rake'
 gem 'sinatra'
+
+#Auth
+gem 'warden'
+
+#DB
 gem 'sinatra-activerecord'
 gem 'bson'
 gem 'pg'

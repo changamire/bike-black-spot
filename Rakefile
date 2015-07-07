@@ -34,7 +34,7 @@ desc 'I am lazy'
 task :t => [:test]
 
 desc 'Build then run'
-task :exec => [:build, :test,:run]
+task :exec => [:build,:test,:run]
 
 #Default
 task :default => [:exec]

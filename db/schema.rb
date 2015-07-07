@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150707043354) do
+ActiveRecord::Schema.define(version: 20150707162000) do
+
+  create_table "admin", force: :cascade do |t|
+    t.string "name"
+    t.string "password"
+  end
+
+  add_index "admin", ["id"], name: "index_admin_on_id"
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"

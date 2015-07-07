@@ -1,5 +1,6 @@
 get '/reports' do
-	status 200
+	env['warden'].authenticate!
+  status 200
   # @Report.all.to_json
 end
 
