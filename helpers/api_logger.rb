@@ -19,7 +19,7 @@ class ApiLogger
 
   public
   def log_api_call(request,response,env)
-    unless Sinatra::Application.settings.environment==:test  then
+    if Sinatra::Application.settings.logging  then
       logger = ApiLogger.new
       logger.log(ip_address: request.ip || '-',
                  identifier: '-',
