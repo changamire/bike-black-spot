@@ -1,6 +1,3 @@
-ENV['RACK_ENV'] = 'test'
-
-require 'rack/test'
 require_relative '../spec_helper'
 
 describe 'Reports' do

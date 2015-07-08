@@ -4,8 +4,13 @@
 require 'sinatra'
 require 'rspec'
 require 'json'
+require 'rack/test'
 
-set :environment, :test
+include Rack::Test::Methods
+
+def app
+  Sinatra::Application
+end
 	
 # set test environment
 Sinatra::Base.set :environment, :test
