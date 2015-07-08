@@ -1,4 +1,4 @@
-get '/recipient' do
+get '/recipients' do
   "gets a recipient"
  	# name (string)
 	# email (string)
@@ -9,7 +9,7 @@ get '/recipient' do
 	# 403 - unauth
 end
 
-get '/recipient/export' do
+get '/recipients/export' do
 	#requires auth
 	"dumps everything"
 end

@@ -10,8 +10,8 @@ describe 'Recipient' do
     Sinatra::Application
   end
 
-  it 'get recipient should return success code' do
-    get '/recipient'
+  it 'get recipients should return success code' do
+    get '/recipients'
     check_last_response_is_ok
   end
 end

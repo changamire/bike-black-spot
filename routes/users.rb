@@ -1,4 +1,4 @@
-post '/user' do
+post '/users' do
   if params['name'].nil? and params['email'].nil?
     return status 500
   end
@@ -8,6 +8,6 @@ post '/user' do
 	u.to_json
 end
 
-post '/user/confirm' do
+post '/users/confirm' do
   "user confirm page"
 end

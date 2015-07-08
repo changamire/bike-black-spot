@@ -6,7 +6,7 @@ require 'rspec'
 require 'mongoid'
 require 'json'
 
-# set :environment, :development
+set :environment, :development
 	
 # set test environment
 Sinatra::Base.set :environment, :test
