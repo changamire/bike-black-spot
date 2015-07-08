@@ -5,7 +5,7 @@ end
 
 
 configure :test do
- db = URI.parse(ENV['SNAP_DB_PG_URL_ALT')
+ db = URI.parse(ENV['SNAP_DB_PG_URL_ALT'])
  ActiveRecord::Base.establish_connection(
    :adapter  => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
    :host     => db.host,
