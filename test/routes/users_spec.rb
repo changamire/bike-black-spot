@@ -1,4 +1,5 @@
 require_relative '../spec_helper'
+require_relative '../../routes/routing_locations'
 
 describe 'Users' do
 
