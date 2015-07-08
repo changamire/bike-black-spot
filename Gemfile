@@ -7,7 +7,6 @@ gem 'sinatra'
 gem 'sinatra-activerecord'
 gem 'bson'
 gem 'pg'
-gem 'sqlite3'
 
 group :development do
   gem 'tux'
@@ -19,4 +18,5 @@ group :development, :test do
   gem 'mongoid-rspec'
   gem 'bundler-audit'
   gem 'rubocop'
+  gem 'sqlite3'
 end
