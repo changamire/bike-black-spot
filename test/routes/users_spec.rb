@@ -6,7 +6,7 @@ describe 'Users' do
 
     it 'should return status 200(OK) if correct params' do
       params = {
-          name: 'Harry Potter',
+          username: 'Harry Potter',
           email: 'imawizard@hogwarts.com',
           postcode: '9314'
       }
@@ -24,7 +24,7 @@ describe 'Users' do
 
     it 'should still return status 200(OK) if no optional param' do
       params = {
-          name: 'No postcode',
+          username: 'No postcode',
           email: 'no@postcode.com'
       }
       post '/users', params
@@ -50,7 +50,6 @@ describe 'Users' do
       expect(u.name).to eq(params[:name])
       expect(u.email).to eq(params[:email])
     end
-
   end
 
   describe 'Post to /users/confirm' do

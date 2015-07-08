@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20150707162000) do
     t.string "password"
   end
 
-  add_index "admin", ["id"], name: "index_admin_on_id"
+  add_index "admin", ["id"], username: "index_admin_on_id"
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,5 +70,4 @@ ActiveRecord::Schema.define(version: 20150707162000) do
   end
 
   add_index "users", ["id"], name: "index_users_on_id", using: :btree
-
 end
