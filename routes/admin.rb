@@ -2,11 +2,19 @@ get '/admin/?' do
   env['warden'].authenticate!
   erb :admin
 end
-get '/admin/login/?' do
+
+get '/logout/?' do
+  env['warden'].logout if env['warden'].authenticated?
+  redirect '/'
+end
+
+get '/login/?' do
+  redirect '/admin' if env['warden'].authenticated?
+
   erb :login
 end
 
-post '/admin/login/?' do
+post '/login/?' do
   env['warden'].authenticate!
 
   flash[:success] = env['warden'].message
@@ -17,9 +25,4 @@ post '/admin/login/?' do
     redirect '/admin'
     # redirect session[:return_to]
   end
-end
-
-
-get '/logout/?' do
-  'hi log'
 end

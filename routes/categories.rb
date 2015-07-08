@@ -1,4 +1,4 @@
 get '/categories/?' do
-  "categories page"
+  'categories page'
 end
 

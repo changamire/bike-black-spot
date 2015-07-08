@@ -1,7 +1,7 @@
-ENV['RACK_ENV'] = 'test'
-
 require 'rack/test'
 require_relative '../spec_helper'
+
+ENV['RACK_ENV'] = 'test'
 
 include Rack::Test::Methods
 
@@ -18,7 +18,7 @@ describe 'Admin routes' do
 
   it 'get /admin should redirect to login when unauthorised' do
     get '/admin'
-    expect(last_response.location).to include('/admin/login')
+    expect(last_response.location).to include('/login')
   end
 
   it 'get /admin should not redirect when authorised' do
@@ -30,13 +30,28 @@ describe 'Admin routes' do
 end
 
 describe 'Admin/login routes' do
-  xit 'post /admin/login with invalid credentials should not redirect' do
-    post '/admin/login', params={username:'admin',password:'password'}
+  xit 'post /login with invalid credentials should not redirect' do
+    post '/login', params={username:'admin',password:'password'}
     expect(last_response.status).to_not be(302)
   end
 
-  xit 'post /admin/login with valid credentials should redirect to /admin' do
+  xit 'post /login with valid credentials should redirect to /admin' do
 
+  end
+end
+
+describe '/logout routes' do
+  it 'get /logout should redirect' do
+    get '/logout'
+
+    expect(last_response.status).to be(302)
+  end
+
+  it 'get /logout should logout of warden' do
+    login_as :Admin
+    get '/logout'
+    get '/admin'
+    expect(last_response.location).to include('/login')
   end
 end
 
