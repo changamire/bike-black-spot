@@ -1,8 +1,6 @@
-get '/admin' do
+get '/admin/?' do
   env['warden'].authenticate!
-
   erb :admin
-  # redirect '/categories'
 end
 get '/admin/login/?' do
   erb :login

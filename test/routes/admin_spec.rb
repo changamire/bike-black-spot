@@ -13,13 +13,13 @@ describe 'Admin routes' do
 
   it 'get /admin should have status 302 when unauthorised' do
     get '/admin'
-    check_last_response_is_redirect
+    check_response_is_redirected
   end
+
   it 'get /admin should redirect to login when unauthorised' do
     get '/admin'
     expect(last_response.location).to include('/admin/login')
   end
-
 
   it 'get /admin should not redirect when authorised' do
     login_as :Admin
@@ -27,8 +27,6 @@ describe 'Admin routes' do
     expect(last_response.status).to_not be(302)
     check_last_response_is_ok
   end
-
-
 end
 
 describe 'Admin/login routes' do
@@ -36,6 +34,7 @@ describe 'Admin/login routes' do
     post '/admin/login', params={username:'admin',password:'password'}
     expect(last_response.status).to_not be(302)
   end
+
   xit 'post /admin/login with valid credentials should redirect to /admin' do
 
   end

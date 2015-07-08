@@ -1,4 +1,4 @@
-get '/reports' do
+get '/reports/?' do
 	env['warden'].authenticate!
   status 200
   # @Report.all.to_json
@@ -9,7 +9,7 @@ get '/reports/:uuid' do
 	r.to_json
 end
 
-post '/reports' do
+post '/reports/?' do
 	# r = Response.new(user: params[:uuid], location: params[:location],
 	# 										notes: params[:notes], image: param[:image])
 	r.create

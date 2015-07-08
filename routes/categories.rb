@@ -1,4 +1,4 @@
-get '/categories' do
+get '/categories/?' do
   "categories page"
 end
 

@@ -9,6 +9,10 @@ require_relative 'routes/init'
 require_relative 'environments'
 require_relative 'models/admin'
 
+<<<<<<< HEAD
+=======
+set :database, {adapter: 'sqlite3', database: 'foo.sqlite3'}
+>>>>>>> cleaning up some of the fils and adding /? to the routes
 class BikeSpot < Sinatra::Base
   register Sinatra::ActiveRecordExtension
   enable :sessions
@@ -32,27 +36,21 @@ class BikeSpot < Sinatra::Base
 
     def authenticate!
       # Add username stuff
-    #   user = User.first(username: params['user']['username'])
-    #
-    #   if user.nil?
-    #     fail!("The username you entered does not exist.")
-    #   elsif user.authenticate(params['user']['password'])
-    #     success!(user)
-    #   else
-    #     fail!("Could not log in")
-    #   end
-    # end
+      admin = Admin.first(username: params['user']['username'])
 
-      admin = Admin.authenticate(params['username'], params['password'])
-      admin.nil? ?  fail!('Could not log in') : success!(admin)
+      if admin.nil?
+        fail!('The username you entered does not exist.')
+      elsif admin.authenticate(params['user']['password'])
+        success!(admin)
+      else
+        fail!('Could not log in')
+      end
     end
   end
 
   get '/unauthenticated/?' do
     redirect '/admin/login'
   end
-
-
 
 end
 

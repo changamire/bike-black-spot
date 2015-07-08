@@ -8,10 +8,9 @@ post '/users' do
   status 500
 end
 
-post '/users/confirm' do
+post '/user/confirm/?' do
   'user confirm page'
 end
-
 
 def validate_params?(params)
   permitted = ['name', 'email', 'postcode']
