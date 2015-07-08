@@ -1,8 +1,8 @@
 require 'rack/test'
 require_relative '../spec_helper'
+require_relative '../../routes/routing_locations'
 
 ENV['RACK_ENV'] = 'test'
-
 include Rack::Test::Methods
 
 def app
@@ -10,28 +10,27 @@ def app
 end
 
 describe 'Admin routes' do
-
-  it 'get /admin should have status 302 when unauthorised' do
-    get '/admin'
+  it 'get ' + RoutingLocations::ADMIN + ' should have status 302 when unauthorised' do
+    get RoutingLocations::ADMIN
     check_response_is_redirected
   end
 
-  it 'get /admin should redirect to login when unauthorised' do
-    get '/admin'
-    expect(last_response.location).to include('/login')
+  it 'get ' + RoutingLocations::ADMIN + ' should redirect to login when unauthorised' do
+    get RoutingLocations::ADMIN
+    expect(last_response.location).to include(RoutingLocations::LOGIN)
   end
 
-  it 'get /admin should not redirect when authorised' do
+  it 'get ' + RoutingLocations::ADMIN + ' should not redirect when authorised' do
     login_as :Admin
-    get '/admin'
+    get RoutingLocations::ADMIN
     expect(last_response.status).to_not be(302)
     check_last_response_is_ok
   end
 end
 
-describe 'Admin/login routes' do
-  xit 'post /login with invalid credentials should not redirect' do
-    post '/login', params={username:'admin',password:'password'}
+describe RoutingLocations::LOGIN+' routes' do
+  xit 'post ' + RoutingLocations::LOGIN + ' with invalid credentials should not redirect' do
+    post RoutingLocations::LOGIN, params={username:'admin',password:'password'}
     expect(last_response.status).to_not be(302)
   end
 
@@ -40,18 +39,18 @@ describe 'Admin/login routes' do
   end
 end
 
-describe '/logout routes' do
-  it 'get /logout should redirect' do
-    get '/logout'
+describe RoutingLocations::LOGOUT + ' routes' do
+  it 'get '+RoutingLocations::LOGOUT+' should redirect' do
+    get RoutingLocations::LOGOUT
 
     expect(last_response.status).to be(302)
   end
 
-  it 'get /logout should logout of warden' do
+  it 'get ' + RoutingLocations::LOGOUT + ' should logout of warden' do
     login_as :Admin
-    get '/logout'
-    get '/admin'
-    expect(last_response.location).to include('/login')
+    get RoutingLocations::LOGOUT
+    get RoutingLocations::ADMIN
+    expect(last_response.location).to include(RoutingLocations::LOGIN)
   end
 end
 

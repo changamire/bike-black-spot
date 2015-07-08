@@ -1,5 +1,7 @@
-get '/recipients' do
-  "gets a recipient"
+require_relative 'routing_locations'
+
+get RoutingLocations::RECIPIENTS + '/?' do
+  'gets a recipient'
  	# name (string)
 	# email (string)
 	# location (id? ref to db mapping to GeoJSON)
@@ -9,7 +11,7 @@ get '/recipients' do
 	# 403 - unauth
 end
 
-get '/recipients/export' do
+get RoutingLocations::RECIPIENTS + '/?' do
 	#requires auth
-	"dumps everything"
+  'dumps everything'
 end

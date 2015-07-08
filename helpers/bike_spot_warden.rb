@@ -1,3 +1,7 @@
+def warden
+  env['warden']
+end
+
 class BikeSpotWarden  < Sinatra::Base
   Warden::Manager.serialize_into_session do |user|
     user.object_id
@@ -27,11 +31,9 @@ class BikeSpotWarden  < Sinatra::Base
   end
 
   #Routing -- DO NOT MOVE --
-  get '/unauthenticated/?' do
-    redirect '/admin/login'
+  get RoutingLocations::UNAUTHENTICATED do
+    redirect RoutingLocations::LOGIN
   end
-
-
 end
 
 use Warden::Manager do |manager|

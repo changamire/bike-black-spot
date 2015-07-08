@@ -1,28 +1,28 @@
-get '/admin/?' do
-  env['warden'].authenticate!
+require_relative 'routing_locations'
+
+get RoutingLocations::ADMIN  + '/?' do
+  warden.authenticate!
   erb :admin
 end
 
-get '/logout/?' do
-  env['warden'].logout if env['warden'].authenticated?
-  redirect '/'
+get RoutingLocations::LOGOUT  + '/?' do
+  warden.logout if warden.authenticated?
+  redirect RoutingLocations::ROOT
 end
 
-get '/login/?' do
-  redirect '/admin' if env['warden'].authenticated?
-
+get RoutingLocations::LOGIN  + '/?' do
+  redirect RoutingLocations::ADMIN if warden.authenticated?
   erb :login
 end
 
-post '/login/?' do
-  env['warden'].authenticate!
+post RoutingLocations::LOGIN do
+  warden.authenticate!
 
-  flash[:success] = env['warden'].message
+  flash[:success] = warden.message
 
   if session[:return_to].nil?
-    redirect '/'
+    redirect RoutingLocations::ROOT
   else
-    redirect '/admin'
-    # redirect session[:return_to]
+    redirect RoutingLocations::ADMIN
   end
 end

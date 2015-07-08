@@ -12,10 +12,10 @@ def app
 end
 	
 # set test environment
-Sinatra::Base.set :environment, :test
+Sinatra::Base.set :environment => :development
 Sinatra::Base.set :run, false
 Sinatra::Base.set :raise_errors, true
-Sinatra::Base.set :logging, false # ?? not using this logging?
+Sinatra::Base.set :logging, false
 Sinatra::Base.set :views, File.join(File.dirname(__FILE__),'../views/')
 
 RSpec.configure do |config|
