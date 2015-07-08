@@ -4,6 +4,7 @@ class CreateAdmins < ActiveRecord::Migration
       t.index 		:id
       t.string    :username
       t.string   	:password
+      t.timestamps
     end
   end
 end
