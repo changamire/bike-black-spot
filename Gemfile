@@ -6,10 +6,11 @@ gem 'rake'
 gem 'sinatra'
 gem 'sinatra-activerecord'
 gem 'bson'
+gem 'pg'
+gem 'sqlite3'
 
 group :development do
   gem 'tux'
-  gem 'sqlite3'
 end
 
 group :development, :test do
@@ -19,8 +20,3 @@ group :development, :test do
   gem 'bundler-audit'
   gem 'rubocop'
 end
-
-group :test, :production do
-	# gem 'pg'
-end
-gem 'pg'
