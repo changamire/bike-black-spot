@@ -17,7 +17,7 @@ configure :production do
 end
 
 configure :test do
- db = URI.parse(ENV['SNAP_DB_PG_URL'] || 'postgres://test@localhost/testdb')
+ db = URI.parse(ENV['SNAP_DB_PG_URL'] || 'postgres://go:go@localhost/app_test')
  ActiveRecord::Base.establish_connection(
    :adapter  => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
    :host     => db.host,

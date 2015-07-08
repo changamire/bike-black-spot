@@ -9,8 +9,9 @@
 - `rake db:create db:migrate`
 
 if you're a good person, and you're going to run tests:
+
 - `brew install postgresql`
-- `createuser -s -e go`
+- `createuser -P -s -e go` // the test password is go
 - `createdb -h localhost -p 5432 -U go app_test`
 
 ## Sensitive information
