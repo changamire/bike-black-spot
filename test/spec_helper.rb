@@ -3,7 +3,6 @@
 # Bundler.setup(:default, :test)
 require 'sinatra'
 require 'rspec'
-require 'mongoid'
 require 'json'
 
 set :environment, :test

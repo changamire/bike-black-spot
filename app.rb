@@ -1,5 +1,4 @@
 require 'sinatra'
-require 'mongoid'
 require 'json'
 require 'sinatra/activerecord'
 require './environments'

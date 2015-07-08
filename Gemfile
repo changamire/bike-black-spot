@@ -15,7 +15,6 @@ end
 group :development, :test do
   gem 'rspec', :require => 'test'
   gem 'rack-test'
-  gem 'mongoid-rspec'
   gem 'bundler-audit'
   gem 'rubocop'
   gem 'sqlite3'
