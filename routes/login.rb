@@ -7,14 +7,8 @@ end
 
 post RoutingLocations::LOGIN do
   warden.authenticate!
+  redirect RoutingLocations::ADMIN
 
-  flash[:success] = warden.message
-
-  if session[:return_to].nil?
-    redirect RoutingLocations::ROOT
-  else
-    redirect RoutingLocations::ADMIN
-  end
 end
 
 get RoutingLocations::LOGOUT  + '/?' do

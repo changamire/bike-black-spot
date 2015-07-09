@@ -18,6 +18,8 @@ Sinatra::Base.set :raise_errors, true
 Sinatra::Base.set :logging, false
 Sinatra::Base.set :views, File.join(File.dirname(__FILE__),'../views/')
 
+LOCAL = 'http://example.org'
+
 RSpec.configure do |config|
   config.include Warden::Test::Helpers
 
@@ -39,8 +41,4 @@ end
 
 def check_last_response_is_ok
   expect(last_response).to be_ok
-end
-
-def check_response_is_redirected
-  expect(last_response.status).to be(302)
 end

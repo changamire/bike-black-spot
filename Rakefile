@@ -13,15 +13,16 @@ task :run do
 end
 
 namespace :db do
-	desc "load db configuration"
+	desc 'load db configuration'
 	task :load_config do
-		require "./app.rb"
+		require './app.rb'
   end
 
   desc 'setup db stuff for local tests'
   task :init do
     sh('bundle exec rake db:create db:migrate RACK_ENV=test')
   end
+		require './app.rb'
 end
 
 desc 'Run RSpec tests'

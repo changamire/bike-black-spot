@@ -18,6 +18,12 @@ end
 
 configure :test do
  db = URI.parse(ENV['SNAP_DB_PG_URL'] || 'postgres://go:go@localhost/app_test')
+	set :database, {adapter: 'sqlite3', database: 'dev.sqlite3'}
+ 	set :show_exceptions, true
+end
+
+configure :test, :production do
+ db = URI.parse(ENV['DATABASE_URL']) #blind optimism failing?
  ActiveRecord::Base.establish_connection(
    :adapter  => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
    :host     => db.host,

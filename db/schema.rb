@@ -13,12 +13,14 @@
 
 ActiveRecord::Schema.define(version: 20150707162000) do
 
-  create_table "admin", force: :cascade do |t|
-    t.string "name"
-    t.string "password"
+  create_table "admins", force: :cascade do |t|
+    t.string   "username"
+    t.string   "password"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "admin", ["id"], username: "index_admin_on_id"
+  add_index "admins", ["id"], name: "index_admins_on_id"
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,4 +72,5 @@ ActiveRecord::Schema.define(version: 20150707162000) do
   end
 
   add_index "users", ["id"], name: "index_users_on_id", using: :btree
+
 end

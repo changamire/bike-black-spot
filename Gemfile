@@ -7,6 +7,7 @@ gem 'sinatra'
 
 #Auth
 gem 'warden'
+gem 'bcrypt'
 
 #DB
 gem 'sinatra-activerecord'

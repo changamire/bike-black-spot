@@ -1,9 +1,6 @@
 class Admin < ActiveRecord::Base
-  def authenticate(attempted_password)
-    if self.password == attempted_password
-      true
-    else
-      false
-    end
+
+  def authenticate(supplied_password)
+    self.password == supplied_password
   end
 end
