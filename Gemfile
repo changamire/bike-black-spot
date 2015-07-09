@@ -18,4 +18,5 @@ group :development, :test do
   gem 'bundler-audit'
   gem 'rubocop'
   gem 'sqlite3'
+  gem 'database_cleaner'
 end

@@ -1,10 +1,8 @@
-# require 'rubygems's
-# require 'bundler'
-# Bundler.setup(:default, :test)
 require 'sinatra'
 require 'rspec'
 require 'json'
 require 'rack/test'
+require 'database_cleaner'
 
 include Rack::Test::Methods
 
@@ -20,13 +18,19 @@ Sinatra::Base.set :logging, false # ?? not using this logging?
 
 require File.join(File.dirname(__FILE__), '../app')
 
-# establish in-memory database for testing
-# DataMapper.setup(:default, "sqlite3::memory:")
-# Mongoid.load!("")
 RSpec.configure do |config|
 
-  # reset database before each example is run
-  # config.before(:each) { DataMapper.auto_migrate! }
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
+
 end
 
 def check_last_response_is_ok

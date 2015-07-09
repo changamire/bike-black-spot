@@ -31,18 +31,10 @@ describe 'Users' do
       expect(last_response).to be_ok
     end
 
-    # it 'should return UUID' do
-    #   uuidregex = /[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}/
-    #   params = {
-    #       name: 'Severus Snape',
-    #       email: 'dumbledont@deatheaterz.com'
-    #   }
-    #   post '/users', params
-    #   expect(last_response.body).to match(uuidregex)
-    # end
+    xit 'should create user in db' do
 
-    # it 'should send email'
-    # it 'should create user in db'
+    end
+
   end
 
   describe 'Post to /users/confirm' do
