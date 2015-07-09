@@ -1,6 +1,7 @@
 require 'rack/test'
 require_relative '../spec_helper'
 require_relative '../../routes/routing_locations'
+require_relative '../../models/admin'
 
 describe 'Login' do
   it 'post ' + RoutingLocations::LOGIN + ' with invalid credentials should not redirect' do
@@ -10,10 +11,14 @@ describe 'Login' do
   end
 
   it 'post /login with valid credentials should redirect to /admin' do
-    post RoutingLocations::LOGIN, params={username:'admin',password:'password!'}
+    test_admin = Admin.create(username:'userCat',password:'userPass')
+
+    post RoutingLocations::LOGIN, params={username:'userCat',password:'userPass'}
 
     expect(last_response.redirect?).to be(true)
     expect(last_response.location).to eql(LOCAL + RoutingLocations::ADMIN )
+
+    test_admin.delete
   end
 end
 
