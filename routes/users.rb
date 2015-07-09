@@ -1,6 +1,7 @@
 require_relative '../helpers/param_validation_helper'
 
 post '/users' do
+
   if validate_params?(params)
     u = User.create(params)
     return u.uuid.to_json
