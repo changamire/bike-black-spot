@@ -14,7 +14,7 @@ describe 'Users' do
       expect(last_response).to be_ok
     end
 
-    xit 'should return status 500 if incorrect params' do
+    it 'should return status 500 if incorrect params' do
       params = {
           fail: 'Incorrect Param'
       }
