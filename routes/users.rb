@@ -1,9 +1,6 @@
 post '/users' do
-  # if params['name'].nil? and params['email'].nil?
-  #   return status 500
-  # end
-	@u = User.create(params)
-	@u.to_json
+	u = User.create(params)
+  u.uuid.to_json
 end
 
 post '/users/confirm' do
