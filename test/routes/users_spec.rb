@@ -1,11 +1,10 @@
 require_relative '../spec_helper'
-require_relative '../../routes/routing_locations'
 
 describe 'Users' do
 
   describe 'Post to /users' do
 
-    xit 'should return status 200(OK) if correct params' do
+    it 'should return status 200(OK) if correct params' do
       params = {
           username: 'Harry Potter',
           email: 'imawizard@hogwarts.com',
@@ -23,7 +22,7 @@ describe 'Users' do
       expect(last_response.status).to eq(500)
     end
 
-    xit 'should still return status 200(OK) if no optional param' do
+    it 'should still return status 200(OK) if no optional param' do
       params = {
           username: 'No postcode',
           email: 'no@postcode.com'
@@ -55,7 +54,7 @@ describe 'Users' do
 
   describe 'Post to /users/confirm' do
 
-    xit 'post /users/confirm should return success code' do
+    it 'post /users/confirm should return success code' do
       post '/users/confirm'
       check_last_response_is_ok
     end

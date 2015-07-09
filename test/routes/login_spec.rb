@@ -10,7 +10,7 @@ describe 'Login' do
   end
 
   it 'post /login with valid credentials should redirect to /admin' do
-    post RoutingLocations::LOGIN, params={username:'admin',password:'password'}
+    post RoutingLocations::LOGIN, params={username:'admin',password:'password!'}
 
     expect(last_response.redirect?).to be(true)
     expect(last_response.location).to eql(LOCAL + RoutingLocations::ADMIN )

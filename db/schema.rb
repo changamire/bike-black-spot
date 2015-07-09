@@ -13,17 +13,16 @@
 
 ActiveRecord::Schema.define(version: 20150707162000) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "admins", force: :cascade do |t|
     t.string   "username"
-    t.string   "password"
+    t.string   "encrypted_password"
+    t.string   "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "admins", ["id"], name: "index_admins_on_id"
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"

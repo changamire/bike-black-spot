@@ -1,4 +1,5 @@
 require_relative 'routing_locations'
+require_relative '../models/admin'
 
 get RoutingLocations::LOGIN  + '/?' do
   redirect RoutingLocations::ADMIN if warden.authenticated?
@@ -8,7 +9,6 @@ end
 post RoutingLocations::LOGIN do
   warden.authenticate!
   redirect RoutingLocations::ADMIN
-
 end
 
 get RoutingLocations::LOGOUT  + '/?' do
