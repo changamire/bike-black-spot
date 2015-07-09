@@ -11,10 +11,9 @@ class BikeSpotWarden  < Sinatra::Base
     def authenticate!
       # Add username stuff
       begin
-        # Expand
-        # admin = Admin.first(username: params['username'])
-        admin = Admin.first!
+        admin = Admin.where(username: params['username']).first
 
+        # admin = Admin.first!
         if admin.authenticate(params['password'])
           success!(admin)
         else
