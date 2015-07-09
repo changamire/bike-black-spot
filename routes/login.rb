@@ -7,8 +7,6 @@ get RoutingLocations::LOGIN  + '/?' do
 end
 
 post RoutingLocations::LOGIN do
-  # Admin.create(username:'admin',password:'password!')
-
   warden.authenticate!
   redirect RoutingLocations::ADMIN
 end

@@ -10,12 +10,7 @@ class Admin < ActiveRecord::Base
   after_save :clear_password
 
   def authenticate(supplied_password)
-    puts supplied_password
-    puts encrypted_password
-    puts BCrypt::Engine.hash_secret(supplied_password, self.salt)
-
     self.encrypted_password == BCrypt::Engine.hash_secret(supplied_password, self.salt)
-
   end
 
   protected
