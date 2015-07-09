@@ -13,7 +13,8 @@ if you're a good person, and you're going to run tests:
 - `brew install postgresql`
 - `createuser -P -s -e go` // the test password is go
 - `createdb -h localhost -p 5432 -U go app_test`
-- `export RACK_ENV=test`
+- `rake db:init`
+- `rake test`
 
 ## Sensitive information
 The file for storing sensitive information (passwords etc) is secrets.yml and is encrypted using [transcrypt](https://github.com/elasticdog/transcrypt).
