@@ -13,6 +13,13 @@ describe 'Admin' do
     expect(admin.errors[:username]).to include("can't be blank")
   end
 
+  it 'username can be only blank spaces' do
+    admin = Admin.new(username: '   ')
+    admin.valid?
+
+    expect(admin.errors[:username]).to include("can't be blank")
+  end
+
   it 'username should be more then 3 characters'do
     admin = Admin.new(username: 'a')
     admin.valid?
@@ -52,6 +59,13 @@ describe 'Admin' do
 
   it 'should create an admin when passed in a username and password' do
     admin = Admin.create(username: username, password: password)
+    found_admin = Admin.where(:username => username)
+
+    expect(found_admin).to_not be_nil
+    admin.delete
+  end
+  it 'should create an admin when passed in a username with space in it' do
+    admin = Admin.create(username: username+' '+username, password: password)
     found_admin = Admin.where(:username => username)
 
     expect(found_admin).to_not be_nil
