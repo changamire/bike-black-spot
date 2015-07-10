@@ -1,9 +1,10 @@
 require 'bcrypt'
+require 'active_record'
 
 class Admin < ActiveRecord::Base
   include BCrypt
 
-  validates :username, presence: true, uniqueness: true, length: { :in => 3..20 }
+  validates :username, presence: true, uniqueness: true, length: {in: 3..20 }
   attr_accessor :password
 
   before_create :encrypt_password
@@ -15,8 +16,10 @@ class Admin < ActiveRecord::Base
 
   protected
   def encrypt_password
-    self.salt = BCrypt::Engine.generate_salt
-    self.encrypted_password= BCrypt::Engine.hash_secret(password, salt)
+    unless @password.nil? || @password == ''
+      self.salt = BCrypt::Engine.generate_salt
+      self.encrypted_password= BCrypt::Engine.hash_secret(@password, salt)
+    end
   end
 
   def clear_password
