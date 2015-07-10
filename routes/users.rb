@@ -4,9 +4,10 @@ post '/users' do
 
   if validate_params?(params)
     u = User.create(params)
-    return u.uuid.to_json
+    return u.uuid.to_json if u.valid?
   end
   status 500
+  'Invalid Parameters'
 end
 
 post '/users/confirm/?' do
