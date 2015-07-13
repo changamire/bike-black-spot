@@ -1,14 +1,22 @@
 require_relative 'routing_locations'
+require_relative '../helpers/param_validation_helper'
+
 
 get RoutingLocations::RECIPIENTS + '/?' do
-  return status 500 unless validate_get_params?(params)
+  permitted = %w(uuid)
+  required = %w()
+
+  return status 500 unless validate_params?(params, permitted, required)
   return Recipient.find_by(uuid: params[:uuid]).to_json unless params[:uuid].nil?
   Recipient.all.to_json
 end
 
+delete '/recipients' do
+  redirect RoutingLocations::LOGIN unless warden.authenticated?
 
-def validate_get_params?(params)
   permitted = %w(uuid)
   required = %w()
-  params_permitted?(params, permitted) && params_required?(params, required)
+  return status 500 unless validate_params?(params, permitted, required)
+  recipient = Recipient.find_by(uuid: params[:uuid])
+  recipient.delete
 end

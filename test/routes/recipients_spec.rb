@@ -41,4 +41,27 @@ describe 'Recipients' do
 
     end
   end
+
+  describe 'Delete /recipients' do
+    it 'should return error if no auth' do
+      delete '/recipients?uuid=thisdoesntreallymatter'
+      expect(last_response.redirect?).to be(true)
+    end
+
+    it 'should return error with incorrect params' do
+      login_as :Admin
+      delete '/recipients?uuid=sothisisathing&fail=fial'
+      expect(last_response.status).to be(500)
+    end
+
+    it 'should delete correct recipient' do
+      recipient = Recipient.create(name: 'Another Dude', email: 'another@dude.com', lat: '144.9631', long: '37.8136')
+      login_as :Admin
+      delete "/recipients?uuid=#{recipient.uuid}"
+
+      expect(Recipient.first).to be_nil
+
+    end
+
+  end
 end

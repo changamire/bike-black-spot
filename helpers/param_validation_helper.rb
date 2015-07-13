@@ -1,3 +1,7 @@
+def validate_params?(params,permitted,required)
+  params_permitted?(params, permitted) && params_required?(params, required)
+end
+
 def params_permitted?(params, permitted)
   params.keys.each do |param|
     return false unless permitted.include?(param)
