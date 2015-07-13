@@ -13,9 +13,9 @@ describe 'Recipients' do
       Recipient.create(name: 'Some Dude', email: 'some@dude.com', lat: '37.8136', long: '144.9631')
       Recipient.create(name: 'Another Dude', email: 'another@dude.com', lat: '144.9631', long: '37.8136')
       get RoutingLocations::RECIPIENTS
-      r = JSON.parse(last_response.body)
-      expect(r[0]['name']).to eq('Some Dude')
-      expect(r[1]['name']).to eq('Another Dude')
+      recipients = JSON.parse(last_response.body)
+      expect(recipients[0]['name']).to eq('Some Dude')
+      expect(recipients[1]['name']).to eq('Another Dude')
     end
 
   end
