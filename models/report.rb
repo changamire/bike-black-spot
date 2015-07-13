@@ -1,8 +1,10 @@
 class Report < ActiveRecord::Base
   belongs_to :user
-  belongs_to :recipient
   belongs_to :category
-  validates :lat, :long, presence: true
+
+  has_many :recipient
+
+  validates :user, :category, :lat, :long, presence: true
   validates :description, length: {maximum: 500}
   validates :lat, numericality: {less_than_or_equal_to: 90}
   validates :lat, numericality: {greater_than_or_equal_to: -90}

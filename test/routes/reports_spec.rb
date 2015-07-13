@@ -3,9 +3,19 @@ require_relative '../spec_helper'
 describe 'Reports' do
   describe 'Get /reports' do
 
+    user = {}
+    category = {}
+    params = {}
+
+    before(:each) do
+      user = User.create(name: 'liam', email: 'l@l.com')
+      category = Category.create(name: 'category1Name')
+      params = {user: user, category: category, lat: '90', long: '130', description: 'Description yay'}
+    end
     it 'should return all reports on no params' do
-      Report.create(lat: '90', long: '90')
-      Report.create(lat: '-90', long: '-90')
+      Report.create(params)
+      params['lat'] = '-90'
+      Report.create(params)
 
       get '/reports'
       response = JSON.parse(last_response.body)
@@ -14,8 +24,10 @@ describe 'Reports' do
     end
 
     it 'should return correct report given uuid' do
-      Report.create(lat: '90', long: '90')
-      expected_report = Report.create(lat: '-90', long: '-90')
+      Report.create(params)
+
+      params['lat'] = '-90'
+      expected_report = Report.create(params)
 
       get "/reports?uuid=#{expected_report.uuid}"
       response = JSON.parse(last_response.body)
@@ -40,9 +52,9 @@ describe 'Reports' do
 
     params = {}
     before(:each) do
-      user = User.create(name: 'Tom')
+      user = User.create(name: 'Tom', email: 't@l.com')
       category = Category.create(name: 'category1')
-      params = {uuid: user.uuid, lat: valid_lat, long: valid_long, category: category, description: valid_description}
+      params = {uuid: user.uuid, lat: valid_lat, long: valid_long, category: category.uuid, description: valid_description}
     end
     it 'should return status 200(OK) on valid params'do
       post '/reports', params
@@ -55,8 +67,13 @@ describe 'Reports' do
     end
     it 'should return status 500 without correct params' do
       category = Category.create(name: 'category1')
-      post '/reports', {lat: valid_lat, long: valid_long, category: category, description: valid_description}
+      post '/reports', {lat: valid_lat, long: valid_long, category: category.uuid, description: valid_description}
       expect(last_response.status).to eq(500)
+    end
+    it 'should create a report in the db' do
+      post '/reports', params
+      report = Report.first
+      expect(report.lat).to eq(valid_lat)
     end
   end
 end

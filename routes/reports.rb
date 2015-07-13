@@ -12,7 +12,13 @@ end
 
 post RoutingLocations::REPORTS do
   return status 500 unless validate_post_params?(params)
-  status 200
+
+  user = User.find_by(uuid: params[:uuid])
+  category = Category.find_by(uuid: params[:category])
+  unless user.nil? or category.nil?
+    Report.create(user: user, category: category, lat: params[:lat], long: params[:long],
+                  description: params[:description])
+  end
 end
 
 
