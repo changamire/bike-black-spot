@@ -1,13 +1,7 @@
 require_relative '../spec_helper'
 
 describe 'Category' do
-  # This really should have Model unit tests, on save, etc
-  describe 'show message' do
-    it 'should return default message when called' do
-      c = Category.create
-      expect(c.show_message).to eq(Category::DEFAULT_MESSAGE)
-    end
-  end
+  
   describe 'create' do
     it 'saves to db' do
       c = Category.create(name: 'category1Name')

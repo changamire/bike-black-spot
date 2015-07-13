@@ -10,11 +10,6 @@ class User < ActiveRecord::Base
                      message: 'Must be a valid postcode'}
   before_create :generate_uuid
 
-	DEFAULT_MESSAGE="USER_MESSAGE"
-  def show_message
-    "USER_MESSAGE"
-  end
-
   private
   def generate_uuid
     self.uuid = SecureRandom.uuid

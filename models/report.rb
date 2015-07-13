@@ -11,12 +11,6 @@ class Report < ActiveRecord::Base
 
   before_create :generate_uuid
 
-  DEFAULT_MESSAGE="REPORT_MESSAGE"
-
-  def show_message
-    "REPORT_MESSAGE"
-  end
-
   def generate_uuid
     self.uuid = SecureRandom.uuid
   end
