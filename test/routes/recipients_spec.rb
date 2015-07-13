@@ -30,12 +30,12 @@ describe 'Recipients' do
       end
 
       it 'should return 500 error when incorrect params' do
-        get RoutingLocations::RECIPIENTS + "?uuid=doesntmatterfail&fail=fial"
+        get RoutingLocations::RECIPIENTS + '?uuid=doesntmatterfail&fail=fial'
         expect(last_response.status).to eq(500)
       end
 
       it 'should return 500 error when incorrect params' do
-        get RoutingLocations::RECIPIENTS + "?fail=fial"
+        get RoutingLocations::RECIPIENTS + '?fail=fial'
         expect(last_response.status).to eq(500)
       end
 
