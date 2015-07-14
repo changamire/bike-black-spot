@@ -9,7 +9,7 @@ describe 'Recipients' do
               state: 'VIC'}
     it 'should return error if no auth' do
       post '/recipients?'
-      expect(last_response.redirect?).to be_truthy
+      expect(last_response.status).to be(401)
     end
 
     it 'should return error with incorrect params' do
@@ -19,7 +19,7 @@ describe 'Recipients' do
                            email: 'myemail@email.com',
                            state: 'Vic',
                            derp: 'fail'}
-      expect(last_response.status).to be(500)
+      expect(last_response.status).to be(400)
     end
 
     it 'should allow recipient creation' do
@@ -64,15 +64,20 @@ describe 'Recipients' do
         response = JSON.parse(last_response.body)
         expect(response['name']).to eq(recipient.name)
       end
+      it 'should return null when no recipient' do
+        get RoutingLocations::RECIPIENTS + '?uuid=12345'
+        response = last_response.body
+        expect(response).to eq('null')
+      end
 
       it 'should return 500 error when incorrect params' do
         get RoutingLocations::RECIPIENTS + '?uuid=doesntmatterfail&fail=fial'
-        expect(last_response.status).to eq(500)
+        expect(last_response.status).to eq(400)
       end
 
       it 'should return 500 error when incorrect params' do
         get RoutingLocations::RECIPIENTS + '?fail=fial'
-        expect(last_response.status).to eq(500)
+        expect(last_response.status).to eq(400)
       end
 
     end
@@ -81,13 +86,13 @@ describe 'Recipients' do
   describe 'Delete /recipients' do
     it 'should return error if no auth' do
       delete '/recipients?uuid=thisdoesntreallymatter'
-      expect(last_response.redirect?).to be_truthy
+      expect(last_response.status).to be(401)
     end
 
     it 'should return error with incorrect params' do
       login_as :Admin
       delete '/recipients?uuid=sothisisathing&fail=fial'
-      expect(last_response.status).to be(500)
+      expect(last_response.status).to be(400)
     end
 
     it 'should delete correct recipient' do

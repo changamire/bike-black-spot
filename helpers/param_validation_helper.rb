@@ -4,7 +4,8 @@ end
 
 def params_permitted?(params, permitted)
   params.keys.each do |param|
-    return false unless permitted.include?(param)
+    return false unless permitted.include?(param) and not param.nil?
+
   end
 end
 

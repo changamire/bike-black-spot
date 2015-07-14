@@ -2,7 +2,7 @@ def warden
   env['warden']
 end
 
-class BikeSpotWarden  < Sinatra::Base
+class BikeSpotWarden < Sinatra::Base
   Warden::Strategies.add(:password) do
     def valid?
       params['username'] || params['password']
@@ -15,21 +15,26 @@ class BikeSpotWarden  < Sinatra::Base
         if admin.authenticate(params['password'])
           success!(admin)
         else
-           raise 'Authentication failed'
+          raise 'Authentication failed'
         end
-     rescue Exception => e
-       fail!(e)
-     end
+      rescue Exception => e
+        fail!(e)
+      end
     end
   end
 
   #Routing -- DO NOT MOVE --
   post RoutingLocations::UNAUTHENTICATED do
-    redirect RoutingLocations::LOGIN
+    redirect '/login' if env['warden.options'][:attempted_path] == '/login' or env['warden.options'][:attempted_path] == '/admin'
+    status 401
   end
 
   get RoutingLocations::UNAUTHENTICATED do
-    redirect RoutingLocations::LOGIN
+    redirect '/login' if env['warden.options'][:attempted_path] == '/admin'
+    status 401
+  end
+  delete RoutingLocations::UNAUTHENTICATED do
+    status 401
   end
 end
 
