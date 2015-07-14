@@ -95,6 +95,12 @@ describe 'Recipients' do
       expect(last_response.status).to be(400)
     end
 
+    it 'should return status 400 when uuid not found' do
+      login_as :Admin
+      delete '/recipients?uuid=23423423'
+      expect(last_response.status).to be(400)
+    end
+
     it 'should delete correct recipient' do
       recipient = Recipient.create(name: 'Another Dude', email: 'another@dude.com', state: 'VIC')
       login_as :Admin

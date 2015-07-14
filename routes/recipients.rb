@@ -37,5 +37,6 @@ delete '/recipients' do
   return status 400 unless validate_params?(params, permitted, required)
 
   recipient = Recipient.find_by(uuid: params[:uuid])
+  return status 400 if recipient.nil?
   recipient.delete
 end
