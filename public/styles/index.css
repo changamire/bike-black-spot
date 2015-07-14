@@ -1,15 +1,53 @@
+@font-face {
+  font-family: 'greens-headings-font';
+  src: url("/fonts/BebasNeue.otf"); }
 h1 {
   display: block;
-  text-align: center; }
+  font-family: greens-headings-font;
+  text-align: center;
+  margin: 0 0 2vh; }
 
 h2 {
   display: block;
-  text-align: center; }
+  text-align: center;
+  margin: 0 0 0.5vh; }
+
+p {
+  margin: 0; }
+
+footer {
+  background: black;
+  color: white;
+  padding: 1cm; }
+
+#page-1 {
+  background: yellow; }
+
+#page-2 {
+  background: green; }
+
+#page-3 {
+  background: purple; }
 
 #itunes-link {
-  display: inline-block; }
+  display: block;
+  width: 135px;
+  margin: 0 auto; }
 
-.rotating-page-container {
-  background: yellow; }
+#map-canvas {
+  height: 80%;
+  width: 80%;
+  margin: 10vh 10vw; }
+
+#app-download-link-wrapper {
+  margin-top: 4vh; }
+
+.page-container {
+  padding: 1px;
+  height: 100vh; }
+
+.text-wrapper {
+  position: relative;
+  top: 33.34%; }
 
 /*# sourceMappingURL=index.css.map */

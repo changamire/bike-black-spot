@@ -2,6 +2,10 @@
 *.db	
 *.gem
 *.rbc
+*.css.map
+*.scssc
+**/.sass-cache
+**/.sass-cache/*
 /.config
 /coverage/
 /InstalledFiles
