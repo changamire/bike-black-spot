@@ -1,7 +1,6 @@
 require_relative 'routing_locations'
 require_relative '../models/category'
 
-
 get RoutingLocations::CATEGORIES + '.json' do
   status 200
   result = []
@@ -9,7 +8,8 @@ get RoutingLocations::CATEGORIES + '.json' do
     result.push(name: category[:name])
   end
   return result.to_json
-  end
+end
+
 get RoutingLocations::CATEGORIES + '.csv' do
   status 200
   result = []
@@ -18,7 +18,6 @@ get RoutingLocations::CATEGORIES + '.csv' do
   end
   return result.to_csv
 end
-
 
 get RoutingLocations::CATEGORIES + '/?' do
   status 200
