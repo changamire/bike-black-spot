@@ -24,8 +24,8 @@ RSpec.configure do |config|
   config.include Warden::Test::Helpers
 
   config.before(:suite) do
-    DatabaseCleaner.strategy = :truncation, {except:%w[admins]}
-    DatabaseCleaner.clean_with(:truncation, {except:%w[admins]})
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
   end
 
   config.around(:each) do |example|

@@ -1,6 +1,7 @@
 require_relative '../spec_helper'
 
 describe 'Report' do
+
   # This really should have Model unit tests, on save, etc
   valid_lat = '85'
   valid_long = '150'
@@ -24,8 +25,6 @@ describe 'Report' do
   end
 
   describe 'create' do
-
-
     report = {}
     before(:each) do
       report = Report.create(params)
