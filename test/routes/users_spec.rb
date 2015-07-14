@@ -44,9 +44,9 @@ describe 'Users' do
           email: 'dumbledont@deatheaterz.com'
       }
       post '/users', params
-      u = User.first
-      expect(u.name).to eq(params[:name])
-      expect(u.email).to eq(params[:email])
+      user = User.first
+      expect(user.name).to eq(params[:name])
+      expect(user.email).to eq(params[:email])
     end
 
     it 'should create a confirmation token' do
@@ -55,9 +55,9 @@ describe 'Users' do
           email: 'dumbledont@deatheaterz.com'
       }
       post '/users', params
-      u = User.first
-      c = Confirmation.first
-      expect(c.user).to eq(u.uuid)
+      user = User.first
+      confirmation = Confirmation.first
+      expect(confirmation.user).to eq(user.uuid)
     end
 
   end
@@ -83,11 +83,17 @@ describe 'Users' do
 
     it 'should confirm user if valid token' do
       user = User.create(name: 'Test', email: 'test@test.com')
-      c = Confirmation.create(user: user.uuid)
-      token = c.token
+      token = Confirmation.find_by(user: user.uuid).token
       get "/users/confirm?token=#{token}"
-      puts last_response.body
       expect(User.find_by(uuid: user.uuid).confirmed).to eq(true)
+    end
+
+    it 'should return status 400 if user does not exist anymore' do
+      user = User.create(name: 'Test', email: 'test@test.com')
+      token = Confirmation.find_by(user: user.uuid).token
+      user.delete
+      get "/users/confirm?token=#{token}"
+      expect(last_response.status).to eq(400)
     end
   end
 end
