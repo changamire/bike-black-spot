@@ -39,6 +39,8 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
+    rack-throttle (0.4.0)
+      rack (>= 1.0.0)
     rainbow (2.0.0)
     rake (10.4.2)
     ripl (0.7.1)
@@ -101,6 +103,7 @@ DEPENDENCIES
   database_cleaner
   pg
   rack-test
+  rack-throttle
   rake
   rspec
   rubocop
