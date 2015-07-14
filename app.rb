@@ -12,7 +12,7 @@ require_relative 'environments'
 require_relative 'models/admin'
 require_relative 'helpers/bike_spot_warden'
 
-use Rack::Throttle::Interval if ENV['RACK_ENV'] == 'production'
+use Rack::Throttle::Minute, :max => 1000 if ENV['RACK_ENV'] == 'production'
 
 class BikeSpot < Sinatra::Base
   register Sinatra::ActiveRecordExtension
