@@ -45,7 +45,7 @@ desc 'Build then run'
 task :exec => [:build,:test,'db:seed',:run]
 
 desc 'Clean Build'
-task :cleanBuild => [:build,:destroyDB,'db:init',:test,'db:seed',:run]
+task :cleanBuild => [:build,'db:init',:test,'db:seed',:run]
 task :cb => [:cleanBuild]
 
 #Default
