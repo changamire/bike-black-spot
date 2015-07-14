@@ -12,6 +12,11 @@ describe 'Exports' do
         get RoutingLocations::CATEGORIES
         check_last_response_is_ok
       end
+
+      it 'should return 500 when params' do
+        get RoutingLocations::CATEGORIES + '?someparam=someparam'
+        expect(last_response.status).to eq(500)
+      end
     end
 
     describe RoutingLocations::CATEGORIES + '.json' do
