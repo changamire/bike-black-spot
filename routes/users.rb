@@ -3,12 +3,12 @@ require_relative '../helpers/param_validation_helper'
 post '/users' do
   permitted = %w(name email postcode)
   required = %w(name email)
-  if validate_params?(params, permitted, required)
-    user = User.create(params)
-    return user.uuid.to_json if user.valid?
-  end
-  status 400
-  'Invalid Parameters'
+  return status 400 unless validate_params?(params, permitted, required)
+
+  user = User.create(params)
+  return status 400 unless user.valid?
+
+  return user.uuid.to_json
 end
 
 get '/users/confirm' do
