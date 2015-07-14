@@ -4,9 +4,13 @@ require_relative '../helpers/param_validation_helper'
 get RoutingLocations::REPORTS + '/?' do
   permitted = %w(uuid)
   required = %w()
-  return status 500 unless validate_params?(params,permitted,required)
+  return status 400 unless validate_params?(params, permitted, required)
 
-  return Report.find_by(uuid: params[:uuid]).to_json unless params[:uuid].nil?
+  unless params[:uuid].nil?
+    report = Report.find_by(uuid: params[:uuid])
+    status 400 if report.nil?
+    return report.to_json
+  end
 
   return Report.all.to_json
 end
@@ -15,7 +19,7 @@ end
 post RoutingLocations::REPORTS do
   permitted = %w(uuid lat long category description)
   required = %w(uuid lat long category)
-  return status 500 unless validate_params?(params,permitted,required)
+  return status 400 unless validate_params?(params, permitted, required)
 
   user = User.find_by(uuid: params[:uuid])
   category = Category.find_by(uuid: params[:category])

@@ -34,14 +34,22 @@ describe 'Reports' do
       expect(response['lat']).to eq(expected_report.lat)
     end
 
-    it 'should return 500 if incorrect params' do
-      get '/reports?fail=something'
-      expect(last_response.status).to eq(500)
+    it 'should return null given uuid with no report' do
+      Report.create(params)
+
+      get '/reports?uuid=214823953'
+      response = last_response.body
+      expect(response).to eq('null')
     end
 
-    it 'should return 500 if incorrect params' do
-      get '/reports?uuid=blah&fail=something'
-      expect(last_response.status).to eq(500)
+    it 'should return 400 if incorrect params' do
+      get '/reports?fail=something'
+      expect(last_response.status).to eq(400)
+    end
+
+    it 'should return 400 if empty uuid' do
+      get '/reports?uuid='
+      expect(last_response.status).to eq(400)
     end
   end
 
@@ -60,15 +68,15 @@ describe 'Reports' do
       post '/reports', params
       expect(last_response.status).to eq(200)
     end
-    it 'should return status 500 on invalid params' do
+    it 'should return status 400 on invalid params' do
       params['fail'] = 'fail'
       post '/reports', params
-      expect(last_response.status).to eq(500)
+      expect(last_response.status).to eq(400)
     end
-    it 'should return status 500 without correct params' do
+    it 'should return status 400 without correct params' do
       category = Category.create(name: 'category1')
       post '/reports', {lat: valid_lat, long: valid_long, category: category.uuid, description: valid_description}
-      expect(last_response.status).to eq(500)
+      expect(last_response.status).to eq(400)
     end
     it 'should create a report in the db' do
       post '/reports', params

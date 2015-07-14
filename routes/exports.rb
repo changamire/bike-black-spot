@@ -7,7 +7,7 @@ get RoutingLocations::EXPORTS do
   permitted = %w(users)
   required = %w()
 
-  return status 500 unless validate_params?(params, permitted, required)
+  return status 400 unless validate_params?(params, permitted, required)
 
   unless (params.has_key?(:users))
     redirect RoutingLocations::LOGIN unless warden.authenticated?

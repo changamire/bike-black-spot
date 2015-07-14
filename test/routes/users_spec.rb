@@ -17,7 +17,7 @@ describe 'Users' do
           fail: 'Incorrect Param'
       }
       post '/users', params
-      expect(last_response.status).to eq(500)
+      expect(last_response.status).to eq(400)
     end
 
     it 'should still return status 200(OK) if no optional param' do
@@ -73,12 +73,12 @@ describe 'Users' do
 
     it 'should return status code 500 on invalid params' do
       get '/users/confirm?fail=fial&token=validtoken'
-      expect(last_response.status).to eq(500)
+      expect(last_response.status).to eq(400)
     end
 
     it 'should return status code 500 on no params' do
       get '/users/confirm?'
-      expect(last_response.status).to eq(500)
+      expect(last_response.status).to eq(400)
     end
 
     it 'should confirm user if valid token' do

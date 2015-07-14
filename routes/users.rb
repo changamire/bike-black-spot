@@ -7,7 +7,7 @@ post '/users' do
     u = User.create(params)
     return u.uuid.to_json if u.valid?
   end
-  status 500
+  status 400
   'Invalid Parameters'
 end
 
@@ -18,7 +18,7 @@ get '/users/confirm' do
     token = params[:token]
     c = Confirmation.find_by(token: token)
     if c.nil?
-      return status 500
+      return status 400
     else
       u = User.find_by(uuid: c.user)
       u.confirmed = true
@@ -26,6 +26,6 @@ get '/users/confirm' do
       return status 302
     end
   else
-    status 500
+    status 400
   end
 end
