@@ -13,6 +13,21 @@ get RoutingLocations::RECIPIENTS + '/?' do
   Recipient.all.to_json
 end
 
+post RoutingLocations::RECIPIENTS + '/?' do
+  redirect RoutingLocations::LOGIN unless warden.authenticated?
+
+  permitted = %w(name email state)
+  required = %w(name email state)
+
+  return status 500 unless validate_params?(params, permitted, required)
+
+
+  Recipient.create(params)
+  status 201
+end
+
+
+
 delete '/recipients' do
   redirect RoutingLocations::LOGIN unless warden.authenticated?
 

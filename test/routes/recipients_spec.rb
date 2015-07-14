@@ -2,8 +2,44 @@ require_relative '../spec_helper'
 
 describe 'Recipients' do
 
-  describe 'Get from /recipients' do
+  describe 'Post /recipients' do
 
+    params = {name: 'Fred',
+              email: 'myemail@email.com',
+              state: 'VIC'}
+    it 'should return error if no auth' do
+      post '/recipients?'
+      expect(last_response.redirect?).to be_truthy
+    end
+
+    it 'should return error with incorrect params' do
+      login_as :Admin
+
+      post '/recipients', {name: 'Fred',
+                           email: 'myemail@email.com',
+                           state: 'Vic',
+                           derp: 'fail'}
+      expect(last_response.status).to be(500)
+    end
+
+    it 'should allow recipient creation' do
+      login_as :Admin
+      post '/recipients', params
+      expect(Recipient.first['name']).to eq(params[:name])
+    end
+
+    it 'should allow duplicate recipients' do
+      Recipient.create(params)
+
+      login_as :Admin
+      post '/recipients?', params
+
+      expect(Recipient.count).to be(2)
+
+    end
+  end
+
+  describe 'Get /recipients' do
     describe 'with no params' do
       it 'should return return status 200(OK)' do
         get RoutingLocations::RECIPIENTS
@@ -11,8 +47,8 @@ describe 'Recipients' do
       end
 
       it 'should return return all recipients' do
-        Recipient.create(name: 'Some Dude', email: 'some@dude.com', lat: '37.8136', long: '144.9631')
-        Recipient.create(name: 'Another Dude', email: 'another@dude.com', lat: '144.9631', long: '37.8136')
+        Recipient.create(name: 'Some Dude', email: 'some@dude.com', state: 'VIC')
+        Recipient.create(name: 'Another Dude', email: 'another@dude.com', state: 'VIC')
         get RoutingLocations::RECIPIENTS
         recipients = JSON.parse(last_response.body)
         expect(recipients[0]['name']).to eq('Some Dude')
@@ -23,7 +59,7 @@ describe 'Recipients' do
     describe 'with params' do
 
       it 'should return correct recipient' do
-        recipient = Recipient.create(name: 'Another Dude', email: 'another@dude.com', lat: '144.9631', long: '37.8136')
+        recipient = Recipient.create(name: 'Another Dude', email: 'another@dude.com', state: 'VIC')
         get RoutingLocations::RECIPIENTS + "?uuid=#{recipient.uuid}"
         response = JSON.parse(last_response.body)
         expect(response['name']).to eq(recipient.name)
@@ -45,7 +81,7 @@ describe 'Recipients' do
   describe 'Delete /recipients' do
     it 'should return error if no auth' do
       delete '/recipients?uuid=thisdoesntreallymatter'
-      expect(last_response.redirect?).to be(true)
+      expect(last_response.redirect?).to be_truthy
     end
 
     it 'should return error with incorrect params' do
@@ -55,7 +91,7 @@ describe 'Recipients' do
     end
 
     it 'should delete correct recipient' do
-      recipient = Recipient.create(name: 'Another Dude', email: 'another@dude.com', lat: '144.9631', long: '37.8136')
+      recipient = Recipient.create(name: 'Another Dude', email: 'another@dude.com', state: 'VIC')
       login_as :Admin
       delete "/recipients?uuid=#{recipient.uuid}"
 
