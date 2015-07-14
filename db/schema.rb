@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150710145500) do
+ActiveRecord::Schema.define(version: 20150712100812) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(version: 20150710145500) do
   end
 
   add_index "categories", ["id"], name: "index_categories_on_id", using: :btree
+
+  create_table "confirmations", force: :cascade do |t|
+    t.string   "token"
+    t.string   "user"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "confirmations", ["id"], name: "index_confirmations_on_id", using: :btree
 
   create_table "recipients", force: :cascade do |t|
     t.string   "name"
@@ -67,6 +76,7 @@ ActiveRecord::Schema.define(version: 20150710145500) do
     t.string   "uuid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "confirmed",  default: false
   end
 
   add_index "users", ["id"], name: "index_users_on_id", using: :btree

@@ -51,10 +51,32 @@ describe 'Users' do
 
   end
 
-  describe 'Post to /users/confirm' do
-    it 'post /users/confirm should return success code' do
-      post '/users/confirm'
-      check_last_response_is_ok
+  describe 'Get to /users/confirm' do
+
+    it 'should return status code 302 on valid params' do
+      user = User.create(name: 'Test', email: 'test@test.com')
+      confirmation = Confirmation.create(user: user.uuid)
+      get "/users/confirm?token=#{confirmation.token}"
+      expect(last_response.status).to eq(302)
+    end
+
+    it 'should return status code 500 on invalid params' do
+      get '/users/confirm?fail=fial&token=validtoken'
+      expect(last_response.status).to eq(500)
+    end
+
+    it 'should return status code 500 on no params' do
+      get '/users/confirm?'
+      expect(last_response.status).to eq(500)
+    end
+
+    it 'should confirm user if valid token' do
+      user = User.create(name: 'Test', email: 'test@test.com')
+      c = Confirmation.create(user: user.uuid)
+      token = c.token
+      get "/users/confirm?token=#{token}"
+      puts last_response.body
+      expect(User.find_by(uuid: user.uuid).confirmed).to eq(true)
     end
   end
 end
