@@ -25,7 +25,7 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation, {except:%w[admins]}
-    # DatabaseCleaner.clean_with(:truncation, {except:%w[admins]})
+    DatabaseCleaner.clean_with(:truncation, {except:%w[admins]})
   end
 
   config.around(:each) do |example|
