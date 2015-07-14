@@ -1,4 +1,3 @@
-require 'SecureRandom'
 class Confirmation < ActiveRecord::Base
 
   before_create :generate_token
