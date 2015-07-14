@@ -9,7 +9,9 @@ class User < ActiveRecord::Base
                              message: 'Must be a valid email.'}
   validates :postcode, format: {with: /(\A\Z)|(\A[0-9]{4}\Z)/,
                                 message: 'Must be a valid postcode'}
+
   before_create :generate_uuid
+  after_create  :create_confirmation
 
 
   def self.export
@@ -23,11 +25,14 @@ class User < ActiveRecord::Base
   def as_csv
     # return ["#{self.name}, #{self.email}"].to_csv
     return [self.name, self.email].to_csv
-
   end
 
   private
   def generate_uuid
     self.uuid = SecureRandom.uuid
+  end
+
+  def create_confirmation
+    Confirmation.create(user: self.uuid)
   end
 end

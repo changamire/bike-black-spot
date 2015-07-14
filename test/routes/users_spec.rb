@@ -49,6 +49,17 @@ describe 'Users' do
       expect(u.email).to eq(params[:email])
     end
 
+    it 'should create a confirmation token' do
+      params = {
+          name: 'Severus Snape',
+          email: 'dumbledont@deatheaterz.com'
+      }
+      post '/users', params
+      u = User.first
+      c = Confirmation.first
+      expect(c.user).to eq(u.uuid)
+    end
+
   end
 
   describe 'Get to /users/confirm' do
