@@ -71,12 +71,12 @@ describe 'Users' do
       expect(last_response.status).to eq(302)
     end
 
-    it 'should return status code 500 on invalid params' do
+    it 'should return status code 400 on invalid params' do
       get '/users/confirm?fail=fial&token=validtoken'
       expect(last_response.status).to eq(400)
     end
 
-    it 'should return status code 500 on no params' do
+    it 'should return status code 400 on no params' do
       get '/users/confirm?'
       expect(last_response.status).to eq(400)
     end
@@ -85,7 +85,7 @@ describe 'Users' do
       user = User.create(name: 'Test', email: 'test@test.com')
       token = Confirmation.find_by(user: user.uuid).token
       get "/users/confirm?token=#{token}"
-      expect(User.find_by(uuid: user.uuid).confirmed).to eq(true)
+      expect(User.find_by(uuid: user.uuid).confirmed).to be_truthy
     end
 
     it 'should return status 400 if user does not exist anymore' do

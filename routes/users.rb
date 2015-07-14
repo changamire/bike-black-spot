@@ -14,19 +14,16 @@ end
 get '/users/confirm' do
   permitted = %w(token)
   required = %w(token)
-  if validate_params?(params, permitted, required)
-    token = params[:token]
-    confirmation = Confirmation.find_by(token: token)
-    if confirmation.nil?
-      return status 400
-    else
-      user = User.find_by(uuid: confirmation.user)
-      return status 400 if user.nil?
-      user.confirmed = true
-      user.save!
-      return status 302
-    end
-  else
-    status 400
-  end
+  return status 400 unless validate_params?(params, permitted, required)
+
+  confirmation = Confirmation.find_by(token: params[:token])
+  return status 400 if confirmation.nil?
+
+  user = User.find_by(uuid: confirmation.user)
+  return status 400 if user.nil?
+
+  user.confirmed = true
+  user.save!
+  return status 302
+
 end

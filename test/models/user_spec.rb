@@ -1,6 +1,14 @@
 require_relative '../spec_helper'
 require 'csv'
+
 describe 'User' do
+
+  describe 'create' do
+    it 'should set confirmed to be false when given no values' do
+      user = User.create(name: 'TestNameOne', email: 'test_one@test.com')
+      expect(user.confirmed).to be_falsey
+    end
+  end
 
   describe 'validate' do
     valid_name = 'Liam'
@@ -64,9 +72,9 @@ describe 'User' do
 
   describe 'export' do
     it 'should convert all users into csv' do
-      user_one = User.create(name: 'TestNameOne', email: 'test_one@test.com', confirmed: true)
-      user_two = User.create(name: 'TestNameTwo', email: 'test_two@test.com', confirmed: true)
-      user_three = User.create(name: 'TestNameTwo', email: 'test_two@test.com')
+      User.create(name: 'TestNameOne', email: 'test_one@test.com', confirmed: true)
+      User.create(name: 'TestNameTwo', email: 'test_two@test.com', confirmed: true)
+      User.create(name: 'TestNameTwo', email: 'test_two@test.com')
 
       expected = %w(TestNameOne test_one@test.com).to_csv + %w(TestNameTwo test_two@test.com).to_csv
       expected = (expected)
