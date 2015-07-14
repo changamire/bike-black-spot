@@ -64,8 +64,9 @@ describe 'User' do
 
   describe 'export' do
     it 'should convert all users into csv' do
-      user_one = User.create(name: 'TestNameOne', email: 'test_one@test.com')
-      user_two = User.create(name: 'TestNameTwo', email: 'test_two@test.com')
+      user_one = User.create(name: 'TestNameOne', email: 'test_one@test.com', confirmed: true)
+      user_two = User.create(name: 'TestNameTwo', email: 'test_two@test.com', confirmed: true)
+      user_three = User.create(name: 'TestNameTwo', email: 'test_two@test.com')
 
       expected = %w(TestNameOne test_one@test.com).to_csv + %w(TestNameTwo test_two@test.com).to_csv
       expected = (expected)

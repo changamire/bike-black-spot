@@ -26,8 +26,8 @@ describe 'Exports' do
       end
 
       it 'should return categories csv' do
-        user_one = User.create(name: 'First name', email: 'first@email.com')
-        user_two = User.create(name: 'Second name', email: 'second@email.com')
+        user_one = User.create(name: 'First name', email: 'first@email.com', confirmed: 'true')
+        user_two = User.create(name: 'Second name', email: 'second@email.com', confirmed: 'true')
 
         login_as :Admin
         get RoutingLocations::EXPORTS + '?users'
