@@ -10,8 +10,8 @@ class RoutingLocations
   CATEGORIES = '/categories'
   REPORTS = '/reports'
   USERS = '/users'
+  EXPORTS = '/exports'
 
   RECIPIENTS = '/recipients'
-  EXPORT = RECIPIENTS + '/export'
 
 end

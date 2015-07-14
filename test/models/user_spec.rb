@@ -1,5 +1,5 @@
 require_relative '../spec_helper'
-
+require 'csv'
 describe 'User' do
 
   describe 'validate' do
@@ -50,6 +50,27 @@ describe 'User' do
         expect(user.valid?).to be_truthy
       end
 
+    end
+  end
+
+  describe 'as_csv' do
+    it 'should convert User instance into csv' do
+      user = User.create(name: 'TestName', email: 'test@test.com')
+      expected = ['TestName', 'test@test.com'].to_csv
+
+      expect(user.as_csv).to eq(expected)
+    end
+  end
+
+  describe 'export' do
+    it 'should convert all users into csv' do
+      user_one = User.create(name: 'TestNameOne', email: 'test_one@test.com')
+      user_two = User.create(name: 'TestNameTwo', email: 'test_two@test.com')
+
+      expected = %w(TestNameOne test_one@test.com).to_csv + %w(TestNameTwo test_two@test.com).to_csv
+      expected = (expected)
+
+      expect(User.export).to eq(expected)
     end
   end
 end
