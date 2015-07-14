@@ -33,6 +33,11 @@ task :test do
   raise 'failed' unless system('rspec test --color')
 end
 
+desc 'destroys the db'
+task :destroyDB do
+  sh('dropDB app_test')
+end
+
 desc 'I am lazy'
 task :t => [:test]
 
@@ -40,7 +45,7 @@ desc 'Build then run'
 task :exec => [:build,:test,'db:seed',:run]
 
 desc 'Clean Build'
-task :cleanBuild => [:build,'db:init',:test,'db:seed',:run]
+task :cleanBuild => [:build,:destroyDB,'db:init',:test,'db:seed',:run]
 task :cb => [:cleanBuild]
 
 #Default
