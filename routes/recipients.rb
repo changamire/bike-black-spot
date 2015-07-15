@@ -3,6 +3,7 @@ require_relative '../helpers/param_validation_helper'
 
 
 get RoutingLocations::RECIPIENTS + '/?' do
+  return 401 unless warden.authenticated?
   permitted = %w(uuid)
   required = %w()
 
@@ -32,11 +33,13 @@ delete '/recipients' do
   return 401 unless warden.authenticated?
 
   permitted = %w(uuid)
-  required = %w()
+  required = %w(uuid)
 
   return status 400 unless validate_params?(params, permitted, required)
 
   recipient = Recipient.find_by(uuid: params[:uuid])
   return status 400 if recipient.nil?
+
   recipient.delete
+  status 204
 end
