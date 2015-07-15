@@ -81,6 +81,11 @@ describe 'Users' do
       expect(last_response.status).to eq(400)
     end
 
+    it 'should return status code 400 on empty token' do
+      get '/users/confirm?token='
+      expect(last_response.status).to eq(400)
+    end
+
     it 'should confirm user if valid token' do
       user = User.create(name: 'Test', email: 'test@test.com')
       token = Confirmation.find_by(user: user.uuid).token

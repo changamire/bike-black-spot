@@ -3,41 +3,31 @@ require_relative '../helpers/param_validation_helper'
 
 
 get RoutingLocations::CATEGORIES + '.json' do
-  if validate_params?(params, [], [])
-    status 200
-    result = []
-    Category.all.each do |category|
-      result.push(name: category[:name])
-    end
-    return result.to_json
-  else
-    return status 500
-  end
+  return status 400 unless validate_params?(params, [], [])
+
+  # result = []
+  # Category.all.each do |category|
+  #   result.push(name: category[:name])
+  # end
+  # return result.to_json
+  # Category.all.to_json
+  Category.json
 end
 
 get RoutingLocations::CATEGORIES + '.csv' do
-  if validate_params?(params, [], [])
-    status 200
-    result = []
-    Category.all.each do |category|
-      result.push(name: category[:name])
-    end
-    return result.to_csv
-  else
-    return status 500
+  return status 400 unless validate_params?(params, [], [])
+
+  result = []
+  Category.all.each do |category|
+    result.push(name: category[:name])
   end
+  return result.to_csv
+
 end
 
 get RoutingLocations::CATEGORIES + '/?' do
-  if validate_params?(params, [], [])
-    status 200
-    result = []
-    Category.all.each do |category|
-      result.push(name: category[:name])
-    end
-    return result.to_json
-  else
-    return status 500
-  end
+  return status 400 unless validate_params?(params, [], [])
+
+  Category.json
 end
 
