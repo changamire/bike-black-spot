@@ -1,19 +1,20 @@
-@font-face {
-	font-family: 'greens-headings-font';
-	src: url('/fonts/BebasNeue.otf');
-}
+@import 'reset';
+@import 'fonts';
+@import 'breakpoints';
 
 h1 {
 	display: block;
 	font-family: greens-headings-font;
 	text-align: center;
 	margin: 0 0 2vh;
+	font-size: 4em;
 }
 
 h2 {
 	display: block;
 	text-align: center;
 	margin: 0 0 0.5vh;
+	font-size: 2em;
 }
 
 p {
@@ -36,6 +37,11 @@ footer {
 
 #page-3 {
 	background: purple;
+}
+
+#main-description {
+	margin: 0 auto;
+	max-width: 50vw;
 }
 
 #itunes-link {
@@ -62,5 +68,7 @@ footer {
 .text-wrapper {
 	position: relative;
 	top: 33.34%;
+	@include breakpoint(ipad) { top: 25%; }
 }
+
 

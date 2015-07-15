@@ -1,0 +1,9 @@
+
+@mixin breakpoint($screen) {
+  @if $screen == ipad {
+    @media (max-width: 768px) { @content; }
+  }
+  @else if $screen == iphone5-portrait {
+    @media (max-width: 640px) { @content; }
+  }
+}
