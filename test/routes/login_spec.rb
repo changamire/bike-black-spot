@@ -35,7 +35,7 @@ describe 'Logout' do
       login_as :Admin
       get RoutingLocations::LOGOUT
       expect(last_response.status).to be(302)
-      
+
       get RoutingLocations::ADMIN
       expect(last_response.status).to be(302)
       expect(last_response.location).to eql(LOCAL + RoutingLocations::LOGIN)

@@ -74,10 +74,24 @@ describe 'Recipients' do
           expect(last_response.status).to be(401)
         end
       end
+
       describe 'while authenticated' do
         before(:each) do
           login_as :Admin
         end
+
+        describe 'should return status' do
+          it '400 error when incorrect params' do
+            get RoutingLocations::RECIPIENTS + '?uuid=doesntmatterfail&fail=fial'
+            expect(last_response.status).to eq(400)
+          end
+
+          it '400 error when incorrect params' do
+            get RoutingLocations::RECIPIENTS + '?fail=fial'
+            expect(last_response.status).to eq(400)
+          end
+        end
+
         it 'should return correct recipient' do
           recipient = Recipient.create(name: 'Another Dude', email: 'another@dude.com', state: 'VIC')
           get RoutingLocations::RECIPIENTS + "?uuid=#{recipient.uuid}"
@@ -88,16 +102,6 @@ describe 'Recipients' do
           get RoutingLocations::RECIPIENTS + '?uuid=12345'
           response = last_response.body
           expect(response).to eq('null')
-        end
-
-        it 'should return 500 error when incorrect params' do
-          get RoutingLocations::RECIPIENTS + '?uuid=doesntmatterfail&fail=fial'
-          expect(last_response.status).to eq(400)
-        end
-
-        it 'should return 500 error when incorrect params' do
-          get RoutingLocations::RECIPIENTS + '?fail=fial'
-          expect(last_response.status).to eq(400)
         end
       end
     end
@@ -115,25 +119,24 @@ describe 'Recipients' do
         login_as :Admin
       end
 
-      it 'should return error with incorrect params' do
-        delete '/recipients?uuid=sothisisathing&fail=fial'
-        expect(last_response.status).to be(400)
-      end
-      it 'should return error with no params' do
-        login_as :Admin
-        delete '/recipients?'
-        expect(last_response.status).to be(400)
-      end
+      describe 'should return status' do
+        it '400 with incorrect params' do
+          delete '/recipients?uuid=sothisisathing&fail=fial'
+          expect(last_response.status).to be(400)
+        end
+        it '400 with no params' do
+          delete '/recipients?'
+          expect(last_response.status).to be(400)
+        end
 
-      it 'should return status 400 when uuid not found' do
-        login_as :Admin
-        delete '/recipients?uuid=23423423'
-        expect(last_response.status).to be(400)
+        it '400 when uuid not found' do
+          delete '/recipients?uuid=23423423'
+          expect(last_response.status).to be(400)
+        end
       end
 
       it 'should delete correct recipient' do
         recipient = Recipient.create(name: 'Another Dude', email: 'another@dude.com', state: 'VIC')
-        login_as :Admin
         delete "/recipients?uuid=#{recipient.uuid}"
 
         expect(last_response.status).to be(204)
