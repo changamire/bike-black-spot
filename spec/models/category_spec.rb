@@ -21,7 +21,6 @@ describe 'Category' do
   end
 
   describe 'json' do
-
     it 'should return all categories as json' do
       categories = [{name: 'category1'}, {name: 'category2'}, {name: 'category3'}]
 
@@ -38,6 +37,7 @@ describe 'Category' do
 
       expect(JSON.parse(Category.json)).to eq(JSON.parse(categories.to_json))
     end
+
     it 'should return null when none exists' do
       categories = []
 
