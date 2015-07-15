@@ -3,6 +3,7 @@ require 'rspec'
 require 'json'
 require 'rack/test'
 require 'database_cleaner'
+require 'mail'
 
 include Rack::Test::Methods
 require File.join(File.dirname(__FILE__), '../app')

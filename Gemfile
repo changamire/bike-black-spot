@@ -15,6 +15,9 @@ gem 'sinatra-activerecord'
 gem 'bson'
 gem 'pg'
 
+#Email
+gem 'mail'
+
 group :development do
   gem 'tux'
 end
