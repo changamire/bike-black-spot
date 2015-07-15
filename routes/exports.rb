@@ -10,5 +10,5 @@ get RoutingLocations::EXPORTS do
 
   return status 400 unless validate_params?(params, permitted, required)
   return status 401 unless warden.authenticated?
-  User.export unless (params.has_key?(:users))
+  User.export if (params.has_key?('users'))
 end
