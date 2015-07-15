@@ -24,6 +24,12 @@ namespace :db do
     sh('bundle exec rake db:create db:migrate RACK_ENV=test')
   end
 		require './app.rb'
+
+  desc 'Populate QA with Fresh Seed Data'
+  task :seed_qa do
+    sh('heroku pg:reset DATABASE_URL --confirm qa-env-bike-black-spot')
+    sh('heroku run rake db:migrate db:seed --app qa-env-bike-black-spot')
+  end
 end
 
 desc 'Run RSpec tests'
