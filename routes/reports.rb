@@ -11,8 +11,6 @@ get RoutingLocations::REPORTS + '/?' do
   report = Report.find_by(uuid: params[:uuid])
   status 400 if report.nil?
   return report.to_json
-
-
 end
 
 
@@ -27,5 +25,6 @@ post RoutingLocations::REPORTS do
 
   Report.create(user: user, category: category, lat: params[:lat], long: params[:long],
                 description: params[:description])
+  return status 201
 end
 

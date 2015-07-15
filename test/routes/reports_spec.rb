@@ -68,9 +68,9 @@ describe 'Reports' do
     end
 
     describe 'should return status' do
-      it '200(OK) on valid params' do
+      it '201(Created) on valid params' do
         post '/reports', params
-        expect(last_response.status).to eq(200)
+        expect(last_response.status).to eq(201)
       end
 
       it '400 on invalid params' do
