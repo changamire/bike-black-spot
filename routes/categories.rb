@@ -5,12 +5,6 @@ require_relative '../helpers/param_validation_helper'
 get RoutingLocations::CATEGORIES + '.json' do
   return status 400 unless validate_params?(params, [], [])
 
-  # result = []
-  # Category.all.each do |category|
-  #   result.push(name: category[:name])
-  # end
-  # return result.to_json
-  # Category.all.to_json
   Category.json
 end
 
