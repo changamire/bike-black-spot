@@ -40,25 +40,28 @@ describe 'User' do
     end
 
     describe 'postcode' do
-      it 'return true on no post code, but rest is valid' do
+      describe 'return true'
+      it 'on no post code, but rest is valid' do
         user = User.new(name: valid_name, email: valid_email)
         expect(user.valid?).to be_truthy
       end
-      it 'return false on non number postcode' do
-        user = User.new(name: valid_name, email: valid_email, postcode: 'dfgdfgdg')
-        expect(user.valid?).to be_falsey
-      end
-      it 'return false on invalid long post code' do
-        user = User.new(name: valid_name, email: valid_email, postcode: '123456789')
-        expect(user.valid?).to be_falsey
-      end
-      it 'return true on empty post code' do
+      it 'on empty post code' do
         user = User.new(name: valid_name, email: valid_email, postcode: '')
         expect(user.valid?).to be_truthy
       end
-
+    end
+    describe 'return false' do
+      it 'on non number postcode' do
+        user = User.new(name: valid_name, email: valid_email, postcode: 'dfgdfgdg')
+        expect(user.valid?).to be_falsey
+      end
+      it 'on invalid long post code' do
+        user = User.new(name: valid_name, email: valid_email, postcode: '123456789')
+        expect(user.valid?).to be_falsey
+      end
     end
   end
+
 
   describe 'as_csv' do
     it 'should convert User instance into csv' do
@@ -73,11 +76,30 @@ describe 'User' do
     it 'should convert all users into csv' do
       User.create(name: 'TestNameOne', email: 'test_one@test.com', confirmed: true)
       User.create(name: 'TestNameTwo', email: 'test_two@test.com', confirmed: true)
-      User.create(name: 'TestNameTwo', email: 'test_two@test.com')
+      User.create(name: 'TestNameThree', email: 'test_three@test.com', confirmed: true)
+
+      user_one_csv = %w(TestNameOne test_one@test.com).to_csv
+      user_two_csv = %w(TestNameTwo test_two@test.com).to_csv
+      user_three_csv = %w(TestNameThree test_three@test.com).to_csv
+      expected = user_one_csv + user_two_csv + user_three_csv
+
+      expect(User.export).to eq(expected)
+    end
+    it 'should convert all CONFIRMED users into csv' do
+      User.create(name: 'TestNameOne', email: 'test_one@test.com', confirmed: true)
+      User.create(name: 'TestNameTwo', email: 'test_two@test.com', confirmed: true)
 
       expected = %w(TestNameOne test_one@test.com).to_csv + %w(TestNameTwo test_two@test.com).to_csv
-      expected = (expected)
 
+      expect(User.export).to eq(expected)
+    end
+
+    it 'should return empty given no confirmed users' do
+      User.create(name: 'TestNameOne', email: 'test_one@test.com')
+      User.create(name: 'TestNameTwo', email: 'test_two@test.com')
+      User.create(name: 'TestNameThree', email: 'test_three@test.com')
+
+      expected = ''
       expect(User.export).to eq(expected)
     end
   end
