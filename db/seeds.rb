@@ -39,9 +39,9 @@ recipients.each do |recipient|
 end
 
 #Reports
-report1 = {user: User.where(user1).first, category: Category.where(category1).first, lat: '30', long: '30', description: 'Test Report 1'}
-report2 = {user: User.where(user2).first, category: Category.where(category1).first, lat: '60', long: '60', description: 'Test Report 2'}
-report3 = {user: User.where(user1).first, category: Category.where(category3).first, lat: '90', long: '90', description: 'Test Report 3'}
+report1 = {user: User.where(user1).first, category: Category.where(category1).first, lat: '-27.465457', long: '153.027522', description: 'Brisbane Office'}
+report2 = {user: User.where(user2).first, category: Category.where(category1).first, lat: '-27.466769', long: '153.027677', description: 'Food Street 1'}
+report3 = {user: User.where(user1).first, category: Category.where(category3).first, lat: '-27.467092', long: '153.027141', description: 'Food: Post office square'}
 
 reports = [report1,report2,report3]
 

@@ -47,30 +47,10 @@
 
 </body>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="/scripts/maps.js"></script>
 <script>
-	var latlongs = [new google.maps.LatLng(-25.363882,131.044922),
-	 new google.maps.LatLng(-26,140),
-	 new google.maps.LatLng(-27.4667, 153.0333),
-	 new google.maps.LatLng(-27.4680, 153.0328)];
-
-  	function initialize() {
-	  	var mapCanvas = document.getElementById('map-canvas');
-	    var mapOptions = {
-			scrollwheel: false,
-			center: new google.maps.LatLng(-27.4667, 153.0333),
-			zoom: 12,
-			mapTypeId: google.maps.MapTypeId.ROADMAP
-	    }
-	    var map = new google.maps.Map(mapCanvas, mapOptions);
-
-	    latlongs.forEach(function(latlong){
-	    	new google.maps.Marker({
-	    		position: latlong,
-	    		map: map
-	    	})
-	    })
-	}
-	google.maps.event.addDomListener(window, 'load', initialize);
+	google.maps.event.addDomListener(window, 'load', initialiseMaps);
 </script>
 
 </html>
