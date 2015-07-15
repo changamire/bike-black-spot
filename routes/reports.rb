@@ -9,7 +9,7 @@ get RoutingLocations::REPORTS + '/?' do
   return Report.all.to_json if params[:uuid].nil?
 
   report = Report.find_by(uuid: params[:uuid])
-  status 400 if report.nil?
+  # status 400 if report.nil?
   return report.to_json
 end
 

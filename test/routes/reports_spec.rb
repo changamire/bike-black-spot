@@ -35,8 +35,8 @@ describe 'Reports' do
       Report.create(params)
 
       get '/reports?uuid=214823953'
-      response = last_response.body
-      expect(response).to eq('null')
+      expect(last_response.status).to be(200)
+      expect(last_response.body).to eq('null')
     end
 
     describe 'should return status' do
@@ -46,7 +46,7 @@ describe 'Reports' do
       end
 
       it '400 if empty uuid' do
-        get '/reports?uuid='
+        get '/reports?uuid'
         expect(last_response.status).to eq(400)
       end
     end
