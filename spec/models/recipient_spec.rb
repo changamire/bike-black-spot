@@ -1,5 +1,5 @@
 require_relative '../spec_helper'
-require_relative '../../models/recipient'
+require_relative '../../app/models/recipient'
 
 describe 'Recipient' do
 

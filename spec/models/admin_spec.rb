@@ -1,5 +1,5 @@
 require 'rspec'
-require_relative '../../models/admin'
+require_relative '../../app/models/admin'
 
   username = 'iamtheonewhotests'
   password = 'password!'

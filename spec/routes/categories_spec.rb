@@ -1,7 +1,7 @@
 require 'rack/test'
 require 'csv'
 require_relative '../spec_helper'
-require_relative '../../models/category'
+require_relative '../../app/models/category'
 
 describe 'Exports' do
   categories = [{name: 'category1'}, {name: 'category2'}, {name: 'category3'}]

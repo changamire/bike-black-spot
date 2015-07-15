@@ -35,8 +35,7 @@ end
 desc 'Run RSpec tests'
 task :test do
   puts('------------ Running the tests -------------')
-  # system('export RACK_ENV=test')
-  raise 'failed' unless system('rspec test --color')
+  raise 'failed' unless system('rspec spec --color')
 end
 
 desc 'destroys the db'
