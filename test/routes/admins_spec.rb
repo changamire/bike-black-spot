@@ -14,6 +14,7 @@ describe 'Admin' do
     it 'should redirect to login when unauthorised' do
       get RoutingLocations::ADMIN
       expect(last_response.redirect?).to be(true)
+      expect(last_response.status).to be(302)
       expect(last_response.location).to eql(LOCAL + RoutingLocations::LOGIN)
     end
 
@@ -21,7 +22,7 @@ describe 'Admin' do
       login_as :Admin
       get RoutingLocations::ADMIN
       expect(last_response.redirect?).to be(false)
-      check_last_response_is_ok
+      expect(last_response.status).to be(200)
     end
   end
 end
