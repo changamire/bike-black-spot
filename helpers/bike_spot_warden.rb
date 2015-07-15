@@ -25,8 +25,9 @@ class BikeSpotWarden < Sinatra::Base
 
   #Routing -- DO NOT MOVE --
   post RoutingLocations::UNAUTHENTICATED do
-    redirect '/login' if env['warden.options'][:attempted_path] == '/login' or env['warden.options'][:attempted_path] == '/admin'
     status 401
+    status 400 if env['warden.options'][:attempted_path] == '/login'
+    redirect '/login' if env['warden.options'][:attempted_path] == '/admin'
   end
 
   get RoutingLocations::UNAUTHENTICATED do
