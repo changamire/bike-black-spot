@@ -10,7 +10,7 @@ describe 'Exports' do
     describe RoutingLocations::CATEGORIES do
       it 'should return success code' do
         get RoutingLocations::CATEGORIES
-        check_last_response_is_ok
+        expect(last_response.status).to eq(200)
       end
 
       it 'should return 400 when params' do
