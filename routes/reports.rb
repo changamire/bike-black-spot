@@ -6,13 +6,13 @@ get RoutingLocations::REPORTS + '/?' do
   required = %w()
   return status 400 unless validate_params?(params, permitted, required)
 
-  unless params[:uuid].nil?
-    report = Report.find_by(uuid: params[:uuid])
-    status 400 if report.nil?
-    return report.to_json
-  end
+  return Report.all.to_json if params[:uuid].nil?
 
-  return Report.all.to_json
+  report = Report.find_by(uuid: params[:uuid])
+  status 400 if report.nil?
+  return report.to_json
+
+
 end
 
 
@@ -23,9 +23,9 @@ post RoutingLocations::REPORTS do
 
   user = User.find_by(uuid: params[:uuid])
   category = Category.find_by(uuid: params[:category])
-  unless user.nil? or category.nil?
-    Report.create(user: user, category: category, lat: params[:lat], long: params[:long],
-                  description: params[:description])
-  end
+  return status 400 if user.nil? or category.nil?
+
+  Report.create(user: user, category: category, lat: params[:lat], long: params[:long],
+                description: params[:description])
 end
 

@@ -2,9 +2,6 @@ require_relative '../spec_helper'
 
 describe 'Reports' do
   describe 'Get /reports' do
-
-    user = {}
-    category = {}
     params = {}
 
     before(:each) do
@@ -42,14 +39,16 @@ describe 'Reports' do
       expect(response).to eq('null')
     end
 
-    it 'should return 400 if incorrect params' do
-      get '/reports?fail=something'
-      expect(last_response.status).to eq(400)
-    end
+    describe 'should return status' do
+      it '400 if incorrect params' do
+        get '/reports?fail=something'
+        expect(last_response.status).to eq(400)
+      end
 
-    it 'should return 400 if empty uuid' do
-      get '/reports?uuid='
-      expect(last_response.status).to eq(400)
+      it '400 if empty uuid' do
+        get '/reports?uuid='
+        expect(last_response.status).to eq(400)
+      end
     end
   end
 
@@ -59,25 +58,41 @@ describe 'Reports' do
     valid_description = 'here is my lovely valid description.'
 
     params = {}
+    category = {}
+    user = {}
+
     before(:each) do
       user = User.create(name: 'Tom', email: 't@l.com')
       category = Category.create(name: 'category1')
       params = {uuid: user.uuid, lat: valid_lat, long: valid_long, category: category.uuid, description: valid_description}
     end
-    it 'should return status 200(OK) on valid params'do
-      post '/reports', params
-      expect(last_response.status).to eq(200)
+
+    describe 'should return status' do
+      it '200(OK) on valid params' do
+        post '/reports', params
+        expect(last_response.status).to eq(200)
+      end
+
+      it '400 on invalid params' do
+        params['fail'] = 'fail'
+        post '/reports', params
+        expect(last_response.status).to eq(400)
+      end
+
+      it '400 without correct params' do
+        post '/reports', {lat: valid_lat, long: valid_long, category: category.uuid, description: valid_description}
+        expect(last_response.status).to eq(400)
+      end
+      it '400 with correct params but no user' do
+        post '/reports', {uuid: '24873587345', lat: valid_lat, long: valid_long, category: category.uuid, description: valid_description}
+        expect(last_response.status).to eq(400)
+      end
+      it '400 with correct params but no category' do
+        post '/reports', {uuid: user.uuid, lat: valid_lat, long: valid_long, category: '2353454', description: valid_description}
+        expect(last_response.status).to eq(400)
+      end
     end
-    it 'should return status 400 on invalid params' do
-      params['fail'] = 'fail'
-      post '/reports', params
-      expect(last_response.status).to eq(400)
-    end
-    it 'should return status 400 without correct params' do
-      category = Category.create(name: 'category1')
-      post '/reports', {lat: valid_lat, long: valid_long, category: category.uuid, description: valid_description}
-      expect(last_response.status).to eq(400)
-    end
+
     it 'should create a report in the db' do
       post '/reports', params
       report = Report.first
