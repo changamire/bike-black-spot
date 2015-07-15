@@ -1,3 +1,5 @@
+require 'mail'
+
 class Mailer
 
   #TODO: Find elegant way to change config based on environment

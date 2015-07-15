@@ -1,4 +1,6 @@
 require 'csv'
+require_relative '../helpers/mailer'
+
 class User < ActiveRecord::Base
   has_many :reports
   validates :name, :email, presence: true
@@ -34,5 +36,6 @@ class User < ActiveRecord::Base
 
   def create_confirmation
     Confirmation.create(user: self.uuid)
+    Mailer.send_confirmation(self)
   end
 end

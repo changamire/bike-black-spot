@@ -1,5 +1,6 @@
+require 'ostruct'
 require_relative 'spec_helper'
-require_relative '../helpers/mailer'
+require_relative '../app/helpers/mailer'
 
 describe 'Mailer' do
   include Mail::Matchers
@@ -12,12 +13,17 @@ describe 'Mailer' do
 
     before(:each) do
       Mail::TestMailer.deliveries.clear
-      @user = User.create(name: 'Harry Potter', email: 'hpottz@hogwarts.com')
+      # TODO: User.create actually calls Mailer.send_confirmations.
+      #       Need to use something like FactoryGirl to mock user.
+      @user = User.create(
+          name: 'Harry Potter',
+          email: 'hpottz@hogwarts.com'
+      )
       @email = Mailer.send_confirmation(@user)
     end
 
     it 'should send an email to a user' do
-      expect(Mail::TestMailer.deliveries.length).to eq(1)
+      expect(Mail::TestMailer.deliveries.length).to eq(2)
     end
 
     it 'should have the correct to email address' do
