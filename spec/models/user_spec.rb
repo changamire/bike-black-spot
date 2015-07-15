@@ -1,5 +1,4 @@
 require_relative '../spec_helper'
-require 'csv'
 
 describe 'User' do
 

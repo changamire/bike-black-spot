@@ -1,5 +1,5 @@
 require_relative '../spec_helper'
-require 'json'
+
 describe 'Category' do
 
   describe 'create' do

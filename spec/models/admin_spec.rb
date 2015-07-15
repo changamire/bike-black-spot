@@ -1,8 +1,7 @@
 require 'rspec'
-require_relative '../../app/models/admin'
 
-  username = 'iamtheonewhotests'
-  password = 'password!'
+username = 'iamtheonewhotests'
+password = 'password!'
 
 describe 'Admin' do
 
@@ -20,7 +19,7 @@ describe 'Admin' do
     expect(admin.errors[:username]).to include("can't be blank")
   end
 
-  it 'username should be more then 3 characters'do
+  it 'username should be more then 3 characters' do
     admin = Admin.new(username: 'a')
     admin.valid?
 
