@@ -8,9 +8,9 @@ describe 'Exports' do
 
       describe 'when not logged in' do
         describe 'should return status' do
-        it '400 given users' do
+        it '401 given users' do
           get RoutingLocations::EXPORTS + '?users=true'
-          expect(last_response.status).to be(400)
+          expect(last_response.status).to be(401)
         end
         it '400 when given unknown params' do
           get RoutingLocations::EXPORTS + '?hello=true'
