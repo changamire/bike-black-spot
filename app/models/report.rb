@@ -13,7 +13,13 @@ class Report < ActiveRecord::Base
 
   before_create :generate_uuid
 
+  @fields_that_require_auth = []
+
   def generate_uuid
     self.uuid = SecureRandom.uuid
+  end
+
+  def self.requires_auth(field)
+    @fields_that_require_auth.include?(field)
   end
 end

@@ -2,52 +2,54 @@ require_relative '../spec_helper'
 
 describe 'Reports' do
   describe 'Get /reports' do
-    params = {}
+    describe 'while not logged in' do
+      params = {}
 
-    before(:each) do
-      user = User.create(name: 'liam', email: 'l@l.com')
-      category = Category.create(name: 'category1Name')
-      params = {user: user, category: category, lat: '90', long: '130', description: 'Description yay'}
-    end
-    it 'should return all reports on no params' do
-      Report.create(params)
-      params['lat'] = '-90'
-      Report.create(params)
+      before(:each) do
+        user = User.create(name: 'liam', email: 'l@l.com')
+        category = Category.create(name: 'category1Name')
+        params = {user: user, category: category, lat: '90', long: '130', description: 'Description yay'}
+      end
+      it 'should return all reports on no params' do
+        Report.create(params)
+        params['lat'] = '-90'
+        Report.create(params)
 
-      get '/reports'
-      response = JSON.parse(last_response.body)
-      expect(response[0]['lat']).to eq('90')
-      expect(response[1]['lat']).to eq('-90')
-    end
-
-    it 'should return correct report given uuid' do
-      Report.create(params)
-
-      params['lat'] = '-90'
-      expected_report = Report.create(params)
-
-      get "/reports?uuid=#{expected_report.uuid}"
-      response = JSON.parse(last_response.body)
-      expect(response['lat']).to eq(expected_report.lat)
-    end
-
-    it 'should return null given uuid with no report' do
-      Report.create(params)
-
-      get '/reports?uuid=214823953'
-      expect(last_response.status).to be(200)
-      expect(last_response.body).to eq('null')
-    end
-
-    describe 'should return status' do
-      it '400 if incorrect params' do
-        get '/reports?fail=something'
-        expect(last_response.status).to eq(400)
+        get '/reports'
+        response = JSON.parse(last_response.body)
+        expect(response[0]['lat']).to eq('90')
+        expect(response[1]['lat']).to eq('-90')
       end
 
-      it '400 if empty uuid' do
-        get '/reports?uuid'
-        expect(last_response.status).to eq(400)
+      it 'should return correct report given uuid' do
+        Report.create(params)
+
+        params['lat'] = '-90'
+        expected_report = Report.create(params)
+
+        get "/reports?uuid=#{expected_report.uuid}"
+        response = JSON.parse(last_response.body)
+        expect(response['lat']).to eq(expected_report.lat)
+      end
+
+      it 'should return null given uuid with no report' do
+        Report.create(params)
+
+        get '/reports?uuid=214823953'
+        expect(last_response.status).to be(200)
+        expect(last_response.body).to eq('null')
+      end
+
+      describe 'should return status' do
+        it '400 if incorrect params' do
+          get '/reports?fail=something'
+          expect(last_response.status).to eq(400)
+        end
+
+        it '400 if empty uuid' do
+          get '/reports?uuid'
+          expect(last_response.status).to eq(400)
+        end
       end
     end
   end
