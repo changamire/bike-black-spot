@@ -1,7 +1,4 @@
-require 'rack/test'
 require_relative '../spec_helper'
-require_relative '../../app/routes/routing_locations'
-require_relative '../../app/models/admin'
 
 describe 'Login' do
   it 'post ' + RoutingLocations::LOGIN + ' with invalid credentials should return status 400' do

@@ -1,5 +1,3 @@
-require 'rack/test'
-require 'csv'
 require_relative '../spec_helper'
 
 describe 'Exports' do

@@ -1,6 +1,4 @@
-require 'rack/test'
 require_relative '../spec_helper'
-require_relative '../../app/routes/routing_locations'
 
 ENV['RACK_ENV'] = 'test'
 include Rack::Test::Methods
