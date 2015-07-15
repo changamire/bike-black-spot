@@ -1,0 +1,41 @@
+Status Codes
+
+#Recipients  ------------------------
+GET:
+401 - Unauthorised
+400 - Incorrect Params or Query
+200 - Successful return
+
+POST:
+401 - Unauthorised
+400 - Incorrect Params or Query
+201 - Successful Create
+
+DELETE:
+401 - Unauthorised
+400 - Incorrect Params or Query
+404 - Successful delete
+
+#Admins -----------------------------
+GET:
+401 - Unauthorised
+200 - Ok
+
+#Login  -----------------------------
+GET:
+200 - OK
+302 - Redirect
+
+POST:
+400 - Bad Request
+303 - Redirect other
+
+#Logout  ----------------------------
+GET:
+302 - Redirect
+
+#Catagories -------------------------
+
+#Reports ----------------------------
+
+#Users ------------------------------
