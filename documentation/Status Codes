@@ -1,25 +1,20 @@
 Status Codes
 
-#Recipients  ------------------------
-GET:
-401 - Unauthorised
-400 - Incorrect Params or Query
-200 - Successful return
-
-POST:
-401 - Unauthorised
-400 - Incorrect Params or Query
-201 - Successful Create
-
-DELETE:
-401 - Unauthorised
-400 - Incorrect Params or Query
-404 - Successful delete
-
 #Admins -----------------------------
 GET:
-401 - Unauthorised
 200 - Ok
+401 - Unauthorised
+
+#Categories -------------------------
+GET:
+200 - OK
+400 - Bad Request
+
+#Exports ----------------------------
+GET:
+200 - OK
+400 - Bad Request
+401 - Unauthorised
 
 #Login  -----------------------------
 GET:
@@ -27,15 +22,43 @@ GET:
 302 - Redirect
 
 POST:
-400 - Bad Request
 303 - Redirect other
+400 - Bad Request
 
 #Logout  ----------------------------
 GET:
 302 - Redirect
 
-#Categories -------------------------
+#Recipients  ------------------------
+GET:
+200 - Successful return
+400 - Incorrect Params or Query
+401 - Unauthorised
+
+POST:
+201 - Successful Create
+400 - Incorrect Params or Query
+401 - Unauthorised
+
+DELETE:
+204 - Successful delete
+400 - Incorrect Params, Query or Recipient not found
+401 - Unauthorised
 
 #Reports ----------------------------
+GET:
+200 - OK
+400 - Bad Request
+
+POST:
+201 - Successful Create
+400 - Bad Request
 
 #Users ------------------------------
+POST:
+200 - OK
+400 - Bad Request
+
+#Users/confirm ----------------------
+302 - Redirect
+400 - Bad request or (No such user or confirmation.)
