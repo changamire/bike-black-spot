@@ -53,7 +53,7 @@ describe 'Recipients' do
         end
         it 'should return return status 200(OK)' do
           get RoutingLocations::RECIPIENTS
-          expect(last_response).to be_ok
+          expect(last_response.status).to be(200)
         end
 
         it 'should return return all recipients' do
@@ -100,8 +100,8 @@ describe 'Recipients' do
         end
         it 'should return null when no recipient' do
           get RoutingLocations::RECIPIENTS + '?uuid=12345'
-          response = last_response.body
-          expect(response).to eq('null')
+          expect(last_response.body).to eq('null')
+          expect(last_response.status).to eq(200)
         end
       end
     end

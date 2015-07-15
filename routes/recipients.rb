@@ -12,7 +12,7 @@ get RoutingLocations::RECIPIENTS + '/?' do
   return Recipient.all.to_json if params[:uuid].nil?
 
   recipient = Recipient.find_by(uuid: params[:uuid])
-  status 400 if recipient.nil?
+  # status 400 if recipient.nil?
   return recipient.to_json
 
 end
