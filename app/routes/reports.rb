@@ -6,12 +6,8 @@ get RoutingLocations::REPORTS + '/?' do
   required = %w()
   return status 400 unless validate_params?(params, permitted, required)
 
-  if params[:uuid].nil?
-    return Report.all.to_json if warden.authenticated?
+  return Report.json(warden.authenticated?) if params[:uuid].nil?
 
-    result = Report.all.reject { |column| Report.requires_auth?(column) }
-    return result.to_json
-  end
   report = Report.find_by(uuid: params[:uuid])
   # status 400 if report.nil?
   return report.to_json

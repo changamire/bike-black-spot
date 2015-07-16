@@ -98,4 +98,93 @@ describe 'Report' do
       end
     end
   end
+
+  describe 'json' do
+    report ={}
+    before(:each) do
+      report = Report.create(params)
+    end
+
+    # {"recipient_id"=>nil, "uuid"=>"672e7576-f946-44cf-895c-c3da90fdac17", "description"=>"Description yay",
+    # "lat"=>"90", "long"=>"130", "created_at"=>"2015-07-16T00:28:55.448Z", "updated_at"=>"2015-07-16T00:28:55.448Z",
+    # "sent_at"=>nil, "category"=>"category1Name", "user_uuid"=>"b9d96002-a99f-4bea-afb9-da5eb7aaad76"}
+    describe 'authorised' do
+      expectedAsHash = {}
+      before(:each) do
+        expectedAsHash = JSON.parse(Report.json(true))
+      end
+      it 'should have uuid' do
+        expect(expectedAsHash[0]['uuid']).to eq(report.uuid)
+      end
+      it 'should have description' do
+        expect(expectedAsHash[0]['description']).to eq(report.description)
+      end
+      it 'should have lat' do
+        expect(expectedAsHash[0]['lat']).to eq(report.lat)
+      end
+      it 'should have long' do
+        expect(expectedAsHash[0]['long']).to eq(report.long)
+      end
+      it 'should have created_at' do
+        expect(expectedAsHash[0].has_key?('created_at')).to be_truthy
+      end
+      it 'should have updated_at' do
+        expect(expectedAsHash[0].has_key?('updated_at')).to be_truthy
+      end
+      it 'should have sent_at' do
+        expect(expectedAsHash[0].has_key?('sent_at')).to be_truthy
+      end
+      it 'should have category' do
+        expect(expectedAsHash[0]['category']).to eq(category.name)
+      end
+      it 'should have user_uuid' do
+        expect(expectedAsHash[0]['user_uuid']).to eq(user.uuid)
+      end
+    end
+
+    # {"recipient_id"=>nil, "uuid"=>"8245b76a-0ab0-49ed-b509-19d562648f98",
+    # "description"=>"Description yay", "lat"=>"90", "long"=>"130", "created_at"=>"2015-07-16T00:28:55.437Z",
+    # "category"=>"category1Name"}
+    describe 'unauthorised' do
+      expectedAsHash = {}
+      before(:each) do
+        expectedAsHash = JSON.parse(Report.json(false))
+      end
+
+      describe 'should have' do
+        it 'uuid' do
+          expect(expectedAsHash[0]['uuid']).to eq(report.uuid)
+        end
+
+        it 'description' do
+          expect(expectedAsHash[0]['description']).to eq(report.description)
+        end
+        it 'lat' do
+          expect(expectedAsHash[0]['lat']).to eq(report.lat)
+        end
+        it 'long' do
+          expect(expectedAsHash[0]['long']).to eq(report.long)
+        end
+        it 'created_at' do
+          expect(expectedAsHash[0].has_key?('created_at')).to be_truthy
+        end
+
+        it 'category' do
+          expect(expectedAsHash[0]['category']).to eq(category.name)
+        end
+
+      end
+      describe 'should not have' do
+        it 'user_uuid' do
+          expect(expectedAsHash[0]['user_uuid']).to be_nil
+        end
+        it 'updated_at' do
+          expect(expectedAsHash[0].has_key?('updated_at')).to be_falsey
+        end
+        it 'sent_at' do
+          expect(expectedAsHash[0].has_key?('sent_at')).to be_falsey
+        end
+      end
+    end
+  end
 end

@@ -14,6 +14,11 @@ class Category < ActiveRecord::Base
     result.to_json
   end
 
+  def self.ID_to_name_hash(hash, id)
+    hash.delete('category_id')
+    hash['category'] = (Category.find(id)).name
+  end
+
   private
   def generate_uuid
     self.uuid = SecureRandom.uuid

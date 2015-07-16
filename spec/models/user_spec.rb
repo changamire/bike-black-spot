@@ -103,4 +103,35 @@ describe 'User' do
       expect(User.export).to eq(expected)
     end
   end
+
+  describe 'ID_to_UUID_hash' do
+    hash = {}
+    user = {}
+    before(:each) do
+      user = User.create(name: 'user_spec_name', email: 'user_spec@email.com')
+      hash = {user_id: user.id}
+    end
+    it 'should delete user_id from hash' do
+      User.ID_to_UUID_hash(hash, user.id)
+      expect(hash.has_key?('user_id')).to be_falsey
+    end
+    it 'should add user_uuid to hash' do
+      User.ID_to_UUID_hash(hash, user.id)
+      expect(hash.has_key?('user_uuid')).to be_truthy
+    end
+    it 'user_uuid should be equal to user found by id' do
+      User.ID_to_UUID_hash(hash, user.id)
+      expect(hash['user_uuid']).to eq(user.uuid)
+    end
+    it 'should not change other fields' do
+      new_hash = {hello: 'helloMsg', category_id: 'categoryID'}
+      User.ID_to_UUID_hash(new_hash, user.id)
+      expect(new_hash).to eq(new_hash)
+    end
+    it 'should not crash on null hash' do
+      new_hash = {}
+      User.ID_to_UUID_hash(new_hash, user.id)
+      expect(new_hash).to eq(new_hash)
+    end
+  end
 end

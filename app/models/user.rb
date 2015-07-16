@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
                                 message: 'Must be a valid postcode'}
 
   before_create :generate_uuid
-  after_create  :create_confirmation
+  after_create :create_confirmation
 
 
   def self.export
@@ -24,8 +24,12 @@ class User < ActiveRecord::Base
     return result
   end
 
+  def self.ID_to_UUID_hash(hash, id)
+    hash.delete('user_id')
+    hash['user_uuid'] = (User.find(id)).uuid
+  end
+
   def as_csv
-    # return ["#{self.name}, #{self.email}"].to_csv
     return [self.name, self.email].to_csv
   end
 

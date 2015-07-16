@@ -43,5 +43,37 @@ describe 'Category' do
 
       expect(JSON.parse(Category.json)).to eq(JSON.parse(categories.to_json))
     end
+
+    describe 'ID_to_UUID_hash' do
+      hash = {}
+      category = {}
+      before(:each) do
+        category = Category.create(name: 'user_spec_name')
+        hash = {category_id: category.id}
+      end
+
+      it 'should delete category_id from hash' do
+        Category.ID_to_name_hash(hash, category.id)
+        expect(hash.has_key?('category_id')).to be_falsey
+      end
+      it 'should add category to hash' do
+        Category.ID_to_name_hash(hash, category.id)
+        expect(hash.has_key?('category')).to be_truthy
+      end
+      it 'category should be equal to category found by id' do
+        Category.ID_to_name_hash(hash, category.id)
+        expect(hash['category']).to eq(category.name)
+      end
+      it 'should not change other fields' do
+        new_hash = {hello: 'helloMsg', user_id: 'userID'}
+        Category.ID_to_name_hash(new_hash, category.id)
+        expect(new_hash).to eq(new_hash)
+      end
+      it 'should not crash on null hash' do
+        new_hash = {}
+        Category.ID_to_name_hash(new_hash, category.id)
+        expect(new_hash).to eq(new_hash)
+      end
+    end
   end
 end
