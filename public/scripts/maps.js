@@ -1,3 +1,6 @@
+var LAT = 0, LONG = 1;
+var MAP_MARKER = 0;
+
 function getMapsDataFromReports() {
 	var rawLocations = [];
 	var markerData = [];
@@ -18,13 +21,14 @@ function getMapsDataFromReports() {
 
 function generateInfoWindowsForReports(map, markerData) {
 	markerData.forEach(function(marker) {
-		var infoContent = '<p>' + marker[1] + '</p>';
+		var infoContent = '<p>' + marker[1] + '</p>' + 
+		'<img src="http://i.dailymail.co.uk/i/pix/2013/02/21/article-2281982-18258EA7000005DC-231_964x649.jpg" style="max-width:200px;"></img>';
 		var infoWindow = new google.maps.InfoWindow({
 			content: infoContent
 		})
-		
-		google.maps.event.addListener(marker[0], 'click', function() {
-    		infoWindow.open(map,marker[0]);
+
+		google.maps.event.addListener(marker[MAP_MARKER], 'click', function() {
+    		infoWindow.open(map,marker[MAP_MARKER]);
   		});
 	})
 }
@@ -35,7 +39,7 @@ function placeReportLocationMarkersOnMap(map, reportData) {
 	reportData.forEach(function(data) {
 		mapData.push( 
 			[new google.maps.Marker({
-				position: new google.maps.LatLng(data[0], data[1]),
+				position: new google.maps.LatLng(data[LAT], data[LONG]),
     			map: map
 			}), 
 			data[2]]
@@ -50,7 +54,7 @@ function initialiseMaps() {
     var mapOptions = {
 		scrollwheel: false,
 		center: new google.maps.LatLng(-27.4667, 153.0333),
-		zoom: 12,
+		zoom: 14,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     var map = new google.maps.Map(mapCanvas, mapOptions);
