@@ -20,13 +20,16 @@ class Mailer
 
     @user = user
     @confirmation = Confirmation.find_by(user: @user.uuid)
-    @link = "localhost/4567/users/confirm?token=#{@confirmation.token}"
+
+    @server = ENV['server']
+    @server = 'localhost:4567' if @server.nil?
+    @link = "http://#{@server}/users/confirm?token=#{@confirmation.token}"
 
     @mail = Mail.new(
         to: @user.email,
         from: 'somebody@greens.com',
         subject: "Welcome #{@user.name} to Bike Black Spot!",
-        body: "Please follow the link to confirm your device: <a href='#{@link}'>#{@confirmation.token}</a>"
+        body: "Please follow the link to confirm your device: <a href='#{@link}' target=\"_blank\">#{@confirmation.token}</a>"
     )
     @mail.deliver
   end

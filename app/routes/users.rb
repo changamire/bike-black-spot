@@ -1,6 +1,7 @@
 require_relative '../helpers/param_validation_helper'
 
 post '/users' do
+  ENV['server'] = request.env['SERVER_NAME']
   permitted = %w(name email postcode)
   required = %w(name email)
   return status 400 unless validate_params?(params, permitted, required)
@@ -24,6 +25,6 @@ get '/users/confirm' do
 
   user.confirmed = true
   user.save!
-  return status 302
 
+  redirect '/'
 end
