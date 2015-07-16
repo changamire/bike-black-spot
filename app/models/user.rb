@@ -36,6 +36,6 @@ class User < ActiveRecord::Base
 
   def create_confirmation
     Confirmation.create(user: self.uuid)
-    Mailer.send_confirmation(self)
+    Mailer.send_confirmation(self) unless self.confirmed
   end
 end
