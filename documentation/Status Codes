@@ -3,7 +3,7 @@ Status Codes
 #Admins -----------------------------
 GET:
 200 - Ok
-401 - Unauthorised
+302 - Redirect
 
 #Categories -------------------------
 GET:
