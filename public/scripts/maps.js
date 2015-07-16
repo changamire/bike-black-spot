@@ -1,6 +1,8 @@
 var LAT = 0, LONG = 1;
 var MAP_MARKER = 0;
 
+var ActiveInfoWindow = null;
+
 function getMapsDataFromReports() {
 	var rawLocations = [];
 	var markerData = [];
@@ -28,7 +30,9 @@ function generateInfoWindowsForReports(map, markerData) {
 		})
 
 		google.maps.event.addListener(marker[MAP_MARKER], 'click', function() {
+			if(ActiveInfoWindow != null) ActiveInfoWindow.close(); 
     		infoWindow.open(map,marker[MAP_MARKER]);
+    		ActiveInfoWindow = infoWindow;
   		});
 	})
 }
@@ -60,5 +64,10 @@ function initialiseMaps() {
     var map = new google.maps.Map(mapCanvas, mapOptions);
 
     placeReportLocationMarkersOnMap(map,getMapsDataFromReports());
+
+    google.maps.event.addListener(map, 'click', function() {
+		if(ActiveInfoWindow != null) ActiveInfoWindow.close(); 
+		ActiveInfoWindow = null;
+	});
 
 }
