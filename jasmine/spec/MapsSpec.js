@@ -12,7 +12,7 @@ describe("maps", function() {
   });
 
   it("should return map positions from reports service", function() {
-    var locations = getMapsLatLongFromReports()
+    var locations = getMapsDataFromReports()
     expect(locations).not.toEqual([]);
   });
 });
