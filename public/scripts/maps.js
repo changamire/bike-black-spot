@@ -8,7 +8,6 @@ function getMapsDataFromReports() {
 		async: false,
 		success: function(reports) {
 			reports.forEach(function(report){
-				//rawLocations.push(new google.maps.LatLng(report.lat,report.long));
 				markerData.push([report.lat, report.long, report.description]);
 			})
 		}
@@ -17,32 +16,33 @@ function getMapsDataFromReports() {
 	return markerData;
 }
 
-function generateInfoWindowsForReports(map, markers) {
-	var infoContent = '<h1>Hello World</h1>';
-	markers.forEach(function(marker) {
+function generateInfoWindowsForReports(map, markerData) {
+	markerData.forEach(function(marker) {
+		var infoContent = '<p>' + marker[1] + '</p>';
 		var infoWindow = new google.maps.InfoWindow({
 			content: infoContent
 		})
-		google.maps.event.addListener(marker, 'click', function() {
-    		infoWindow.open(map,marker);
+		
+		google.maps.event.addListener(marker[0], 'click', function() {
+    		infoWindow.open(map,marker[0]);
   		});
 	})
-
-	
 }
 
-function placeReportLocationMarkersOnMap(map, reportLocations) {
-	var markers = [];
+function placeReportLocationMarkersOnMap(map, reportData) {
+	var mapData = [];
 
-	reportLocations.forEach(function(latlong) {
-		markers.push( new google.maps.Marker({
-	    		position: new google.maps.LatLng(latlong[0], latlong[1]),
-	    		map: map
-    		})
+	reportData.forEach(function(data) {
+		mapData.push( 
+			[new google.maps.Marker({
+				position: new google.maps.LatLng(data[0], data[1]),
+    			map: map
+			}), 
+			data[2]]
     	)
     })
 
-    generateInfoWindowsForReports(map, markers);
+    generateInfoWindowsForReports(map, mapData);
 }
 
 function initialiseMaps() {
