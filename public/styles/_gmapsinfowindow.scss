@@ -1,0 +1,27 @@
+.info-window {
+	clear: both;
+}
+
+.info-window-text {
+	float: left;
+	margin-right: 15px;
+	max-width: 225px;
+
+	& h4 {
+		font-weight: bold;
+		margin-top: 0.6vh;
+	}
+
+	& p {
+		overflow-wrap: break-word; 
+		margin-top: 0.3vh;
+	}
+}
+
+.info-window-image {
+	float: right;
+
+	& img {
+		max-width: 140px;
+	}
+}

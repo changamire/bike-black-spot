@@ -48,6 +48,25 @@ table {
 @font-face {
   font-family: 'greens-headings-font';
   src: url("/fonts/BebasNeue.otf"); }
+.info-window {
+  clear: both; }
+
+.info-window-text {
+  float: left;
+  margin-right: 15px;
+  max-width: 225px; }
+  .info-window-text h4 {
+    font-weight: bold;
+    margin-top: 0.6vh; }
+  .info-window-text p {
+    overflow-wrap: break-word;
+    margin-top: 0.3vh; }
+
+.info-window-image {
+  float: right; }
+  .info-window-image img {
+    max-width: 140px; }
+
 h1 {
   display: block;
   font-family: greens-headings-font;

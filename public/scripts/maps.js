@@ -13,7 +13,7 @@ function getMapsDataFromReports() {
 		async: false,
 		success: function(reports) {
 			reports.forEach(function(report){
-				markerData.push([report.lat, report.long, report.description]);
+				markerData.push([report.lat, report.long, report.category, report.description]);
 			})
 		}
 	});
@@ -21,10 +21,25 @@ function getMapsDataFromReports() {
 	return markerData;
 }
 
+function generateInfoWindowHtml(markerData) {
+	var textDiv = '<div class="info-window-text">' 
+	+ '<h4>' + 'Issue' + '</h4>' 
+	+ '<p>' + markerData[1] + '</p>' 
+	+ '<h4>' + 'Description' + '</h4>'
+	+ '<p>' + markerData[2] + '</p>'
+	+ '<h4>' + 'Address' + '</h4>'
+	+ '<p>' + 'Test street' + '</p>'
+	+ '</div>';
+	var imageDiv = '<div class="info-window-image">'
+	+ '<img src="http://i.imgur.com/CfmbeXi.jpg"></img>' 
+	+ '</div>';
+
+	return '<div class="info-window">' + textDiv + imageDiv + '</div>';
+}
+
 function generateInfoWindowsForReports(map, markerData) {
 	markerData.forEach(function(marker) {
-		var infoContent = '<p>' + marker[1] + '</p>' + 
-		'<img src="http://i.dailymail.co.uk/i/pix/2013/02/21/article-2281982-18258EA7000005DC-231_964x649.jpg" style="max-width:200px;"></img>';
+		var infoContent = generateInfoWindowHtml(marker)
 		var infoWindow = new google.maps.InfoWindow({
 			content: infoContent
 		})
@@ -46,7 +61,7 @@ function placeReportLocationMarkersOnMap(map, reportData) {
 				position: new google.maps.LatLng(data[LAT], data[LONG]),
     			map: map
 			}), 
-			data[2]]
+			data[2], data[3]]
     	)
     })
 
