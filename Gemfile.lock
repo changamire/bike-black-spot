@@ -116,6 +116,3 @@ DEPENDENCIES
   sqlite3
   tux
   warden
-
-BUNDLED WITH
-   1.10.5
