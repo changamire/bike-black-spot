@@ -1,0 +1,41 @@
+@import 'reset';
+@import 'fonts';
+@import 'breakpoints';
+
+h1 {
+	display: block;
+	font-family: greens-headings-font;
+	margin: 20px 0 1vh;
+	font-size: 3em;
+}
+
+p {
+	margin: 0;
+}
+
+footer {
+	background: black;
+	color: white;
+	padding: 1cm;
+}
+
+table {
+	width: 100%;
+}
+
+td {
+	padding-left: 5px;
+}
+
+.central-col {
+	margin: 0 5vw;
+}
+
+#export-csv {
+	padding: 10px 15px;
+	font-size: 1.25em;
+	margin: 10px;
+	border-radius: 10px;
+	background-color: #3cb8c8;
+	color: white;
+}
