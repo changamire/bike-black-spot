@@ -5,11 +5,16 @@ password = 'passwordCat'
 Admin.create(username: username, password: password)
 
 #Categories
-category1 = {name: 'category1'}
-category2 = {name: 'category2'}
-category3 = {name: 'category3'}
+category_danger       = {name: 'Danger zone'}
+category_vehicle      = {name: 'Vehicle in bike path'}
+category_path         = {name: 'Path needed'}
+category_maintenance  = {name: 'Maintenance required'}
+category_facilities   = {name: 'Bike facilities needed'}
+category_visiblity    = {name: 'Bad visibility'}
+category_wonderland   = {name: 'Bike wonderland – job well done'}
+category_other        = {name: 'Other – add details'}
 
-categories = [category1, category2, category3]
+categories = [category_danger, category_vehicle, category_path,     category_maintenance, category_facilities, category_visiblity, category_wonderland, category_other]
 
 categories.each do |category|
   Category.create(category)
@@ -39,14 +44,13 @@ recipients.each do |recipient|
 end
 
 #Reports
-report1 = {user: User.where(user1).first, category: Category.where(category1).first, lat: '-27.465457', long: '153.027522', description: 'Brisbane Office'}
-report2 = {user: User.where(user2).first, category: Category.where(category1).first, lat: '-27.466769', long: '153.027677', description: 'Food Street 1'}
-report3 = {user: User.where(user1).first, category: Category.where(category3).first, lat: '-27.467092', long: '153.027141', description: 'Food: Post office square'}
-report4 = {user: User.where(user1).first, category: Category.where(category2).first, lat: '-27.471462', long: '153.025269', description: 'Coffee: The Bunker. This is also a test where the description is fairly long. The Bunker is found next to the koala shop in the basement of some building. Its fairly hard to find if youve never been there before. Ask some Suncorpers to show you way and enjoy the coffee :)'}
+report1 = {user: User.where(user1).first, category: Category.where(category_path).first, lat: '-27.465457', long: '153.027522', description: 'Brisbane Office'}
+report2 = {user: User.where(user2).first, category: Category.where(category_danger).first, lat: '-27.466769', long: '153.027677', description: 'Food Street 1'}
+report3 = {user: User.where(user1).first, category: Category.where(category_vehicle).first, lat: '-27.467092', long: '153.027141', description: 'Food: Post office square'}
+report4 = {user: User.where(user1).first, category: Category.where(category_path).first, lat: '-27.471462', long: '153.025269', description: 'Coffee: The Bunker. This is also a test where the description is fairly long. The Bunker is found next to the koala shop in the basement of some building. Its fairly hard to find if youve never been there before. Ask some Suncorpers to show you way and enjoy the coffee :)'}
 
 reports = [report1, report2, report3, report4]
 
 reports.each do |report|
   Report.create(report)
 end
-
