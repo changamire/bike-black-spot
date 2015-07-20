@@ -6,15 +6,8 @@ describe 'Location' do
 
   before(:each) do
     params = {
-        lat: '-32.930768',
-        long: '151.768123',
-        number: '63',
-        street: 'Bull Street',
-        suburb: 'Cooks Hill',
-        state: 'NSW',
-        postcode: '2300',
-        country: 'Australia',
-        formatted_address: '63 Bull Street, Cooks Hill NSW 2300, Australia'
+        lat: '-37.8165501',
+        long: '144.9638398'
     }
   end
 
@@ -43,30 +36,30 @@ describe 'Location' do
       location = Location.create(params)
       expect(location.valid?).to be_falsey
     end
-    it 'should fail if no street' do
-      params.delete(:street)
-      location = Location.create(params)
-      expect(location.valid?).to be_falsey
+  end
+
+  describe 'geocode' do
+    let(:location) { Location.create(params) }
+    it 'should set street number' do
+      expect(location.number).to eq('303')
     end
-    it 'should fail if no suburb' do
-      params.delete(:suburb)
-      location = Location.create(params)
-      expect(location.valid?).to be_falsey
+    it 'should set street name' do
+      expect(location.street).to eq('Collins Street')
     end
-    it 'should fail if no state' do
-      params.delete(:state)
-      location = Location.create(params)
-      expect(location.valid?).to be_falsey
+    it 'should set suburb' do
+      expect(location.suburb).to eq('Melbourne')
     end
-    it 'should fail if no postcode' do
-      params.delete(:postcode)
-      location = Location.create(params)
-      expect(location.valid?).to be_falsey
+    it 'should set state' do
+      expect(location.state).to eq('VIC')
     end
-    it 'should fail if no country' do
-      params.delete(:country)
-      location = Location.create(params)
-      expect(location.valid?).to be_falsey
+    it 'should set postcode' do
+      expect(location.postcode).to eq('3000')
+    end
+    it 'should set country' do
+      expect(location.country).to eq('Australia')
+    end
+    it 'should set formatted_address' do
+      expect(location.formatted_address).to eq('303 Collins Street, Melbourne VIC 3000, Australia')
     end
 
   end

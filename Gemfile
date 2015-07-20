@@ -20,6 +20,9 @@ gem 'pg'
 #Email
 gem 'mail'
 
+#Geo
+gem 'geokit'
+
 group :development do
   gem 'tux'
 end

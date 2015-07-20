@@ -1,5 +1,4 @@
 require_relative '../spec_helper'
-
 describe 'Confirmation' do
   describe 'generate_uuid' do
     it 'Should set a valid token' do

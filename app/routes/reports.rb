@@ -23,7 +23,8 @@ post RoutingLocations::REPORTS do
   category = Category.find_by(uuid: params[:category])
   return status 400 if user.nil? or category.nil?
 
-  Report.create(user: user, category: category, lat: params[:lat], long: params[:long],
+  location = Location.create(lat: params[:lat], long: params[:long])
+  Report.create(user: user, category: category, location: location.uuid,
                 description: params[:description])
   return status 201
 end

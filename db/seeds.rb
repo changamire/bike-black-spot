@@ -44,11 +44,23 @@ recipients.each do |recipient|
   Recipient.create(recipient)
 end
 
+#Locations
+location1 = {lat: '-27.465457', long: '153.027522'}
+location2 = {lat: '-27.466769', long: '153.027677'}
+location3 = {lat: '-27.467092', long: '153.027141'}
+location4 = {lat: '-27.471462', long: '153.025269'}
+
+locations = [location1, location2, location3, location4]
+
+locations.each do |location|
+  Location.create(location)
+end
+
 #Reports
-report1 = {user: User.where(user1).first, category: Category.where(category_path).first, lat: '-27.465457', long: '153.027522', description: 'Brisbane Office'}
-report2 = {user: User.where(user2).first, category: Category.where(category_danger).first, lat: '-27.466769', long: '153.027677', description: 'Food Street 1'}
-report3 = {user: User.where(user1).first, category: Category.where(category_vehicle).first, lat: '-27.467092', long: '153.027141', description: 'Food: Post office square'}
-report4 = {user: User.where(user1).first, category: Category.where(category_path).first, lat: '-27.471462', long: '153.025269', description: 'Coffee: The Bunker. This is also a test where the description is fairly long. The Bunker is found next to the koala shop in the basement of some building. Its fairly hard to find if youve never been there before. Ask some Suncorpers to show you way and enjoy the coffee :)'}
+report1 = {user: User.where(user1).first, category: Category.where(category1).first, location: Location.where(location1).first, description: 'Brisbane Office'}
+report2 = {user: User.where(user2).first, category: Category.where(category1).first, location: Location.where(location2).first, description: 'Food Street 1'}
+report3 = {user: User.where(user1).first, category: Category.where(category3).first, location: Location.where(location3).first, description: 'Food: Post office square'}
+report4 = {user: User.where(user1).first, category: Category.where(category2).first, location: Location.where(location4).first, description: 'Coffee: The Bunker. This is also a test where the description is fairly long. The Bunker is found next to the koala shop in the basement of some building. Its fairly hard to find if youve never been there before. Ask some Suncorpers to show you way and enjoy the coffee :)'}
 
 reports = [report1, report2, report3, report4]
 

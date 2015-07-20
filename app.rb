@@ -5,6 +5,7 @@ require 'warden'
 require 'bcrypt'
 require 'rack/throttle'
 require 'rack/ssl'
+require 'geokit'
 
 require_relative 'app/models/init'
 require_relative 'app/helpers/api_logger.rb'
