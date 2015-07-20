@@ -48,6 +48,9 @@ table {
 @font-face {
   font-family: 'greens-headings-font';
   src: url("/fonts/BebasNeue.otf"); }
+@font-face {
+  font-family: 'greens-body-font';
+  src: url("/fonts/Swiss721LightCondensedBT.ttf"); }
 h1 {
   display: block;
   font-family: greens-headings-font;
@@ -64,6 +67,9 @@ footer {
 
 table {
   width: 100%; }
+
+tr, td {
+  border: 1px solid #98bf21; }
 
 td {
   padding-left: 5px; }
