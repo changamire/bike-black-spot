@@ -14,7 +14,7 @@ require_relative 'app/helpers/bike_spot_warden'
 require_relative 'config/environments'
 
 use Rack::Throttle::Minute, :max => 1000 if ENV['RACK_ENV'] == 'production'
-use Rack::SSL, :exclude => lambda { |env| ENV['RACK_ENV'] != 'staging' }
+use Rack::SSL, :exclude => lambda { |env| ENV['RACK_ENV'] != 'production' }
 
 class BikeSpot < Sinatra::Base
   register Sinatra::ActiveRecordExtension
