@@ -10,6 +10,7 @@ class Location < ActiveRecord::Base
   end
 
   def geocode
+    return if ENV['RACK_ENV'] == 'test'
     @latlong = "#{self.lat}, #{self.long}"
     @result = Geokit::Geocoders::GoogleGeocoder.reverse_geocode(@latlong)
     self.number = @result.street_number

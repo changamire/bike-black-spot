@@ -1,6 +1,6 @@
 require_relative '../spec_helper'
 
-describe 'Location' do
+xdescribe 'Location' do
 
   params = {}
 
