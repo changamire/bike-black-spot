@@ -6,13 +6,19 @@
 h1 {
 	display: block;
 	font-family: greens-headings-font;
-	text-align: center;
 	margin: 0 0 2vh;
-	font-size: 4em;
-	text-shadow: 2px 2px 6px rgba(0,0,0, 0.5);
+	font-size: 3.5em;
 }
 
 h2 {
+	display: block;
+	font-family: greens-headings-font;
+	font-size: 2.8em;
+	color: #3CB8C8;
+	margin-bottom: 5px;
+}
+
+h3 {
 	display: block;
 	font-family: greens-body-font;
 	text-align: center;
@@ -24,27 +30,38 @@ h2 {
 
 p {
 	margin: 0;
+	font-family: greens-body-font;
+	font-size: 1.1em;
+	line-height: 1.25em;
 }
 
 footer {
-	background: black;
-	color: white;
-	padding: 1cm;
+	margin: 10vh 10vw 4vh 10vw;
+}
+
+footer p {
+	margin-left: 4em;
+}
+
+
+#main-heading {
+	text-shadow: 2px 2px 6px rgba(0,0,0, 0.5);
+	text-align: center;
+	font-size: 4em;
 }
 
 #page-1 {
 	background-image: url("/images/bike_background.jpg");
 	background-position: center top;
-	background-size: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
 	color: #fff;
 }
 
 #page-2 {
-	background: #fff;
-}
-
-#page-3 {
-	background: purple;
+	padding: 1px;
+	height: 220vh;
 }
 
 #main-description {
@@ -59,9 +76,13 @@ footer {
 }
 
 #map-canvas {
-	height: 80%;
+	height: 80vh;
 	width: 80%;
-	margin: 10vh 10vw;
+	margin: 8vh 10vw 0vh 10vw;
+}
+
+#container-div {
+	margin: 2vh 10vw;
 }
 
 #app-download-link-wrapper {
@@ -79,4 +100,19 @@ footer {
 	@include breakpoint(ipad) { top: 25%; }
 }
 
+.blue {
+	color: #3CB8C8;
+}
 
+#greens-logo {
+	width: 50px;
+	float: left;
+}
+
+section {
+	margin: 10vh 0vw;
+}
+
+.left_column {
+	width: 60vw;
+}
