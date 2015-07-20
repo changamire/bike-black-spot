@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 
 <html>
@@ -19,12 +20,33 @@
 
 			<h1>Email List</h1>
 			<table>
+				<colgroup>
+			        <col width="30%">
+			        <col width="30%">
+			        <col width="30%">
+			        <col width="10%">
+			    </colgroup>
 				<thead>
 					<td>Name</td>
 					<td>Email</td>
-					<td colspan="2">State</td>
+					<td>State</td>
+					<td></td>
 				</thead>
 				<tbody>
+				<% @recipients.each do |recipient| %>
+					<tr>
+					<% recipient.map do |row| %>
+						<% if row.first == 'name' %>
+							<td><%= row[1] %></td>
+						<% elsif row.first == 'email' %>
+							<td><%= row[1] %></td>
+						<% elsif row.first == 'state' %>
+							<td><%= row[1] %></td>
+						<% end %>
+					<% end %>
+					<td>delete</td>
+					</tr>
+				<% end %>
 					<tr>
 						<td>Name</td>
 						<td>Email</td>

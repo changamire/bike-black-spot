@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150714014150) do
+ActiveRecord::Schema.define(version: 20150720045703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,23 @@ ActiveRecord::Schema.define(version: 20150714014150) do
 
   add_index "confirmations", ["id"], name: "index_confirmations_on_id", using: :btree
 
+  create_table "locations", force: :cascade do |t|
+    t.string   "uuid"
+    t.string   "lat"
+    t.string   "long"
+    t.string   "number"
+    t.string   "street"
+    t.string   "suburb"
+    t.string   "state"
+    t.string   "postcode"
+    t.string   "country"
+    t.string   "formatted_address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "locations", ["id"], name: "index_locations_on_id", using: :btree
+
   create_table "recipients", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
@@ -59,11 +76,10 @@ ActiveRecord::Schema.define(version: 20150714014150) do
     t.integer  "category_id"
     t.string   "uuid"
     t.text     "description"
-    t.string   "lat"
-    t.string   "long"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "sent_at"
+    t.string   "location"
   end
 
   add_index "reports", ["id"], name: "index_reports_on_id", using: :btree

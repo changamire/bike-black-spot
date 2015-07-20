@@ -8,7 +8,8 @@ describe 'Reports' do
     before(:each) do
       user = User.create(name: 'liam', email: 'l@l.com')
       category = Category.create(name: 'category1Name')
-      params = {user: user, category: category, lat: '90', long: '130', description: 'Description yay'}
+      location = Location.create(lat: '-37.8165501', long: '144.9638398')
+      params = {user: user, category: category, location: location.uuid, description: 'x'}
     end
     describe 'while not logged in' do
       it 'should not show user_id' do
@@ -34,24 +35,24 @@ describe 'Reports' do
 
     it 'should return all reports on no params' do
       Report.create(params)
-      params['lat'] = '-90'
+      params['description'] = 'y'
       Report.create(params)
 
       get '/reports'
       response = JSON.parse(last_response.body)
-      expect(response[0]['lat']).to eq('90')
-      expect(response[1]['lat']).to eq('-90')
+      expect(response[0]['description']).to eq('x')
+      expect(response[1]['description']).to eq('y')
     end
 
     it 'should return correct report given uuid' do
       Report.create(params)
 
-      params['lat'] = '-90'
+      params['description'] = 'y'
       expected_report = Report.create(params)
 
       get "/reports?uuid=#{expected_report.uuid}"
       response = JSON.parse(last_response.body)
-      expect(response['lat']).to eq(expected_report.lat)
+      expect(response['description']).to eq(expected_report.description)
     end
 
     it 'should return null given uuid with no report' do
@@ -119,7 +120,7 @@ describe 'Reports' do
     it 'should create a report in the db' do
       post '/reports', params
       report = Report.first
-      expect(report.lat).to eq(valid_lat)
+      expect(report.description).to eq(valid_description)
     end
   end
 end
