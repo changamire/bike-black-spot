@@ -19,6 +19,7 @@ use Rack::SSL, :exclude => lambda { |env| ENV['RACK_ENV'] != 'production' }
 
 class BikeSpot < Sinatra::Base
   register Sinatra::ActiveRecordExtension
+
   Sinatra::Base.set :views, File.join(File.dirname(__FILE__),'/app/views/')
   enable :sessions
 

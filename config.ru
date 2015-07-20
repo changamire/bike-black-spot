@@ -1,5 +1,3 @@
 require './app'
-
-# Sinatra::Application.run!
-
-run BikeSpot.new
+#\ -p 4567
+run Sinatra::Application
