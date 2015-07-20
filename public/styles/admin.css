@@ -66,7 +66,8 @@ footer {
   padding: 1cm; }
 
 table {
-  width: 100%; }
+  width: 100%;
+  margin-bottom: 3vh; }
 
 tr, td {
   border: 1px solid #98bf21; }
