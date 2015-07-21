@@ -2,6 +2,8 @@ require 'sinatra'
 require 'rspec'
 require 'json'
 require 'rack/test'
+# require 'mocha'
+require 'geokit'
 require 'database_cleaner'
 
 include Rack::Test::Methods
@@ -21,6 +23,7 @@ Sinatra::Base.set :views, File.join(File.dirname(__FILE__),'../app/views/')
 LOCAL = 'http://example.org'
 
 RSpec.configure do |config|
+
   config.include Warden::Test::Helpers
 
   config.before(:suite) do
@@ -37,6 +40,7 @@ RSpec.configure do |config|
   config.after do
     Warden.test_reset!
   end
+  # config.mock_with :mocha
 end
 
 def check_last_response_is_ok

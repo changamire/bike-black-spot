@@ -107,6 +107,14 @@ describe 'Reports' do
         post '/reports', {lat: valid_lat, long: valid_long, category: category.uuid, description: valid_description}
         expect(last_response.status).to eq(400)
       end
+      it '400 without valid latitude' do
+        post '/reports', {uuid: user.uuid, lat: '181', long: valid_long, category: category.uuid, description: valid_description}
+        expect(last_response.status).to eq(400)
+      end
+      it '400 without valid longitude' do
+        post '/reports', {uuid: user.uuid, lat: valid_lat, long: '181', category: category.uuid, description: valid_description}
+        expect(last_response.status).to eq(400)
+      end
       it '400 with correct params but no user' do
         post '/reports', {uuid: '24873587345', lat: valid_lat, long: valid_long, category: category.uuid, description: valid_description}
         expect(last_response.status).to eq(400)
