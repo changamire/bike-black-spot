@@ -9,7 +9,7 @@ describe 'Reports' do
       user = User.create(name: 'liam', email: 'l@l.com')
       category = Category.create(name: 'category1Name')
       location = Location.create(lat: '-37.8165501', long: '144.9638398')
-      params = {user: user, category: category, location: location.uuid, description: 'x'}
+      params = {user: user, category: category, location: location, description: 'x'}
     end
     describe 'while not logged in' do
       it 'should not show user_id' do
@@ -105,6 +105,14 @@ describe 'Reports' do
 
       it '400 without correct params' do
         post '/reports', {lat: valid_lat, long: valid_long, category: category.uuid, description: valid_description}
+        expect(last_response.status).to eq(400)
+      end
+      it '400 without valid latitude' do
+        post '/reports', {uuid: user.uuid, lat: '181', long: valid_long, category: category.uuid, description: valid_description}
+        expect(last_response.status).to eq(400)
+      end
+      it '400 without valid longitude' do
+        post '/reports', {uuid: user.uuid, lat: valid_lat, long: '181', category: category.uuid, description: valid_description}
         expect(last_response.status).to eq(400)
       end
       it '400 with correct params but no user' do

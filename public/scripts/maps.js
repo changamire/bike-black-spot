@@ -1,4 +1,4 @@
-var LAT = 0, LONG = 1;
+var LATITUDE = 0, LONGITUDE = 1;
 var MAP_MARKER = 0;
 
 var ActiveInfoWindow = null;
@@ -13,7 +13,7 @@ function getMapsDataFromReports() {
 		async: false,
 		success: function(reports) {
 			reports.forEach(function(report){
-				markerData.push([report.lat, report.long, report.category, report.description]);
+				markerData.push([report.latitude, report.longitude, report.category, report.description]);
 			})
 		}
 	});
@@ -58,7 +58,7 @@ function placeReportLocationMarkersOnMap(map, reportData) {
 	reportData.forEach(function(data) {
 		mapData.push( 
 			[new google.maps.Marker({
-				position: new google.maps.LatLng(data[LAT], data[LONG]),
+				position: new google.maps.LatLng(data[LATITUDE], data[LONGITUDE]),
     			map: map
 			}), 
 			data[2], data[3]]

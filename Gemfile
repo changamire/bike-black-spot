@@ -30,6 +30,7 @@ end
 group :development, :test do
   gem 'rspec', :require => 'test'
   gem 'rack-test'
+  gem 'mocha'
   gem 'bundler-audit'
   gem 'rubocop'
   gem 'sqlite3'
