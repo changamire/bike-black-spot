@@ -76,6 +76,12 @@ h1 {
   margin: 0 0 2vh;
   font-size: 3.5em; }
 
+#main-heading {
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  font-size: 4em;
+  margin: 0 0 2vh; }
+
 h2 {
   display: block;
   font-family: greens-headings-font;
@@ -88,7 +94,7 @@ h3 {
   font-family: greens-body-font;
   text-align: center;
   margin: 0 0 0.5vh;
-  font-size: 1.6em;
+  font-size: 25px;
   line-height: 1.3em;
   text-shadow: 2px 2px 6px #555555; }
 
@@ -98,37 +104,48 @@ p {
   font-size: 1.1em;
   line-height: 1.25em; }
 
+body {
+  font-size: 100%; }
+
 footer {
-  margin: 10vh 10vw 4vh 10vw; }
+  margin: 10vh 10vw 4vh 10vw;
+  height: 40px;
+  position: relative; }
 
 footer p {
-  margin-left: 4em; }
+  font-size: 0.8em; }
 
-#main-heading {
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
-  text-align: center;
-  font-size: 4em; }
+#footer-text {
+  margin-left: 5em;
+  position: absolute; }
 
 #page-1 {
   background-image: url("/images/bike_background.jpg");
   background-position: center top;
   background-repeat: no-repeat;
   background-size: cover;
+  overflow: hidden;
   width: 100%;
   color: #fff; }
 
 #page-2 {
   padding: 1px;
-  height: 220vh; }
+  height: auto; }
 
 #main-description {
   margin: 0 auto;
-  max-width: 50vw; }
+  max-width: 60vw; }
 
 #itunes-link {
   display: block;
-  width: 150px;
+  width: 200px;
   margin: 0 auto; }
+
+#itunes-link img {
+  width: 100%; }
+
+#app-download-link-wrapper {
+  margin-top: 5vh; }
 
 #map-canvas {
   height: 80vh;
@@ -137,9 +154,6 @@ footer p {
 
 #container-div {
   margin: 2vh 10vw; }
-
-#app-download-link-wrapper {
-  margin-top: 4vh; }
 
 .page-container {
   padding: 1px;
@@ -156,7 +170,7 @@ footer p {
   color: #3CB8C8; }
 
 #greens-logo {
-  width: 50px;
+  width: 55px;
   float: left; }
 
 section {
