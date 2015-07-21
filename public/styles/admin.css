@@ -86,7 +86,8 @@ table {
     vertical-align: middle; }
     table tbody td img {
       max-width: 2vw;
-      margin: 2px; }
+      margin: 2px;
+      cursor: pointer; }
 
 #add-recipient {
   border: 1px solid #ABABAB; }

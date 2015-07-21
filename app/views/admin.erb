@@ -16,7 +16,7 @@
 		<div class="central-col">
 			<h1>Export Data</h1>
 			<p>Here you can download an export of the currently submitted reports as a CSV</p>
-			<button id="export-csv">Export CSV</button>
+			<button id="export-csv" type="button" onclick="location.href='/exports'">Export CSV</button>
 
 			<h1>Email List</h1>
 			<table id="recipients">
@@ -33,8 +33,9 @@
 					<th></th>
 				</thead>
 				<tbody>
+					<% rowCount = 0 %>
 					<% @recipients.each do |recipient| %>
-						<tr>
+						<tr id='recipient-row-<%= rowCount %>'>
 						<% recipient.map do |row| %>
 							<% if row.first == 'name' %>
 								<td><%= row[1] %></td>
@@ -44,7 +45,8 @@
 								<td><%= row[1] %></td>
 							<% end %>
 						<% end %>
-						<td class="delete"><img src="/images/iconmonstr-trash-can-9-icon-blue.png"></td>
+						<td class="delete"><img src="/images/iconmonstr-trash-can-9-icon-blue.png" alt="Delete recipient" onclick="deleteRecipient(<%= rowCount %>)"></td>
+						<% rowCount += 1 %>
 						</tr>
 					<% end %>
 				</tbody>
@@ -67,8 +69,8 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td><input type="text" name="name" placeholder="Name"></td>
-							<td><input type="email" name="email" placeholder="someone@email.com"></td>
+							<td><input type="text" name="name" placeholder="Name" required></td>
+							<td><input type="email" name="email" placeholder="someone@email.com" required></td>
 							<td>
 								<select name="state">
 									<option value="ACT" selected="selected">ACT</option>
@@ -89,5 +91,48 @@
 
 	</body>
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script type="text/javascript">
+		function deleteRecipient(rowId) {
+			var tableRow = $('#recipient-row-' + rowId);
+			var name = tableRow.children()[0].innerHTML;
+			var email = tableRow.children()[1].innerHTML;
+			var state = tableRow.children()[2].innerHTML;
+			console.log(name, email, state);
+			var formData = { name: name, email: email, state: state};
+			$.ajax({
+			    url: '/recipients',
+			    type: 'DELETE',
+			    data: formData,
+			    success: function(result) {
+			        alert('Delete Successful');
+			    }
+			});
+		}
+	</script>
+
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
