@@ -104,6 +104,38 @@ p {
   font-size: 1.1em;
   line-height: 1.25em; }
 
+header {
+  position: absolute;
+  right: 0;
+  width: 100%; }
+
+header a {
+  color: #fff;
+  text-decoration: none;
+  font-family: greens-body-font;
+  padding: 0.25em 0.5em;
+  display: block;
+  float: right; }
+
+header ul {
+  width: auto;
+  height: auto;
+  float: right;
+  height: 30px;
+  margin-right: 10px; }
+
+li {
+  width: 70px;
+  list-style: none;
+  float: left; }
+
+header img {
+  width: 20px;
+  margin-right: 8px;
+  margin-top: 5px;
+  position: relative;
+  top: 4px; }
+
 body {
   font-size: 100%; }
 
@@ -138,7 +170,7 @@ footer p {
 
 #itunes-link {
   display: block;
-  width: 200px;
+  width: 170px;
   margin: 0 auto; }
 
 #itunes-link img {
@@ -178,5 +210,8 @@ section {
 
 .left_column {
   width: 60vw; }
+
+.capitalise {
+  text-decoration: uppercase; }
 
 /*# sourceMappingURL=index.css.map */
