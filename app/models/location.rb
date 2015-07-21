@@ -1,4 +1,3 @@
-require 'ostruct'
 class Location < ActiveRecord::Base
   validates :lat, :long, presence: true
 
@@ -22,6 +21,7 @@ class Location < ActiveRecord::Base
   end
 
   def geocode
+    return
       @result = call_geocoder
       self.number = @result.street_number
       self.street = @result.street_name
