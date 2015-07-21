@@ -24,7 +24,7 @@ post RoutingLocations::REPORTS do
   return status 400 if user.nil? or category.nil?
 
   location = Location.create(lat: params[:lat], long: params[:long])
-  Report.create(user: user, category: category, location: location.uuid,
+  Report.create(user: user, category: category, location: location,
                 description: params[:description])
   return status 201
 end

@@ -9,7 +9,7 @@ describe 'Reports' do
       user = User.create(name: 'liam', email: 'l@l.com')
       category = Category.create(name: 'category1Name')
       location = Location.create(lat: '-37.8165501', long: '144.9638398')
-      params = {user: user, category: category, location: location.uuid, description: 'x'}
+      params = {user: user, category: category, location: location, description: 'x'}
     end
     describe 'while not logged in' do
       it 'should not show user_id' do

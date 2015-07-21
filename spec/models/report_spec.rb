@@ -13,7 +13,7 @@ describe 'Report' do
     user = User.create(name: 'liam', email: 'l@l.com')
     category = Category.create(name: 'category1Name')
     location = Location.create(lat: '-37.8165501', long: '144.9638398')
-    params = {user: user, category: category, location: location.uuid, description: valid_description}
+    params = {user: user, category: category, location: location, description: valid_description}
   end
 
   describe 'generate_uuid' do
@@ -92,8 +92,11 @@ describe 'Report' do
       it 'should have description' do
         expect(expectedAsHash[0]['description']).to eq(report.description)
       end
-      it 'should have location' do
-        expect(expectedAsHash[0]['location']).to eq(report.location)
+      it 'should have latitude' do
+        expect(expectedAsHash[0]['latitude']).to eq(report.location.lat)
+      end
+      it 'should have longitude' do
+        expect(expectedAsHash[0]['longitude']).to eq(report.location.long)
       end
       it 'should have created_at' do
         expect(expectedAsHash[0].has_key?('created_at')).to be_truthy
@@ -126,8 +129,11 @@ describe 'Report' do
         it 'description' do
           expect(expectedAsHash[0]['description']).to eq(report.description)
         end
-        it 'location' do
-          expect(expectedAsHash[0]['location']).to eq(report.location)
+        it 'latitude' do
+          expect(expectedAsHash[0]['latitude']).to eq(report.location.lat)
+        end
+        it 'longitude' do
+          expect(expectedAsHash[0]['longitude']).to eq(report.location.long)
         end
         it 'created_at' do
           expect(expectedAsHash[0].has_key?('created_at')).to be_truthy

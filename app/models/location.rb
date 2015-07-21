@@ -4,6 +4,12 @@ class Location < ActiveRecord::Base
   before_create :generate_uuid
   after_create :geocode
 
+  def self.object_to_lat_long(hash, location)
+    hash['latitude'] = Location.find(location).lat
+    hash['longitude'] = Location.find(location).long
+    hash.delete('location_id')
+  end
+
   private
   def generate_uuid
     self.uuid = SecureRandom.uuid
