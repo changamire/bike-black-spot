@@ -26,8 +26,8 @@ post RoutingLocations::RECIPIENTS + '/?' do
   return status 400 unless validate_params?(params, permitted, required)
 
   Recipient.create(params)
-  #status 201
-  redirect RoutingLocations::LOGIN
+  status 201
+  #redirect RoutingLocations::LOGIN, 201
 end
 
 delete '/recipients' do
