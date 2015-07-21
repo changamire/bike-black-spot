@@ -13,7 +13,7 @@ function getMapsDataFromReports() {
 		async: false,
 		success: function(reports) {
 			reports.forEach(function(report){
-				markerData.push([report.latitude, report.longitude, "report.category", report.description]);
+				markerData.push([report.latitude, report.longitude, report.category, report.description]);
 			})
 		}
 	});
