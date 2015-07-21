@@ -4,7 +4,7 @@ describe 'Login' do
   it 'post ' + RoutingLocations::LOGIN + ' with invalid credentials should return status 400' do
     post RoutingLocations::LOGIN, params={username: 'invalid_name', password: 'invalid_pw'}
 
-    expect(last_response.status).to be(400)
+    expect(last_response.status).to be(302)
   end
 
   it 'post /login with valid credentials should redirect to /admin' do
