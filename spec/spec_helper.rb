@@ -2,7 +2,6 @@ require 'sinatra'
 require 'rspec'
 require 'json'
 require 'rack/test'
-# require 'mocha'
 require 'geokit'
 require 'database_cleaner'
 
@@ -25,22 +24,22 @@ LOCAL = 'http://example.org'
 RSpec.configure do |config|
 
   config.include Warden::Test::Helpers
+  DatabaseCleaner.clean_with(:truncation)
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
   end
 
-  config.around(:each) do |example|
+  config.around(:each) do |test|
     DatabaseCleaner.cleaning do
-      example.run
+      test.run
     end
   end
 
   config.after do
     Warden.test_reset!
   end
-  # config.mock_with :mocha
 end
 
 def check_last_response_is_ok
