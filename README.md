@@ -9,6 +9,9 @@
 - `brew update && brew doctor`
 - `brew install sqlite3 transcrypt`
 
+You will need AWS Environment keys. Ask a team member for env_vars.sh
+- `chmod a+x env_vars.sh`
+
 - `brew install postgresql`
 
 - -----Start postgres------
@@ -21,8 +24,17 @@
 - `rake db:init`
 - `rake cb`
 
-if you're a good person, and you're going to run tests:
+When opening a new terminal ALWAYS: (Setup Environment Vars)
+- `./env_vars.sh`
+
+For a clean build:
+- `rake cb`
+
+Testing:
 - `rake test`
+or
+- `rake t`
+
 
 ## Sensitive information
 The file for storing sensitive information (passwords etc) is secrets.yml and is encrypted using [transcrypt](https://github.com/elasticdog/transcrypt).
