@@ -13,33 +13,60 @@ p {
 	margin: 0;
 }
 
-footer {
-	background: black;
-	color: white;
-	padding: 1cm;
-}
-
 table {
 	width: 100%;
 	margin-bottom: 3vh;
+	border-bottom: 1px solid #ABABAB;
+
+	td, th {
+		border-right: 1px solid #ABABAB;
+		border-left: 1px solid #ABABAB;
+	}
+
+	thead {
+		font-weight: bold;
+		color: white;
+		background-color: #ABABAB;
+
+		& th {
+			padding: 5px;
+			text-align: left;
+			font-size: 1.25em;
+		}
+	}
+
+	tbody {
+
+		tr:hover td {
+			background-color: #EAEAEA;
+		}
+
+		td {
+			padding-left: 5px;
+			vertical-align: middle;
+
+			& img {
+				max-width: 2vw;
+				margin: 2px;
+			}
+		}
+	}
 }
 
-tr, td {
-	border: 1px solid #98bf21;
-}
-
-td {
-	padding-left: 5px;
-}
 
 .central-col {
 	margin: 0 5vw;
 }
 
+.delete {
+	text-align: center;
+	padding: 0;
+}
+
 #export-csv {
 	padding: 10px 15px;
 	font-size: 1.25em;
-	margin: 10px;
+	margin: 10px 10px 10px 0;
 	border-radius: 10px;
 	background-color: #3cb8c8;
 	color: white;

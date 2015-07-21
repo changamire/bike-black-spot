@@ -19,41 +19,66 @@
 			<button id="export-csv">Export CSV</button>
 
 			<h1>Email List</h1>
-			<table>
+			<table id="recipients">
 				<colgroup>
-			        <col width="30%">
-			        <col width="30%">
-			        <col width="30%">
-			        <col width="10%">
+			        <col width="45%">
+			        <col width="45%">
+			        <col width="5%">
+			        <col width="5%">
 			    </colgroup>
 				<thead>
-					<td>Name</td>
-					<td>Email</td>
-					<td>State</td>
-					<td></td>
+					<th>Name</th>
+					<th>Email</th>
+					<th>State</th>
+					<th></th>
 				</thead>
 				<tbody>
-				<% @recipients.each do |recipient| %>
-					<tr>
-					<% recipient.map do |row| %>
-						<% if row.first == 'name' %>
-							<td><%= row[1] %></td>
-						<% elsif row.first == 'email' %>
-							<td><%= row[1] %></td>
-						<% elsif row.first == 'state' %>
-							<td><%= row[1] %></td>
+					<% @recipients.each do |recipient| %>
+						<tr>
+						<% recipient.map do |row| %>
+							<% if row.first == 'name' %>
+								<td><%= row[1] %></td>
+							<% elsif row.first == 'email' %>
+								<td><%= row[1] %></td>
+							<% elsif row.first == 'state' %>
+								<td><%= row[1] %></td>
+							<% end %>
 						<% end %>
+						<td class="delete"><img src="/images/iconmonstr-trash-can-9-icon-blue.png"></td>
+						</tr>
 					<% end %>
-					<td>delete</td>
-					</tr>
-				<% end %>
 				</tbody>
 			</table>
-		</div>
 
-		<footer>
-			<p>Disclaimer disclaimer...</p>
-		</footer>
+			<h4>Add new recipient</h4> <!-- nedd "name", "email", "state" -->
+			<form action="/recipients" method="POST">
+				<table>
+					<thead>
+						<th>Name</th>
+						<th>Email</th>
+						<th>State</th>
+					</thead>
+					<tbody>
+						<tr>
+							<td><input type="text" name="name" placeholder="Name"></td>
+							<td><input type="email" name="email" placeholder="someone@email.com"></td>
+							<td>
+								<select name="state">
+									<option value="ACT" selected="selected">ACT</option>
+									<option value="NSW">NSW</option>
+									<option value="VIC">VIC</option>
+									<option value="QLD">QLD</option>
+									<option value="SA">SA</option>
+									<option value="TAS">TAS</option>
+									<option value="NT">NT</option>
+								</select>
+							</td>
+							<td><button type="submit">Add</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+		</div>
 
 	</body>
 
