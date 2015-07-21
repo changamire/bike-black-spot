@@ -8,14 +8,20 @@
 - `mailcatcher`
 - `brew update && brew doctor`
 - `brew install sqlite3 transcrypt`
-- `rake db:create db:migrate`
-
-if you're a good person, and you're going to run tests:
 
 - `brew install postgresql`
+
+- -----Start postgres------
+
 - `createuser -P -s -e go` // the test password is go
 - `createdb -h localhost -p 5432 -U go app_test`
+
+- `bundle install`
+- `export RACK_ENV=test`
 - `rake db:init`
+- `rake cb`
+
+if you're a good person, and you're going to run tests:
 - `rake test`
 
 ## Sensitive information
