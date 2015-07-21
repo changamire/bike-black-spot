@@ -87,7 +87,7 @@ describe 'Location' do
   end
 end
 
-xdescribe 'geocode location' do
+describe 'geocode location' do
 
   location = Location.create({lat: '-37.8165501',
                               long: '144.9638398'})

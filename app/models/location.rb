@@ -21,7 +21,7 @@ class Location < ActiveRecord::Base
   end
 
   def geocode
-    return
+    # return
       @result = call_geocoder
       self.number = @result.street_number
       self.street = @result.street_name
@@ -33,6 +33,13 @@ class Location < ActiveRecord::Base
     end
 
     def call_geocoder
+      # Disable HTTPS globally.  This option can also be set on individual
+      # geocoder classes.
+      Geokit::Geocoders::secure = false
+
+      # Control verification of the server certificate for geocoders using HTTPS
+      Geokit::Geocoders::ssl_verify_mode = OpenSSL::SSL::VERIFY_NONE
+
       @latlong = "#{self.lat}, #{self.long}"
       @result = Geokit::Geocoders::GoogleGeocoder.reverse_geocode(@latlong)
     end
