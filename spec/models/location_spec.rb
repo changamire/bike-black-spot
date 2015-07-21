@@ -1,5 +1,4 @@
 require_relative '../spec_helper'
-require 'geokit'
 describe 'Location' do
 
 
@@ -14,7 +13,7 @@ describe 'Location' do
   mocked_location.zip = '1234'
   mocked_location.country = 'Australia'
   mocked_location.full_address = mocked_location.street_number + ' ' + mocked_location.street_name + ' ' + mocked_location.city +
-    ', ' + mocked_location.state_code + ', ' + mocked_location.zip + ', ' + mocked_location.country
+      ', ' + mocked_location.state_code + ', ' + mocked_location.zip + ', ' + mocked_location.country
 
 
   before(:each) do
@@ -86,29 +85,32 @@ describe 'Location' do
       end
     end
   end
+end
 
-  describe 'geocode' do
-    it 'should set street number' do
-      expect(location.number).to eq(mocked_location.street_number)
-    end
-    it 'should set street name' do
-      expect(location.street).to eq(mocked_location.street_name)
-    end
-    it 'should set suburb' do
-      expect(location.suburb).to eq(mocked_location.city)
-    end
-    it 'should set state' do
-      expect(location.state).to eq(mocked_location.state_code)
-    end
-    it 'should set postcode' do
-      expect(location.postcode).to eq(mocked_location.zip)
-    end
-    it 'should set country' do
-      expect(location.country).to eq(mocked_location.country)
-    end
-    it 'should set formatted_address' do
-      expect(location.formatted_address).to eq(mocked_location.full_address)
-    end
+describe 'geocode location' do
 
+  location = Location.create({lat: '-37.8165501',
+                              long: '144.9638398'})
+  it 'should set street number' do
+    expect(location.number).to eq('303')
+  end
+  it 'should set street name' do
+    expect(location.street).to eq('Collins Street')
+  end
+  it 'should set suburb' do
+    expect(location.suburb).to eq('Melbourne')
+  end
+  it 'should set state' do
+    expect(location.state).to eq('VIC')
+  end
+  it 'should set postcode' do
+    expect(location.postcode).to eq('3000')
+  end
+  it 'should set country' do
+    expect(location.country).to eq('Australia')
+  end
+  it 'should set formatted_address' do
+    expect(location.formatted_address).to eq('303 Collins Street, Melbourne VIC 3000, Australia')
   end
 end
+
