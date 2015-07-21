@@ -5,14 +5,13 @@ describe 'Report' do
   # This really should have Model unit tests, on save, etc
   valid_description = 'here is my lovely valid description.'
 
-  user = {}
-  category = {}
   params = {}
+  user = User.create(name: 'liam', email: 'l@l.com')
+  category = Category.create(name: 'category1Name')
+  location = Location.create(lat: '-37.8165501', long: '144.9638398')
+
 
   before(:each) do
-    user = User.create(name: 'liam', email: 'l@l.com')
-    category = Category.create(name: 'category1Name')
-    location = Location.create(lat: '-37.8165501', long: '144.9638398')
     params = {user: user, category: category, location: location, description: valid_description}
   end
 
@@ -36,7 +35,7 @@ describe 'Report' do
         expect(Report.first.uuid).to eq(report.uuid)
       end
       it 'location' do
-        expect(Report.first.location).to eq(report.location)
+        expect(Report.first.location_id).to eq(location.id)
       end
       it 'description' do
         expect(Report.first.description).to eq(report.description)
@@ -76,83 +75,74 @@ describe 'Report' do
   end
 
   describe 'json' do
-    report ={}
-    before(:each) do
-      report = Report.create(params)
-    end
+    params = {user: user, category: category, location: location, description: valid_description}
+
+    report = Report.create(params)
+    expectedAsHashAuth = JSON.parse(Report.json(true))
+    expectedAsHashUnAuth = JSON.parse(Report.json(false))
 
     describe 'authorised' do
-      expectedAsHash = {}
-      before(:each) do
-        expectedAsHash = JSON.parse(Report.json(true))
-      end
       it 'should have uuid' do
-        expect(expectedAsHash[0]['uuid']).to eq(report.uuid)
+        expect(expectedAsHashAuth[0]['uuid']).to eq(report.uuid)
       end
       it 'should have description' do
-        expect(expectedAsHash[0]['description']).to eq(report.description)
+        expect(expectedAsHashAuth[0]['description']).to eq(report.description)
       end
       it 'should have latitude' do
-        expect(expectedAsHash[0]['latitude']).to eq(report.location.lat)
+        expect(expectedAsHashAuth[0]['latitude']).to eq(report.location.lat)
       end
       it 'should have longitude' do
-        expect(expectedAsHash[0]['longitude']).to eq(report.location.long)
+        expect(expectedAsHashAuth[0]['longitude']).to eq(report.location.long)
       end
       it 'should have created_at' do
-        expect(expectedAsHash[0].has_key?('created_at')).to be_truthy
+        expect(expectedAsHashAuth[0].has_key?('created_at')).to be_truthy
       end
       it 'should have updated_at' do
-        expect(expectedAsHash[0].has_key?('updated_at')).to be_truthy
+        expect(expectedAsHashAuth[0].has_key?('updated_at')).to be_truthy
       end
       it 'should have sent_at' do
-        expect(expectedAsHash[0].has_key?('sent_at')).to be_truthy
+        expect(expectedAsHashAuth[0].has_key?('sent_at')).to be_truthy
       end
       it 'should have category' do
-        expect(expectedAsHash[0]['category']).to eq(category.name)
+        expect(expectedAsHashAuth[0]['category']).to eq(category.name)
       end
       it 'should have user_uuid' do
-        expect(expectedAsHash[0]['user_uuid']).to eq(user.uuid)
+        expect(expectedAsHashAuth[0]['user_uuid']).to eq(user.uuid)
       end
     end
 
     describe 'unauthorised' do
-      expectedAsHash = {}
-      before(:each) do
-        expectedAsHash = JSON.parse(Report.json(false))
-      end
-
       describe 'should have' do
         it 'uuid' do
-          expect(expectedAsHash[0]['uuid']).to eq(report.uuid)
+          expect(expectedAsHashUnAuth[0]['uuid']).to eq(report.uuid)
         end
-
         it 'description' do
-          expect(expectedAsHash[0]['description']).to eq(report.description)
+          expect(expectedAsHashUnAuth[0]['description']).to eq(report.description)
         end
         it 'latitude' do
-          expect(expectedAsHash[0]['latitude']).to eq(report.location.lat)
+          expect(expectedAsHashUnAuth[0]['latitude']).to eq(report.location.lat)
         end
         it 'longitude' do
-          expect(expectedAsHash[0]['longitude']).to eq(report.location.long)
+          expect(expectedAsHashUnAuth[0]['longitude']).to eq(report.location.long)
         end
         it 'created_at' do
-          expect(expectedAsHash[0].has_key?('created_at')).to be_truthy
+          expect(expectedAsHashUnAuth[0].has_key?('created_at')).to be_truthy
         end
 
         it 'category' do
-          expect(expectedAsHash[0]['category']).to eq(category.name)
+          expect(expectedAsHashUnAuth[0]['category']).to eq(category.name)
         end
 
       end
       describe 'should not have' do
         it 'user_uuid' do
-          expect(expectedAsHash[0]['user_uuid']).to be_nil
+          expect(expectedAsHashUnAuth[0]['user_uuid']).to be_nil
         end
         it 'updated_at' do
-          expect(expectedAsHash[0].has_key?('updated_at')).to be_falsey
+          expect(expectedAsHashUnAuth[0].has_key?('updated_at')).to be_falsey
         end
         it 'sent_at' do
-          expect(expectedAsHash[0].has_key?('sent_at')).to be_falsey
+          expect(expectedAsHashUnAuth[0].has_key?('sent_at')).to be_falsey
         end
       end
     end
