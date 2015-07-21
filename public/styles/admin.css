@@ -84,6 +84,16 @@ table {
       max-width: 2vw;
       margin: 2px; }
 
+#add-recipient table td {
+  padding: 0; }
+#add-recipient table input {
+  border: none;
+  width: 100%;
+  height: 100%; }
+#add-recipient table select {
+  width: 100%;
+  height: 100%; }
+
 .central-col {
   margin: 0 5vw; }
 
