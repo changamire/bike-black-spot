@@ -2,6 +2,8 @@ def warden
   env['warden']
 end
 
+LOCAL_KEY = 'BfgDs55HmHgHsECGG2Wxb28tqD7sB4a24xPDqth42XSu6x4UVtU6HNR3pjf2mPW477QuxzqQw33xgQyNrBAgn37bS8cMnDqd4kXX'
+
 class BikeSpotWarden < Sinatra::Base
   Warden::Strategies.add(:password) do
     def valid?
@@ -34,12 +36,13 @@ class BikeSpotWarden < Sinatra::Base
     redirect '/login' if env['warden.options'][:attempted_path] == '/admin'
     status 401
   end
+
   delete RoutingLocations::UNAUTHENTICATED do
     status 401
   end
 end
 
-use Rack::Session::Cookie, :secret => 'Michael is a god'
+use Rack::Session::Cookie, :secret => ENV['WARDEN_KEY'] || LOCAL_KEY
 use Warden::Manager do |manager|
   manager.default_strategies :password
   manager.failure_app = BikeSpotWarden.new
