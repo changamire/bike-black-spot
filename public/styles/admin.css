@@ -57,6 +57,10 @@ h1 {
   margin: 20px 0 1vh;
   font-size: 3em; }
 
+h2 {
+  font-family: greens-headings-font;
+  font-size: 1.75em; }
+
 p {
   margin: 0; }
 
@@ -84,15 +88,26 @@ table {
       max-width: 2vw;
       margin: 2px; }
 
-#add-recipient table td {
-  padding: 0; }
-  #add-recipient table td input {
-    border: none;
-    width: 100%;
-    height: 100%; }
-  #add-recipient table td select {
-    width: 100%;
-    height: 100%; }
+#add-recipient {
+  border: 1px solid #ABABAB; }
+  #add-recipient tbody tr:hover td {
+    background-color: transparent; }
+  #add-recipient tbody tr td {
+    border: none; }
+    #add-recipient tbody tr td input {
+      border: none;
+      width: 100%;
+      height: 100%; }
+    #add-recipient tbody tr td select {
+      width: 100%;
+      height: 100%; }
+    #add-recipient tbody tr td button {
+      display: block;
+      margin: 2px auto;
+      border-radius: 3px;
+      background-color: #3cb8c8;
+      color: white;
+      width: 80%; }
 
 .central-col {
   margin: 0 5vw; }
