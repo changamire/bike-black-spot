@@ -6,6 +6,7 @@ gem 'rake'
 gem 'sinatra'
 gem 'thin'
 gem 'rack-throttle'
+gem 'aws-sdk', '~> 2'
 
 #Auth
 gem 'warden'

@@ -1,6 +1,6 @@
 require 'ostruct'
-require_relative 'spec_helper'
-require_relative '../app/helpers/mailer'
+require_relative '../spec_helper'
+require_relative '../../app/helpers/mailer'
 
 describe 'Mailer' do
   include Mail::Matchers
