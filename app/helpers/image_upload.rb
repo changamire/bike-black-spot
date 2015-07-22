@@ -8,6 +8,7 @@ class ImageUpload
   )
 
   def self.upload(file_path, file_name)
+    raise 'Invalid File Path.' unless File.exist?(file_path)
     @obj = @s3.bucket(ENV['S3_BUCKET']).object("#{ENV['RACK_ENV']}/#{file_name}")
     @obj.upload_file(file_path, acl:'public-read')
     @obj.public_url

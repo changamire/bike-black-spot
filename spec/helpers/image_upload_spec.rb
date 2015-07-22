@@ -19,5 +19,11 @@ describe 'ImageUpload' do
 
       expect(@text).to eq('Testy test.')
     end
+
+    it 'should throw an exception on invalid file path' do
+      expect(lambda do
+               @image_link = ImageUpload.upload('this/will/fail.txt', "#{@time}-image.txt")
+             end).to raise_error('Invalid File Path.')
+    end
   end
 end
