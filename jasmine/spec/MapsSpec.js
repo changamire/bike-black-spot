@@ -18,8 +18,8 @@ describe("maps", function() {
     expect(locations).not.toEqual([]);
   });
 
-  it("should return html for info window given report without image", function() {
-    var markerData = [null,'Category1','Test description'];
+  it("should return html for info window given report with image", function() {
+    var markerData = [null,'Category1','Test description', 'http://i.imgur.com/CfmbeXi.jpg'];
     var infoWindowHtml = generateInfoWindowHtml(markerData);
     expect(infoWindowHtml).not.toEqual('');
     expect(infoWindowHtml).toEqual('<div class="info-window"><div class="info-window-text"><h4>Issue</h4><p>Category1</p>' 

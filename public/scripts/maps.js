@@ -13,16 +13,15 @@ function getMapsDataFromReports() {
 		async: false,
 		success: function(reports) {
 			reports.forEach(function(report){
-				markerData.push([report.latitude, report.longitude, report.category, report.description]);
+				markerData.push([report.latitude, report.longitude, report.category, report.description, report.image]);
 			})
 		}
 	});
-
 	return markerData;
 }
 
 function generateInfoWindowHtml(markerData) {
-	var textDiv = '<div class="info-window-text">' 
+	var textDiv = '<div class="info-window-text">'
 	+ '<h4>' + 'Issue' + '</h4>' 
 	+ '<p>' + markerData[1] + '</p>' 
 	+ '<h4>' + 'Description' + '</h4>'
@@ -31,7 +30,7 @@ function generateInfoWindowHtml(markerData) {
 	+ '<p>' + 'Test street' + '</p>'
 	+ '</div>';
 	var imageDiv = '<div class="info-window-image">'
-	+ '<img src="http://i.imgur.com/CfmbeXi.jpg"></img>' 
+	+ '<img src="' + markerData[3] + '"></img>'
 	+ '</div>';
 
 	return '<div class="info-window">' + textDiv + imageDiv + '</div>';
@@ -61,7 +60,7 @@ function placeReportLocationMarkersOnMap(map, reportData) {
 				position: new google.maps.LatLng(data[LATITUDE], data[LONGITUDE]),
     			map: map
 			}), 
-			data[2], data[3]]
+			data[2], data[3], data[4]]
     	)
     })
 
