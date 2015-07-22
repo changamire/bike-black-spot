@@ -37,8 +37,7 @@ end
 desc 'Seed the db'
 task :seed do
   puts('------------ Seeding the DB -----------------')
-  puts('...')
-  'db:seed'
+  sh('rake db:seed')
 end
 
 #Shortcuts
