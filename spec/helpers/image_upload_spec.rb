@@ -19,5 +19,10 @@ describe 'ImageUpload' do
 
       expect(@text).to eq('Testy test.')
     end
+
+    it 'should upload test image to s3 bucket' do
+      #This is a manual exploratory test
+      ImageUpload.upload('spec/files/s3TestImg01.jpg', "s3TestImage01.jpg")
+    end
   end
 end
