@@ -187,6 +187,9 @@ footer p {
 #container-div {
   margin: 2vh 10vw; }
 
+#info {
+  padding-top: 30px; }
+
 .page-container {
   padding: 1px;
   height: 100vh; }

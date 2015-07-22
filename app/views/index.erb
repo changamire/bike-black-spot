@@ -7,13 +7,14 @@
 	<link rel="stylesheet" href="/styles/index.css">
 
 	<script src="https://maps.googleapis.com/maps/api/js"></script>
+	
 </head>
 
 <body>
 	<header>
 		<ul>
-			<li><a href="#map-canvas"><img src="/images/map-shadow.png" alt="map icon">Map</a></li>
-			<li><a href="#page-2"><img src="/images/info-shadow.png" alt="information icon">Info</a></li>
+			<li><a href="#page-2" aria-label="go to map" class="anchorLink"><img src="/images/map-shadow.png" alt="map icon" aria-hidden="true">Map</a></li>
+			<li><a href="#info" aria-label="go to more information" class="anchorLink"><img src="/images/info-shadow.png" alt="information icon" aria-hidden="true">Info</a></li>
 		</ul>
 	</header>
 
@@ -71,10 +72,19 @@
 
 </body>
 
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="/scripts/maps.js"></script>
 <script>
 	google.maps.event.addDomListener(window, 'load', initialiseMaps);
+
+	/* Smooth Scroll */
+	$('a[href*=#]').click(function(event){
+	    $('html, body').animate({
+	        scrollTop: $( $.attr(this, 'href') ).offset().top
+	    }, 500);
+	    event.preventDefault();
+	});
 </script>
 
 </html>
