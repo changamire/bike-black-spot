@@ -27,7 +27,7 @@ post RoutingLocations::REPORTS do
   return status 400 unless location.valid?
 
   report = Report.create(user: user, category: category, location: location,
-               description: params[:description])
+               description: params[:description], image: params[:image])
   return status 400 unless report.valid?
 
   return status 201
