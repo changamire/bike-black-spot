@@ -16,7 +16,7 @@
 		<div class="central-col">
 			<h1>Export Data</h1>
 			<p>Here you can download an export of the currently submitted reports as a CSV</p>
-			<button id="export-csv" type="button" onclick="location.href='/exports'">Export CSV</button>
+			<button id="export-csv" type="button" onclick="location.href='/exports?users=true'" download>Export CSV</button>
 
 			<h1>Email List</h1>
 			<table id="recipients">
@@ -36,23 +36,18 @@
 					<% rowCount = 0 %>
 					<% @recipients.each do |recipient| %>
 						<tr id='recipient-row-<%= rowCount %>'>
-						<% recipient.map do |row| %>
-							<% if row.first == 'name' %>
-								<td><%= row[1] %></td>
-							<% elsif row.first == 'email' %>
-								<td><%= row[1] %></td>
-							<% elsif row.first == 'state' %>
-								<td><%= row[1] %></td>
-							<% end %>
-						<% end %>
-						<td class="delete"><img src="/images/iconmonstr-trash-can-9-icon-blue.png" alt="Delete recipient" onclick="deleteRecipient(<%= rowCount %>)"></td>
-						<% rowCount += 1 %>
+							<td><%= recipient['name'] %></td>
+							<td><%= recipient['email'] %></td>
+							<td><%= recipient['state'] %></td>
+							<td class="hidden uuid"><%= recipient['uuid'] %></td>
+							<td class="delete"><img src="/images/iconmonstr-trash-can-9-icon-blue.png" alt="Delete recipient" onclick="deleteRecipient(<%= rowCount %>)"></td>
+							<% rowCount += 1 %>
 						</tr>
 					<% end %>
 				</tbody>
 			</table>
 
-			<h2>Add new recipient</h2> <!-- nedd "name", "email", "state" -->
+			<h2>Add new recipient</h2>
 			<form action="/recipients" method="POST">
 				<table id="add-recipient">
 					<colgroup>
@@ -94,18 +89,15 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script type="text/javascript">
 		function deleteRecipient(rowId) {
-			var tableRow = $('#recipient-row-' + rowId);
-			var name = tableRow.children()[0].innerHTML;
-			var email = tableRow.children()[1].innerHTML;
-			var state = tableRow.children()[2].innerHTML;
-			console.log(name, email, state);
-			var formData = { name: name, email: email, state: state};
+			var selectedElementHtml = $('#recipient-row-' + rowId + ' .uuid');
+			var uuid = selectedElementHtml[0].innerHTML;
+			var formData = { uuid: uuid };
 			$.ajax({
 			    url: '/recipients',
 			    type: 'DELETE',
 			    data: formData,
 			    success: function(result) {
-			        alert('Delete Successful');
+			        $('#recipient-row-' + rowId).remove();
 			    }
 			});
 		}

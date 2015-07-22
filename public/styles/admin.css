@@ -83,9 +83,10 @@ table {
     background-color: #EAEAEA; }
   table tbody td {
     padding-left: 5px;
-    vertical-align: middle; }
+    vertical-align: middle;
+    height: 30px; }
     table tbody td img {
-      max-width: 2vw;
+      max-width: 1.75vw;
       margin: 2px;
       cursor: pointer; }
 
@@ -116,6 +117,9 @@ table {
 .delete {
   text-align: center;
   padding: 0; }
+
+.hidden {
+  display: none; }
 
 #export-csv {
   padding: 10px 15px;
