@@ -8,49 +8,51 @@ end
 
 desc 'Run the server'
 task :run do
-  puts('------------ Running the server ------------')
+  puts('------------ Running the server -------------')
   system('shotgun app.rb --port=4567')
 end
 
-namespace :db do
-	desc 'load db configuration'
-	task :load_config do
-		require './app.rb'
-  end
+desc 'Run the RSpec tests'
+task :test do
+  puts('------------ Running the tests --------------')
+  raise 'failed' unless system('rspec spec --color')
+end
 
-  desc 'setup db stuff for local tests'
+namespace :db do
+  require './app.rb'
+
+  desc 'Setup the db for the local enviroment'
   task :init do
     puts('------------ Initialising the DB ------------')
     sh('bundle exec rake db:create db:migrate RACK_ENV=test')
   end
-		require './app.rb'
 
-  desc 'Populate QA with Fresh Seed Data'
+  desc 'Seed the QA db with test data'
   task :seed_qa do
     sh('heroku pg:reset DATABASE_URL --confirm qa-env-bike-black-spot')
     sh('heroku run rake db:migrate db:seed --app qa-env-bike-black-spot')
   end
 end
 
-desc 'Run RSpec tests'
-task :test do
-  puts('------------ Running the tests -------------')
-  raise 'failed' unless system('rspec spec --color')
+desc 'Seed the db'
+task :seed do
+  puts('------------ Seeding the DB -----------------')
+  puts('...')
+  'db:seed'
 end
 
-desc 'destroys the db'
-task :destroyDB do
-  sh('dropDB app_test')
-end
-
-desc 'I am lazy'
+#Shortcuts
+desc 'Quick tests'
 task :t => [:test]
 
-desc 'Build then run'
-task :exec => [:build,:test,'db:seed',:run]
+desc 'Quick run'
+task :r => [:run]
 
-desc 'Clean Build'
-task :cleanBuild => [:build,'db:init',:test,'db:seed',:run]
+desc 'Build and test then setup local enviroment'
+task :exec => [:build,:test,:seed,:run]
+
+desc 'Run :exec with migrations'
+task :cleanBuild => [:build,'db:init',:test,:seed,:run]
 task :cb => [:cleanBuild]
 
 #Default
