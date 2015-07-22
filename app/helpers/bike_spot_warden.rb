@@ -42,7 +42,8 @@ class BikeSpotWarden < Sinatra::Base
   end
 end
 
-use Rack::Session::Cookie, :secret => ENV['WARDEN_KEY'] || LOCAL_KEY
+use Rack::Session::Cookie, :secret => ENV['WARDEN_KEY'] || LOCAL_KEY,
+                           :expire_after => 3600
 use Warden::Manager do |manager|
   manager.default_strategies :password
   manager.failure_app = BikeSpotWarden.new
