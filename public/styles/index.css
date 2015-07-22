@@ -59,12 +59,21 @@ table {
   float: left;
   margin-right: 15px;
   max-width: 225px; }
+  @media (max-width: 768px) {
+    .info-window-text {
+      max-width: 250px; } }
   .info-window-text h4 {
     font-weight: bold;
     margin-top: 0.6vh; }
+    @media (max-width: 768px) {
+      .info-window-text h4 {
+        font-size: 1.5em; } }
   .info-window-text p {
     overflow-wrap: break-word;
     margin-top: 0.3vh; }
+    @media (max-width: 768px) {
+      .info-window-text p {
+        font-size: 1.2em; } }
 
 .info-window-image {
   float: right; }

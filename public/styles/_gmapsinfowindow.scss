@@ -7,15 +7,18 @@
 	float: left;
 	margin-right: 15px;
 	max-width: 225px;
+	@include breakpoint(ipad) { max-width: 250px; }
 
 	& h4 {
 		font-weight: bold;
 		margin-top: 0.6vh;
+		@include breakpoint(ipad) { font-size: 1.5em };
 	}
 
 	& p {
 		overflow-wrap: break-word; 
 		margin-top: 0.3vh;
+		@include breakpoint(ipad) { font-size: 1.2em };
 	}
 }
 
