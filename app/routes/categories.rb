@@ -13,7 +13,7 @@ get RoutingLocations::CATEGORIES + '.csv' do
 
   result = []
   Category.all.each do |category|
-    result.push(name: category[:name])
+    result.push(name: category[:name], description: category[:description])
   end
   return result.to_csv
 

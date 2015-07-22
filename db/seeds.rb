@@ -5,14 +5,14 @@ password = 'passwordCat'
 Admin.create(username: username, password: password)
 
 #Categories
-category_danger = {name: 'Danger zone'}
-category_vehicle = {name: 'Vehicle in bike path'}
-category_path = {name: 'Path needed'}
-category_maintenance = {name: 'Maintenance required'}
-category_facilities = {name: 'Bike facilities needed'}
-category_visibility = {name: 'Bad visibility'}
-category_wonderland = {name: 'Bike wonderland – job well done'}
-category_other = {name: 'Other – add details'}
+category_danger = {name: 'Danger zone', description: 'This is a description'}
+category_vehicle = {name: 'Vehicle in bike path', description: 'This is a description'}
+category_path = {name: 'Path needed', description: 'This is a description'}
+category_maintenance = {name: 'Maintenance required', description: 'This is a description'}
+category_facilities = {name: 'Bike facilities needed', description: 'This is a description'}
+category_visibility = {name: 'Bad visibility', description: 'This is a description'}
+category_wonderland = {name: 'Bike wonderland – job well done', description: 'This is a description'}
+category_other = {name: 'Other – add details', description: 'This is a description'}
 
 categories = [category_danger, category_vehicle, category_path, category_maintenance, category_facilities,
               category_visibility, category_wonderland, category_other]

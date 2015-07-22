@@ -3,7 +3,9 @@ require 'csv'
 require_relative '../spec_helper'
 
 describe 'Exports' do
-  categories = [{name: 'category1'}, {name: 'category2'}, {name: 'category3'}]
+  categories = [{name: 'category1', description: 'This is a description'},
+                {name: 'category2', description: 'This is a description'},
+                {name: 'category3', description: 'This is a description'}]
 
   describe 'get' do
     describe RoutingLocations::CATEGORIES do
@@ -21,10 +23,9 @@ describe 'Exports' do
     describe RoutingLocations::CATEGORIES + '.json' do
       it 'should return categories json' do
         categories.each do |category|
-          Category.create(name: category[:name])
+          Category.create(name: category[:name], description: 'This is a description')
         end
         get RoutingLocations::CATEGORIES + '.json'
-
         expect(JSON.parse(last_response.body)).to eql(JSON.parse(categories.to_json))
       end
 
@@ -37,7 +38,7 @@ describe 'Exports' do
     describe RoutingLocations::CATEGORIES + '.csv' do
       it 'should return categories csv' do
         categories.each do |category|
-          Category.create(name: category[:name])
+          Category.create(name: category[:name], description: 'This is a description')
         end
         get RoutingLocations::CATEGORIES + '.csv'
 

@@ -7,7 +7,7 @@ describe 'Reports' do
 
     before(:each) do
       user = User.create(name: 'liam', email: 'l@l.com')
-      category = Category.create(name: 'category1Name')
+      category = Category.create(name: 'category1Name', description: 'valid description')
       location = Location.create(lat: '-37.8165501', long: '144.9638398')
       image = 'someimagelink.com'
       params = {user: user, category: category, location: location, description: 'x', image: image}
@@ -88,7 +88,7 @@ describe 'Reports' do
 
     before(:each) do
       user = User.create(name: 'Tom', email: 't@l.com')
-      category = Category.create(name: 'category1')
+      category = Category.create(name: 'category1', description: 'valid description')
       params = {uuid: user.uuid, lat: valid_lat, long: valid_long, category: category.uuid, description: valid_description}
     end
 

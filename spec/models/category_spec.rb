@@ -4,36 +4,49 @@ describe 'Category' do
 
   describe 'create' do
     it 'should save to db' do
-      category = Category.create(name: 'category1Name')
+      category = Category.create(name: 'category1Name', description: 'valid description')
       expect(category[:name]).to eq(Category.first[:name])
     end
     it 'should save a uuid' do
-      category = Category.create(name: 'category1Name')
+      category = Category.create(name: 'category1Name', description: 'valid description')
       expect(Category.first[:uuid]).to eql(category.uuid)
     end
   end
 
   describe 'validation' do
-    it 'should fail if no name' do
+    it 'should have a name' do
       Category.create
+      expect(Category.first).to be_nil
+    end
+
+    it 'should have a description' do
+      Category.create(name: 'someCategory')
+      expect(Category.first).to be_nil
+    end
+
+    it 'should have a description less than 200 chars' do
+      description = 'a' * 201
+      Category.create(name: 'someCategory', description: description)
       expect(Category.first).to be_nil
     end
   end
 
   describe 'json' do
     it 'should return all categories as json' do
-      categories = [{name: 'category1'}, {name: 'category2'}, {name: 'category3'}]
+      categories = [{name: 'category1', description: 'This is a description'},
+                    {name: 'category2', description: 'This is a description'},
+                    {name: 'category3', description: 'This is a description'}]
 
       categories.each do |category|
-        Category.create(name: category[:name])
+        Category.create(name: category[:name], description: category[:description])
       end
       expect(JSON.parse(Category.json)).to eq(JSON.parse(categories.to_json))
     end
 
     it 'should return single category as json when only one exists' do
-      categories = [{name: 'category1'}]
+      categories = [{name: 'category1', description: 'valid description'}]
 
-      Category.create(name: categories[0][:name])
+      Category.create(name: categories[0][:name], description: categories[0][:description])
 
       expect(JSON.parse(Category.json)).to eq(JSON.parse(categories.to_json))
     end
@@ -48,7 +61,7 @@ describe 'Category' do
       hash = {}
       category = {}
       before(:each) do
-        category = Category.create(name: 'user_spec_name')
+        category = Category.create(name: 'user_spec_name', description: 'valid description')
         hash = {category_id: category.id}
       end
 

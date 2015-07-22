@@ -4,12 +4,13 @@ class Category < ActiveRecord::Base
   has_many :reports
   before_create :generate_uuid
 
-  validates :name, presence: true
+  validates :name, :description, presence: true
+  validates :description, length: {maximum: 200}
 
   def self.json
     result = []
     Category.all.each do |category|
-      result.push(name: category[:name])
+      result.push({name: category[:name], description: category[:description]})
     end
     result.to_json
   end
