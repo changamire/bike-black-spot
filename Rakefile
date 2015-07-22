@@ -9,7 +9,7 @@ end
 desc 'Run the server'
 task :run do
   puts('------------ Running the server ------------')
-  system('rackup')
+  system('shotgun app.rb --port=4567')
 end
 
 namespace :db do

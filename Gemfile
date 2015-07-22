@@ -26,6 +26,7 @@ gem 'geokit'
 
 group :development do
   gem 'tux'
+  gem 'shotgun'
 end
 
 group :development, :test do
@@ -34,6 +35,5 @@ group :development, :test do
   gem 'mocha'
   gem 'bundler-audit'
   gem 'rubocop'
-  gem 'sqlite3'
   gem 'database_cleaner'
 end
