@@ -7,13 +7,13 @@ h1 {
 	display: block;
 	font-family: greens-headings-font;
 	margin: 0 0 2vh;
-	font-size: 3.5em;
+	font-size: 3.3em;
 }
 
 #main-heading {
 	text-shadow: 2px 2px 6px rgba(0,0,0, 0.5);
 	text-align: center;
-	font-size: 4em;
+	font-size: 3.8em;
 	margin: 0 0 2vh;
 }
 
@@ -140,6 +140,27 @@ footer p {
 
 #arrow-img img {
 	width: 30px;
+}
+
+#up-arrow {
+	float: right;
+	color: #3CB8C8;
+}
+
+#up-arrow a {
+	text-decoration: none;
+}
+
+#up-arrow img {
+	width: 30px;
+}
+
+#blue-text {
+	font-family: greens-body-font;
+	margin-right: 10px;
+	position: relative;
+	top: -8px;
+	color: #3CB8C8;
 }
 
 #map-canvas {
