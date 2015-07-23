@@ -10,7 +10,7 @@ end
 desc 'Run the server'
 task :run do
   puts('------------ Running the server -------------')
-  system('shotgun app/app.rb --port=4567')
+  system('shotgun config.ru')
 end
 
 desc 'Run the RSpec tests'
