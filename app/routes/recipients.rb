@@ -24,7 +24,7 @@ post '/recipients/?' do
   return status 400 unless validate_params?(params, permitted, required)
 
   Recipient.create(params)
-  redirect RoutingLocations::ADMIN
+  redirect '/admin'
 end
 
 delete '/recipients/?' do
