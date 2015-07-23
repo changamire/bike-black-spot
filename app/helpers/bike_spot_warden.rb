@@ -1,3 +1,5 @@
+require 'warden'
+
 def warden
   env['warden']
 end
@@ -26,18 +28,18 @@ class BikeSpotWarden < Sinatra::Base
   end
 
   #Routing -- DO NOT MOVE --
-  post RoutingLocations::UNAUTHENTICATED do
+  post '/unauthenticated' do
     status 401
     redirect '/login' if env['warden.options'][:attempted_path] == '/admin' or
         env['warden.options'][:attempted_path] == '/login'
   end
 
-  get RoutingLocations::UNAUTHENTICATED do
+  get '/unauthenticated' do
     redirect '/login' if env['warden.options'][:attempted_path] == '/admin'
     status 401
   end
 
-  delete RoutingLocations::UNAUTHENTICATED do
+  delete '/unauthenticated' do
     status 401
   end
 end

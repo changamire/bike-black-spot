@@ -1,14 +1,12 @@
-require_relative 'routing_locations'
 require_relative '../helpers/param_validation_helper'
 
-
-get RoutingLocations::CATEGORIES + '.json' do
+get '/categories.json' do
   return status 400 unless validate_params?(params, [], [])
 
   Category.json
 end
 
-get RoutingLocations::CATEGORIES + '.csv' do
+get '/categories.csv' do
   return status 400 unless validate_params?(params, [], [])
 
   result = []
@@ -19,9 +17,8 @@ get RoutingLocations::CATEGORIES + '.csv' do
 
 end
 
-get RoutingLocations::CATEGORIES + '/?' do
+get '/categories/?' do
   return status 400 unless validate_params?(params, [], [])
 
   Category.json
 end
-

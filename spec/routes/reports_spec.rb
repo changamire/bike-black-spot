@@ -1,5 +1,3 @@
-require_relative '../spec_helper'
-
 describe 'Reports' do
   describe 'Get /reports' do
     params = {}

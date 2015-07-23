@@ -1,5 +1,3 @@
-require_relative '../spec_helper'
-
 describe 'Users' do
   describe 'Post to /users' do
     it 'should return status 200(OK) if correct params' do
@@ -102,4 +100,3 @@ describe 'Users' do
     end
   end
 end
-

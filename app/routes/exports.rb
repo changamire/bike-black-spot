@@ -1,9 +1,8 @@
-require_relative 'routing_locations'
 require_relative '../helpers/param_validation_helper'
 require_relative '../models/user'
 require 'csv'
 
-get RoutingLocations::EXPORTS do
+get '/exports/?' do
 
   permitted = %w(users)
   required = %w()

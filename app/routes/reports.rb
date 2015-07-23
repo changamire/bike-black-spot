@@ -1,7 +1,6 @@
-require_relative 'routing_locations'
 require_relative '../helpers/param_validation_helper'
 
-get RoutingLocations::REPORTS + '/?' do
+get '/reports/?' do
   permitted = %w(uuid)
   required = %w()
   return status 400 unless validate_params?(params, permitted, required)
@@ -14,7 +13,7 @@ get RoutingLocations::REPORTS + '/?' do
 end
 
 
-post RoutingLocations::REPORTS do
+post '/reports/?' do
   permitted = %w(uuid lat long category description)
   required = %w(uuid lat long category)
   return status 400 unless validate_params?(params, permitted, required)
@@ -32,4 +31,3 @@ post RoutingLocations::REPORTS do
 
   return status 201
 end
-

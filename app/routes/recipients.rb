@@ -1,8 +1,6 @@
-require_relative 'routing_locations'
 require_relative '../helpers/param_validation_helper'
 
-
-get RoutingLocations::RECIPIENTS + '/?' do
+get '/recipients/?' do
   return 401 unless warden.authenticated?
   permitted = %w(uuid)
   required = %w()
@@ -17,7 +15,7 @@ get RoutingLocations::RECIPIENTS + '/?' do
 
 end
 
-post RoutingLocations::RECIPIENTS + '/?' do
+post '/recipients/?' do
   return 401 unless warden.authenticated?
 
   permitted = %w(name email state)
@@ -29,7 +27,7 @@ post RoutingLocations::RECIPIENTS + '/?' do
   redirect RoutingLocations::ADMIN
 end
 
-delete '/recipients' do
+delete '/recipients/?' do
   return 401 unless warden.authenticated?
 
   permitted = %w(uuid)

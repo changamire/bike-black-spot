@@ -1,6 +1,6 @@
 require_relative '../helpers/param_validation_helper'
 
-post '/users' do
+post '/users/?' do
   ENV['server'] = request.env['SERVER_NAME']
   permitted = %w(name email postcode)
   required = %w(name email)
@@ -12,7 +12,7 @@ post '/users' do
   return user.uuid.to_json
 end
 
-get '/users/confirm' do
+get '/users/confirm/?' do
   permitted = %w(token)
   required = %w(token)
   return status 400 unless validate_params?(params, permitted, required)

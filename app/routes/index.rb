@@ -1,5 +1,3 @@
-require_relative 'routing_locations'
-
-get RoutingLocations::ROOT  + '/?' do
+get '/?' do
   erb :index
 end
