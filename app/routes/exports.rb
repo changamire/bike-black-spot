@@ -9,9 +9,8 @@ get '/exports/?' do
 
   return status 400 unless validate_params?(params, permitted, required)
   return status 401 unless warden.authenticated?
-  results = User.export if (params.has_key?('users'))
 
-  # Set download file type and name
   content_type 'application/csv'
   attachment   'reports.csv'
+  User.export if params[:users]
 end
