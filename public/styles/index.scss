@@ -8,6 +8,9 @@ h1 {
 	font-family: greens-headings-font;
 	margin: 0 0 2vh;
 	font-size: 3.3em;
+	@include breakpoint(iphone5-portrait) {
+		font-size: 2.8em;
+	}
 }
 
 #main-heading {
@@ -15,6 +18,9 @@ h1 {
 	text-align: center;
 	font-size: 3.5em;
 	margin: 0 0 2vh;
+	@include breakpoint(iphone5-portrait) {
+		font-size: 2.9em;
+	}
 }
 
 h2 {
@@ -23,6 +29,9 @@ h2 {
 	font-size: 2.8em;
 	color: #3CB8C8;
 	margin-bottom: 5px;
+	@include breakpoint(iphone5-portrait) {
+		font-size: 2.3em;
+	}
 }
 
 h3 {
@@ -33,12 +42,15 @@ h3 {
 	font-size: 1.3em;
 	line-height: 1.3em;
 	text-shadow: 2px 2px 6px #555555;
+	@include breakpoint(iphone5-portrait) {
+		font-size: 1.1em;
+	}
 }
 
 p {
 	margin: 0;
 	font-family: greens-body-font;
-	font-size: 1.1em;
+	font-size: 1.2em;
 	line-height: 1.25em;
 }
 
@@ -91,6 +103,12 @@ footer {
 
 footer p {
 	font-size: 0.8em;
+	position: relative;
+	top: 7px;
+	@include breakpoint(iphone5-portrait) {
+		font-size: 0.7em;
+		top: 0px;
+	}
 }
 
 #footer-text {
@@ -116,6 +134,13 @@ footer p {
 #main-description {
 	margin: 0 auto;
 	max-width: 60vw;
+}
+
+.left_column {
+	width: 60vw;
+	@include breakpoint(iphone5-portrait) {
+		width: 100%;
+	}
 }
 
 #itunes-link {
@@ -145,6 +170,11 @@ footer p {
 #up-arrow {
 	float: right;
 	color: #3CB8C8;
+	@include breakpoint(iphone5-portrait) {
+		position: relative;
+		bottom: 60px;
+		margin: 0 auto;
+	}
 }
 
 #up-arrow a {
@@ -167,7 +197,11 @@ footer p {
 	height: 80vh;
 	width: 80%;
 	margin: 8vh 10vw 0vh 10vw;
+	@include breakpoint(ipad) {
+		height: 50vh
+	}
 }
+
 
 #container-div {
 	margin: 2vh 10vw;
@@ -199,10 +233,6 @@ footer p {
 
 section {
 	margin: 10vh 0vw;
-}
-
-.left_column {
-	width: 60vw;
 }
 
 .capitalise {
