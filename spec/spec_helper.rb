@@ -1,19 +1,14 @@
 require 'sinatra'
 require 'rspec'
-require 'json'
 require 'rack/test'
-require 'geokit'
 require 'database_cleaner'
 
-include Rack::Test::Methods
 require File.join(File.dirname(__FILE__), '../app/app')
-
-def app
-  Sinatra::Application
-end
+require File.join(File.dirname(__FILE__), '../config/config')
 
 # set test environment
 Sinatra::Base.set :environment => :development
+Sinatra::Base.set :views, File.join(File.dirname(__FILE__),'../app/views/')
 Sinatra::Base.set :run, false
 Sinatra::Base.set :raise_errors, true
 Sinatra::Base.set :logging, false
@@ -22,6 +17,7 @@ Sinatra::Base.set :views, File.join(File.dirname(__FILE__),'../app/views/')
 LOCAL = 'http://example.org'
 
 RSpec.configure do |config|
+  include Rack::Test::Methods
 
   config.include Warden::Test::Helpers
   DatabaseCleaner.clean_with(:truncation)
@@ -42,6 +38,6 @@ RSpec.configure do |config|
   end
 end
 
-def check_last_response_is_ok
-  expect(last_response).to be_ok
+def app
+  Sinatra::Application
 end
