@@ -4,8 +4,6 @@
 <link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Quicksand:300' rel='stylesheet' type='text/css'>
 
-<script src="https://maps.googleapis.com/maps/api/js"></script>
-
 </head>
 
 <style>
@@ -59,41 +57,21 @@
 		width: 100%;
 		height: auto;
 	}
-	
-	.head {
+
+	.header img {
 		width: 100%;
 		height: auto;
-		left: 0;
-	}
-
-	.head img {
-		width: 60px;
-		height: 60px;
-		padding: 1%;
-	}
-
-	.pattern img {
-		width: 40%;
-		height: auto;
-		margin-top: 29.1%;
-		right: 0;
-		z-index: 99;
-		position: absolute;
-	}
-
-	.banner {
-		width: 100%;
-		height: auto;
-		margin-bottom: 50px;
-		overflow: hidden;
-	}
-
-	.banner img {
-		width: 100%;
 		background-size: cover;
-		position: relative;
-		left: 0;
-		overflow: hidden;
+	}
+
+	.map {
+		width: 60%; 
+		height: auto; 
+		margin: 0 auto;
+	}
+
+	.photo {
+		float: right;
 	}
 
 	.container {
@@ -109,34 +87,6 @@
 		margin-bottom: 3%;
 	}
 
-	.button {
-		width: 30%;
-		height: auto;
-		background-color: black;
-		padding: 1%;
-		text-align: center;
-		margin: 0 auto;
-		margin-bottom: 50px;
-	}
-
-	.button a {
-		color: white;
-		text-decoration: none;
-	}
-
-	.button a:hover {
-		color: #21BED8;
-	}
-
-	.footer {
-		font-family: 'Quicksand', sans-serif;
-		font-size: 12px;
-		width: 100%;
-		height: auto;
-		margin: 0 auto;
-		padding-top: 3%;
-		padding-bottom: 3%;
-	}
 	.logo img {
 		width: 7%;
 		padding-right: 2%;
@@ -148,14 +98,6 @@
 		text-align: left;
 		margin: 0 auto;
 	}
-
-	#map-canvas {
-  	height: 60vh;
-  	width: 60%;
-  	margin: 0 auto;
-  	margin-bottom: 5%;
-  	overflow: hidden;
-  	}
 
   	.report {
   		width: 56%;
@@ -177,19 +119,15 @@
   		text-align: left;
   	}
 
-  	.social {
-  		list-style: none;
-  		text-decoration: none;
-  		margin-top: 3%;
-  	}
-
-  	.social a {
-  		padding: 0.5%;
-  	}
-
-  	.social a:hover {
-  		opacity: 0.5;
-  	}
+  	footer {
+		font-family: 'Quicksand', sans-serif;
+		font-size: 12px;
+		width: 100%;
+		height: auto;
+		margin: 0 auto;
+		padding-top: 3%;
+		padding-bottom: 3%;
+	}
 
 /*==========  MEDIA QUERIES  ==========*/
 
@@ -220,14 +158,6 @@
 		margin: 0 auto;
 		font-size: 11px;
 		}
-
-		#map-canvas {
-  		height: 50vh;
-  		width: 75%;
-  		margin: 0 auto;
-  		margin-bottom: 5%;
-  		overflow: hidden;
-  		}
 
   		.report {
   		width: 70%;
@@ -268,14 +198,6 @@
 		margin: 0 auto;
 		font-size: 10.5px;
 		}
-
-		#map-canvas {
-  		height: 50vh;
-  		width: 75%;
-  		margin: 0 auto;
-  		margin-bottom: 5%;
-  		overflow: hidden;
-  		}
 
   		.report {
   		width: 70%;
@@ -323,14 +245,6 @@
 		margin: 0 auto;
 		font-size: 10px;
 		}
-
-		#map-canvas {
-  		height: 30vh;
-  		width: 85%;
-  		margin: 0 auto;
-  		margin-bottom: 5%;
-  		overflow: hidden;
-  		}
 
   		.report {
   		width: 80%;
@@ -397,14 +311,6 @@
 		font-size: 10px;
 		}
 
-		#map-canvas {
-  		height: 30vh;
-  		width: 85%;
-  		margin: 0 auto;
-  		margin-bottom: 5%;
-  		overflow: hidden;
-  		}
-
   		.report {
   		width: 80%;
   		height: auto;
@@ -447,84 +353,52 @@
 
 </style>
 
-<body>
+<body style="margin: 0;">
 
-	<div class="header">
-
-		<div class="head">
-			<img src="images/logo.png">
-		</div>
-
-		<div class="title">
-			<h1>BIKE BLACK SPOT</h1>
-		</div>
-
-		<div class="pattern">
-			<img src="images/geo.png">
-		</div>
-
-		<div class="banner">
-			<img src="images/banner.png">
-		</div>
-
+	<div class="header" style="width:100%; height: auto;">
+		<img src="/images/banner.png" style="width: 100%; height: auto; background-size: cover; display: block;"/>
 	</div>
 
-	<div class="container">
+	<div class="container" style="width: 100%; height: auto; text-align: center;">
 
-		<div class="message">
-			<h1> <span>REPORTED </span>BLACK SPOT</h1>
+		<div class="message" style="width: 100%; height: 0 auto; text-align: center; margin-bottom: 3%;">
+			<h1 style="font-family: 'Fjalla One', sans-serif; letter-spacing: 1px;">STATE REPORT</h1>
 		</div>
 
-		<div id="map-canvas" aria-hidden="true"></div>
-
-		<div class="message">
-			<h1> <span>MICHAEL STAFFORD:</span> 20/07/2015</h1>
+		<div class="map">
+			<div class="map" style="width: 60%; height: auto; margin: 0 auto;"><% google_map %></div>
 		</div>
 
-		<div class="report">
+		<div class="message" style="width: 100%; height: 0 auto; text-align: center; margin-bottom: 3%;">
+			<h1 style="font-family: 'Fjalla One', sans-serif; letter-spacing: 1px;"> <span style="color: #21BED8;"><%= name %> <%= last %></span>&nbsp;<%= date %></h1>
+		</div>
 
-			<div class="info">
-				<h3>BLACK SPOT OF DOOOOM</h3>
-				<h3><span>ThoughtWorks office, Melbourne</span></h3>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque maximus eros non dapibus auctor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris vitae orci dui. Vestibulum enim velit, hendrerit a viverra eu, congue sit amet mi. 
-				</p>
+		<div class="report" style="width: 56%; height: auto; padding: 2%; background-color: #eee; margin: 0 auto; text-align: center; overflow: auto;">
+
+			<div class="info" style="width: 60%; float: left; text-align: left;">
+				<h3 style="font-family: 'Fjalla One', sans-serif; letter-spacing: 1px;"><%= title %></h3>
+				<h3 style="font-family: 'Fjalla One', sans-serif; letter-spacing: 1px;"><span style="color: #21BED8;"><%= address %></span></h3>
+				<p style="font-family: 'Quicksand', sans-serif;"><%= description %></p>
 			</div>
 
-			<div class="image">
-				<img src="images/pygmy.png">
+			<div class="image" style="float: right;">
+				<div class="photo" style="float: right;"><%= photo %></div>
 			</div>
 
 		</div>
 
-		<div class="footer">
+		<footer style="font-family: 'Quicksand', sans-serif; font-size: 12px; width: 100%; height: auto; margin: 0 auto; padding-top: 3%; padding-bottom: 3%;">
 
-			<div class="logo">
-				<div class="text">
-					<img src="images/greens.jpg">
-				<span>This is a campaign of the Australian Greens. Authorised by Senator Janet Rice, 240 Sydney Rd Coburg VIC 3058.
-				</span>
+			<div class="disc">
+				<div class="text" style="width: 32%; text-align: left; margin: 0 auto;">
+					<img src="images/greens.jpg" style="width: 7%; padding-right: 2%; float: left;">
+					<span>This is a campaign of the Australian Greens. Authorised by Senator Janet Rice, 240 Sydney Rd Coburg VIC 3058.</span>
 				</div>
 			</div>
 
-		</div>
+		</footer>
 
 	</div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="scripts/maps.js"></script>
-
-<script>
-	google.maps.event.addDomListener(window, 'load', initialiseMaps);
-
-	/* Smooth Scroll */
-	$('a[href*=#]').click(function(event){
-	    $('html, body').animate({
-	        scrollTop: $( $.attr(this, 'href') ).offset().top
-	    }, 500);
-	    event.preventDefault();
-	});
-</script>
 
 </body>
 
