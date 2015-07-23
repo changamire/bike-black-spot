@@ -30,6 +30,7 @@ class Location < ActiveRecord::Base
       self.postcode = @result.zip
       self.country = @result.country
       self.formatted_address = @result.full_address
+      self.save!
     end
 
     def call_geocoder
@@ -41,6 +42,6 @@ class Location < ActiveRecord::Base
       Geokit::Geocoders::ssl_verify_mode = OpenSSL::SSL::VERIFY_NONE
 
       @latlong = "#{self.lat}, #{self.long}"
-      @result = Geokit::Geocoders::GoogleGeocoder.reverse_geocode(@latlong)
+      Geokit::Geocoders::GoogleGeocoder.reverse_geocode(@latlong)
     end
   end
