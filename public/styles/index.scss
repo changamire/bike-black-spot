@@ -117,6 +117,7 @@ footer p {
 	@include breakpoint(iphone5-portrait) {
 		font-size: 0.7em;
 		top: 0px;
+		font-weight: bold;
 	}
 }
 

@@ -181,7 +181,8 @@ footer p {
   @media (max-width: 640px) {
     footer p {
       font-size: 0.7em;
-      top: 0px; } }
+      top: 0px;
+      font-weight: bold; } }
 
 #footer-text {
   margin-left: 5em;
