@@ -1,4 +1,4 @@
-require 'Geokit'
+require 'geokit'
 
 class Location < ActiveRecord::Base
   validates :lat, :long, presence: true
