@@ -96,7 +96,15 @@ h1 {
   margin: 0 0 2vh; }
   @media (max-width: 640px) {
     #main-heading {
-      font-size: 2.9em; } }
+      font-size: 2.9em;
+      margin: 0 1vw 2vh 1vw; } }
+
+#main-description {
+  margin: 0 auto;
+  max-width: 60vw; }
+  @media (max-width: 640px) {
+    #main-description {
+      max-width: 80vw; } }
 
 h2 {
   display: block;
@@ -191,10 +199,6 @@ footer p {
 #page-2 {
   padding: 1px;
   height: auto; }
-
-#main-description {
-  margin: 0 auto;
-  max-width: 60vw; }
 
 .left_column {
   width: 60vw; }
