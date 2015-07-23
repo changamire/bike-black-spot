@@ -9,15 +9,20 @@
 
     <title>Sign-in Template for Bootstrap</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/login.css">
   </head>
 
   <body>
     <div class="container">
       <!-- Login Form Container -->
       <div class ="login-container">
-
         <form class="form-signin" action="/login" method="post">
           <h2 class="form-signin-heading">Please sign in</h2>
+          <div id='flash'>
+            <% if flash[:failedLogin] %>
+                <div class="error"><%= flash[:failedLogin] %></div>
+            <% end %>
+          </div>
           <label for="inpUsername" class="">Username: </label>
           <input type="text" name="username" id="inpUsername" class="form-control" placeholder="Username" required autofocus>
 

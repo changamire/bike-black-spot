@@ -1,6 +1,8 @@
 require 'sinatra'
 require 'json'
 require 'sinatra/activerecord'
+require 'sinatra/flash'
+require 'warden'
 require 'bcrypt'
 require 'rack/throttle'
 require 'rack/ssl'
@@ -21,5 +23,6 @@ set :session, true
 
 class BikeSpot < Sinatra::Base
   register Sinatra::ActiveRecordExtension
+  register Sinatra::Flash
   Sinatra::Base.set :views, File.join(File.dirname(__FILE__),'/app/views/')
 end

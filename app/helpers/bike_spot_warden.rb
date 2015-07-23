@@ -1,4 +1,5 @@
 require 'warden'
+require 'sinatra/flash'
 
 def warden
   env['warden']
@@ -7,6 +8,7 @@ end
 LOCAL_KEY = 'BfgDs55HmHgHsECGG2Wxb28tqD7sB4a24xPDqth42XSu6x4UVtU6HNR3pjf2mPW477QuxzqQw33xgQyNrBAgn37bS8cMnDqd4kXX'
 
 class BikeSpotWarden < Sinatra::Base
+  register Sinatra::Flash
   Warden::Strategies.add(:password) do
     def valid?
       params['username'] || params['password']
@@ -30,8 +32,12 @@ class BikeSpotWarden < Sinatra::Base
   #Routing -- DO NOT MOVE --
   post '/unauthenticated' do
     status 401
-    redirect '/login' if env['warden.options'][:attempted_path] == '/admin' or
-        env['warden.options'][:attempted_path] == '/login'
+
+    redirect '/login' if env['warden.options'][:attempted_path] == '/admin'
+    if env['warden.options'][:attempted_path] == '/login'
+      flash[:failedLogin] = 'Login failed, please try again.'
+      redirect '/login'
+    end
   end
 
   get '/unauthenticated' do
