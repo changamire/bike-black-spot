@@ -1,3 +1,6 @@
+require 'rack/throttle'
+require 'rack/ssl'
+
 configure :test do
   LOCAL_KEY = 'BfgDs55HmHgHsECGG2Wxb28D7sB4a24xPDqth42XSu6x4UVtU6HNR3pjf2mPW477'
   use Rack::Session::Cookie, :secret => LOCAL_KEY,
