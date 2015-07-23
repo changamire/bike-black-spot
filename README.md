@@ -16,6 +16,15 @@ The file for storing sensitive information (passwords,enviroment variables, etc)
 6. Command: brew install transcrypt
 7. Command: gem install mailcatcher
 
+#Setup transcrypt
+1. Open terminal
+2. Go to project
+3. Command: transcrypt
+4. Command: <enter>
+5. Command: n <enter>
+6. Command: <cypher password here, get from team mates>
+7. Command: y <enter>
+
 #Setting up DB
 1. Start postgresql
 2. Open terminal
