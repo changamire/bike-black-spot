@@ -1,3 +1,4 @@
+require './app/app.rb'
 require "sinatra/activerecord/rake"
 
 desc 'Build the application'
@@ -9,7 +10,7 @@ end
 desc 'Run the server'
 task :run do
   puts('------------ Running the server -------------')
-  system('shotgun app.rb --port=4567')
+  system('shotgun app/app.rb --port=4567')
 end
 
 desc 'Run the RSpec tests'
@@ -19,8 +20,6 @@ task :test do
 end
 
 namespace :db do
-  require './app.rb'
-
   desc 'Setup the db for the local enviroment'
   task :init do
     puts('------------ Initialising the DB ------------')

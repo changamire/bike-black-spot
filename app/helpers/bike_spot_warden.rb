@@ -5,8 +5,6 @@ def warden
   env['warden']
 end
 
-LOCAL_KEY = 'BfgDs55HmHgHsECGG2Wxb28tqD7sB4a24xPDqth42XSu6x4UVtU6HNR3pjf2mPW477QuxzqQw33xgQyNrBAgn37bS8cMnDqd4kXX'
-
 class BikeSpotWarden < Sinatra::Base
   register Sinatra::Flash
   Warden::Strategies.add(:password) do
@@ -21,7 +19,7 @@ class BikeSpotWarden < Sinatra::Base
         if admin.authenticate(params['password'])
           success!(admin)
         else
-          raise 'Authentication failed'
+          fail! 'Authentication failed'
         end
       rescue Exception => e
         fail!(e)
@@ -50,8 +48,6 @@ class BikeSpotWarden < Sinatra::Base
   end
 end
 
-use Rack::Session::Cookie, :secret => ENV['WARDEN_KEY'] || LOCAL_KEY,
-                           :expire_after => 3600
 use Warden::Manager do |manager|
   manager.default_strategies :password
   manager.failure_app = BikeSpotWarden.new

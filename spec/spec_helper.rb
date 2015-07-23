@@ -6,12 +6,12 @@ require 'geokit'
 require 'database_cleaner'
 
 include Rack::Test::Methods
-require File.join(File.dirname(__FILE__), '../app')
+require File.join(File.dirname(__FILE__), '../app/app')
 
 def app
   Sinatra::Application
 end
-	
+
 # set test environment
 Sinatra::Base.set :environment => :development
 Sinatra::Base.set :run, false
