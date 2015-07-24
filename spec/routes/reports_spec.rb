@@ -76,8 +76,8 @@ describe 'Reports' do
   end
 
   describe 'Post /reports' do
-    valid_lat = '85'
-    valid_long = '150'
+    valid_lat = '-37.816684'
+    valid_long = '144.963962'
     valid_description = 'here is my lovely valid description.'
 
     params = {}
@@ -85,6 +85,8 @@ describe 'Reports' do
     user = {}
 
     before(:each) do
+      Location.create(lat: '-37.816684', long: '144.963962')
+      Recipient.create(name: 'Rec Pient', email: 'VICrecipient@gmail.com', state: 'VIC')
       user = User.create(name: 'Tom', email: 't@l.com')
       category = Category.create(name: 'category1', description: 'valid description')
       params = {uuid: user.uuid, lat: valid_lat, long: valid_long, category: category.uuid, description: valid_description}
@@ -121,6 +123,15 @@ describe 'Reports' do
       it '400 with correct params but no category' do
         post '/reports', {uuid: user.uuid, lat: valid_lat, long: valid_long, category: '2353454', description: valid_description}
         expect(last_response.status).to eq(400)
+      end
+      it 'should send report email if user confirmed' do
+        user.confirmed = true
+        user.save!
+
+        Mail::TestMailer.deliveries.clear
+        post '/reports', params
+        expect(Mail::TestMailer.deliveries.length).to eq(1)
+
       end
     end
 

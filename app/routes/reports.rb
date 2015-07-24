@@ -27,7 +27,10 @@ post '/reports/?' do
 
   report = Report.create(user: user, category: category, location: location,
                description: params[:description], image: params[:image])
+
   return status 400 unless report.valid?
+
+  Mailer.send_report(report) if user.confirmed
 
   return status 201
 end
