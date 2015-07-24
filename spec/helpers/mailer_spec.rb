@@ -70,5 +70,8 @@ describe 'Mailer' do
     it 'should have the correct subject' do
       expect(@email.subject).to eq("Bike Black Spot Report for #{@location.formatted_address}")
     end
+    it 'should set sent_at time on report' do
+      expect(@report.sent_at).to_not be_nil
+    end
   end
 end

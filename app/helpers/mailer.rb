@@ -62,6 +62,7 @@ class Mailer
     template = File.read('app/views/emails/state.erb')
     erb = ERB.new(template).result(namespace.instance_eval { binding })
 
+
     mail_list = []
     recipients.each do |recipient|
       mail_list << Mail.new(
@@ -75,6 +76,8 @@ class Mailer
 
     mail_list.each do |mail|
       mail.deliver
+      report.sent_at = Time.now
+      report.save!
     end
   end
 end
