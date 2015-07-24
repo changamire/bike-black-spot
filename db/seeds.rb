@@ -37,8 +37,9 @@ recipient1 = {name: 'VICrecipient1', email: 'vicrecipient1@test.com', state: 'VI
 recipient2 = {name: 'VICrecipient2', email: 'vicrecipient2@test.com', state: 'VIC'}
 recipient3 = {name: 'ACTrecipient', email: 'actrecipient@test.com', state: 'ACT'}
 recipient4 = {name: 'NSWrecipient', email: 'nswrecipient@test.com', state: 'NSW'}
+recipient5 = {name: 'QLDrecipient', email: 'qldrecipient@test.com', state: 'QLD'}
 
-recipients = [recipient1, recipient2, recipient3, recipient4]
+recipients = [recipient1, recipient2, recipient3, recipient4, recipient5]
 
 recipients.each do |recipient|
   Recipient.create(recipient)
