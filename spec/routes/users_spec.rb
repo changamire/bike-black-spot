@@ -98,5 +98,23 @@ describe 'Users' do
       get "/users/confirm?token=#{token}"
       expect(last_response.status).to eq(400)
     end
+
+    it 'should send unsent reports associated with user' do
+      Recipient.create(name: 'Rec Pient', email: 'VICrecipient@gmail.com', state: 'VIC')
+      location = Location.create(lat: '-37.816684', long: '144.963962')
+      user = User.create(name: 'Tom', email: 't@l.com')
+      token = Confirmation.find_by(user: user.uuid).token
+      category = Category.create(name: 'category1', description: 'valid description')
+
+      Report.create(user: user, category: category, location: location, description: 'This is a description1')
+      Report.create(user: user, category: category, location: location, description: 'This is a description2')
+      Report.create(user: user, category: category, location: location, description: 'This is a description3')
+
+      Mail::TestMailer.deliveries.clear
+
+      get "/users/confirm?token=#{token}"
+      expect(Mail::TestMailer.deliveries.length).to eq(3)
+
+    end
   end
 end

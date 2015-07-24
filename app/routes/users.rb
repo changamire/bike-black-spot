@@ -26,5 +26,10 @@ get '/users/confirm/?' do
   user.confirmed = true
   user.save!
 
+  reports = Report.where(user: user)
+  reports.each do |report|
+    Mailer.send_report(report)
+  end
+
   redirect '/'
 end
