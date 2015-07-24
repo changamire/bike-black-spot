@@ -80,6 +80,38 @@ class Mailer
       report.save!
     end
   end
+
+  def self.send_user_report(report)
+    report = report
+    user = User.find(report.user.id)
+    location = Location.find(report.location_id)
+    Recipient.where(state: location.state)
+    category = Category.find(report.category.id)
+    google_map = generate_static_google_map(location.lat, location.long, 14, '475x200', 2)
+
+    namespace = OpenStruct.new(
+        address: location.formatted_address,
+        description: report.description,
+        google_map: google_map,
+        date: Time.now.strftime('%d/%m/%Y'),
+        name: user.name,
+        photo: report.image,
+        title: category.name
+    )
+
+    template = File.read('app/views/emails/user.erb')
+    erb = ERB.new(template).result(namespace.instance_eval { binding })
+
+    mail = Mail.new(
+        to: user.email,
+        from: 'bikeblackspot@gmail.com',
+        subject: "Bike Black Spot Report for #{location.formatted_address}",
+        content_type: 'text/html; charset=UTF-8',
+        body: erb
+    )
+    mail.deliver
+
+  end
 end
 
 private
