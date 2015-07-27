@@ -55,6 +55,9 @@ POST:
 400 - Bad Request
 
 #Users ------------------------------
+GET:
+200 - OK (true of false)
+400 - Bad Request
 POST:
 200 - OK
 400 - Bad Request

@@ -12,6 +12,15 @@ post '/users/?' do
   return user.uuid.to_json
 end
 
+get '/users/?' do
+  permitted = %w(uuid)
+  required = %w(uuid)
+  return status 400 unless validate_params?(params, permitted, required)
+  user = User.find_by(uuid: params[:uuid])
+  return status 400 if user.nil?
+  return [confirmed: user.confirmed].to_json
+end
+
 get '/users/confirm/?' do
   permitted = %w(token)
   required = %w(token)

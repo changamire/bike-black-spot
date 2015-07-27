@@ -117,4 +117,25 @@ describe 'Users' do
 
     end
   end
+  describe 'Get users' do
+    it 'should return 400 given too many params' do
+      get '/users?uuid=2134324,test=no'
+      expect(last_response.status).to be(400)
+    end
+    it 'should return 400 given no uuid' do
+      get '/users'
+      expect(last_response.status).to be(400)
+    end
+    it 'should return false given unconfirmed user' do
+      user = User.create(name: 'name1', email: 'email1@email.com')
+      get "/users?uuid=#{user.uuid}"
+      expect(last_response.body).to eql([confirmed: false].to_json)
+    end
+    it 'should return true given confirmed user' do
+      user = User.create(name: 'name1', email: 'email1@email.com', confirmed: true)
+      get "/users?uuid=#{user.uuid}"
+      expect(last_response.body).to eql([confirmed: true].to_json)
+    end
+
+  end
 end
