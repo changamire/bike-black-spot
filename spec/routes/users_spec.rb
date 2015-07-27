@@ -113,7 +113,7 @@ describe 'Users' do
       Mail::TestMailer.deliveries.clear
 
       get "/users/confirm?token=#{token}"
-      expect(Mail::TestMailer.deliveries.length).to eq(3)
+      expect(Mail::TestMailer.deliveries.length).to eq(6)
 
     end
   end

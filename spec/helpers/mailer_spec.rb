@@ -44,34 +44,63 @@ describe 'Mailer' do
     end
   end
 
-  describe 'send_report' do
+  describe 'send_reports' do
+    email = {}
+    report = {}
+    location = {}
     before(:each) do
-      @user = User.create(name: 'Harry Potter', email: 'hpottz@hogwarts.com')
+      user = User.create(name: 'Harry Potter', email: 'hpottz@hogwarts.com')
       Mail::TestMailer.deliveries.clear
-      @category = Category.create(name: 'Danger Zone', description: 'There is danger in this zone.')
-      @recipient = Recipient.create(name: 'Dumbledore', email: 'dumbledont@gmail.com', state: 'VIC')
-      @location = Location.create(lat: '-37.8054312', long: '144.9714124')
-      @report = Report.create(user: @user, category: @category, location: @location, description: @valid_description)
-      @email = Mailer.send_report(@report)[0]
-    end
-
-    it 'should send an email to the recipient' do
-      expect(Mail::TestMailer.deliveries.length).to eq(1)
+      category = Category.create(name: 'Danger Zone', description: 'There is danger in this zone.')
+      recipient = Recipient.create(name: 'Dumbledore', email: 'dumbledont@gmail.com', state: 'VIC')
+      location = Location.create(lat: '-37.8054312', long: '144.9714124')
+      report = Report.create(user: user, category: category, location: location, description: 'Description')
 
     end
-    it 'should have the correct from email address' do
-      expect(@email.from.length).to eq(1)
-      expect(@email.from.first).to eq('bikeblackspot@gmail.com')
+    describe 'send_state_report' do
+      before(:each) do
+        email = Mailer.send_state_report(report)[0]
+      end
+
+      it 'should send an email to the recipient' do
+        expect(Mail::TestMailer.deliveries.length).to eq(1)
+
+      end
+      it 'should have the correct from email address' do
+        expect(email.from.length).to eq(1)
+        expect(email.from.first).to eq('bikeblackspot@gmail.com')
+      end
+      it 'should have the correct to email address' do
+        expect(email.to.length).to eq(1)
+        expect(email.to.first).to eq('dumbledont@gmail.com')
+      end
+      it 'should have the correct subject' do
+        expect(email.subject).to eq("Bike Black Spot Report for #{location.formatted_address}")
+      end
+      it 'should set sent_at time on report' do
+        expect(report.sent_at).to_not be_nil
+      end
     end
-    it 'should have the correct to email address' do
-      expect(@email.to.length).to eq(1)
-      expect(@email.to.first).to eq(@recipient.email)
-    end
-    it 'should have the correct subject' do
-      expect(@email.subject).to eq("Bike Black Spot Report for #{@location.formatted_address}")
-    end
-    it 'should set sent_at time on report' do
-      expect(@report.sent_at).to_not be_nil
+    describe 'send_user_report' do
+      before(:each) do
+        email = Mailer.send_user_report(report)
+      end
+
+      it 'should send an email to the recipient' do
+        expect(Mail::TestMailer.deliveries.length).to eq(1)
+
+      end
+      it 'should have the correct from email address' do
+        expect(email.from.length).to eq(1)
+        expect(email.from.first).to eq('bikeblackspot@gmail.com')
+      end
+      it 'should have the correct to email address' do
+        expect(email.to.length).to eq(1)
+        expect(email.to.first).to eq('hpottz@hogwarts.com')
+      end
+      it 'should have the correct subject' do
+        expect(email.subject).to eq("Bike Black Spot Report for #{location.formatted_address}")
+      end
     end
   end
 end
