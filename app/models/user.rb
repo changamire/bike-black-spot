@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
   validates :name, :email, presence: true
   validates :name, format: {with: /\A.(?!\s*$).{1,32}\Z/,
                             message: 'Must be under 32 chars'}
-
-  validates :email, format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i,
+  # "^[\\w+\\-.]+@[a-z\\d\\-]+(\\.[a-z]+)*\\.[a-z]+$"
+  validates :email, format: {with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i,
                              message: 'Must be a valid email.'}
   validates :postcode, format: {with: /(\A\Z)|(\A[0-9]{4}\Z)/,
                                 message: 'Must be a valid postcode'}
