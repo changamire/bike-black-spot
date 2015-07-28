@@ -41,8 +41,16 @@ class Mailer
   end
 
   def self.send_reports(report)
-    self.send_user_report(report)
-    self.send_state_report(report)
+    begin
+      self.send_user_report(report)
+    rescue Net::SMTPUnknownError
+      puts 'Send user email failed'
+    end
+    begin
+      self.send_state_report(report)
+    rescue Net::SMTPUnknownError
+      puts 'Send state email failed'
+    end
   end
 
   def self.send_state_report(report)
