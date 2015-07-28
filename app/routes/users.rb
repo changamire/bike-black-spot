@@ -37,7 +37,9 @@ get '/users/confirm/?' do
 
   reports = Report.where(user: user)
   reports.each do |report|
-    Mailer.send_reports(report)
+    if report.sent_at.nil?
+      Mailer.send_reports(report)
+    end
   end
 
   redirect '/'

@@ -137,7 +137,7 @@ describe 'Reports' do
 
         Mail::TestMailer.deliveries.clear
         post '/reports', params
-        expect(Mail::TestMailer.deliveries.length).to eq(1)
+        expect(Mail::TestMailer.deliveries.length).to eq(2)
       end
     end
 
