@@ -8,7 +8,8 @@ class ImageUpload
       credentials: Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY'])
   )
   @bucket_name = ENV['S3_BUCKET']
-  @bucket_folder = 'images'
+  @bucket_folder = 'test' if ENV['RACK_ENV'] == 'test'
+  @bucket_folder = 'images' if ENV['RACK_ENV'] == 'production'
   @acl = 'public-read'
 
   def self.upload(file_path, file_name)

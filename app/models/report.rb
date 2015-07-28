@@ -1,3 +1,5 @@
+require_relative '../helpers/image_upload'
+
 class Report < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
@@ -21,7 +23,6 @@ class Report < ActiveRecord::Base
       User.ID_to_UUID_hash(reportHash, report['user_id'])
       Location.object_to_lat_long(reportHash, report['location_id'])
 
-
       unless authorised
         reportHash = reportHash.reject { |key| @fields_that_require_auth.include?(key) }
       end
@@ -32,6 +33,11 @@ class Report < ActiveRecord::Base
 
   def generate_uuid
     self.uuid = SecureRandom.uuid
+
+    unless image.nil?
+      url = ImageUpload.upload_base64(image,uuid)
+      self.image = url
+    end
   end
 
   def requires_auth?(field)

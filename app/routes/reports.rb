@@ -14,7 +14,7 @@ end
 
 
 post '/reports/?' do
-  permitted = %w(uuid lat long category description)
+  permitted = %w(uuid lat long category description image)
   required = %w(uuid lat long category)
   return status 400 unless validate_params?(params, permitted, required)
 
@@ -24,7 +24,7 @@ post '/reports/?' do
 
   location = Location.create(lat: params[:lat], long: params[:long])
   return status 400 unless location.valid?
-
+  
   report = Report.create(user: user, category: category, location: location,
                description: params[:description], image: params[:image])
 

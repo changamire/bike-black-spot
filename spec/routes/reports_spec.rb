@@ -7,9 +7,9 @@ describe 'Reports' do
       user = User.create(name: 'liam', email: 'l@l.com')
       category = Category.create(name: 'category1Name', description: 'valid description')
       location = Location.create(lat: '-37.8165501', long: '144.9638398')
-      image = 'someimagelink.com'
-      params = {user: user, category: category, location: location, description: 'x', image: image}
+      params = {user: user, category: category, location: location, description: 'x'}
     end
+
     describe 'while not logged in' do
       it 'should not show user_id' do
         Report.create(params)
@@ -30,7 +30,6 @@ describe 'Reports' do
         expect(response[0]['user_uuid']).to eq(user.uuid)
       end
     end
-
 
     it 'should return all reports on no params' do
       Report.create(params)
@@ -81,6 +80,7 @@ describe 'Reports' do
     valid_description = 'here is my lovely valid description.'
 
     params = {}
+    params_with_image = {}
     category = {}
     user = {}
 
@@ -89,7 +89,12 @@ describe 'Reports' do
       Recipient.create(name: 'Rec Pient', email: 'VICrecipient@gmail.com', state: 'VIC')
       user = User.create(name: 'Tom', email: 't@l.com')
       category = Category.create(name: 'category1', description: 'valid description')
+      base64_image = File.read('spec/files/base64_image.txt')
+
       params = {uuid: user.uuid, lat: valid_lat, long: valid_long, category: category.uuid, description: valid_description}
+
+      params_with_image = {uuid: user.uuid, lat: valid_lat, long: valid_long, category: category.uuid, description: valid_description,image: base64_image}
+
     end
 
     describe 'should return status' do
@@ -105,7 +110,7 @@ describe 'Reports' do
       end
 
       it '400 without correct params' do
-        post '/reports', {lat: valid_lat, long: valid_long, category: category.uuid, description: valid_description, image: 'someimagelink.com'}
+        post '/reports', {lat: valid_lat, long: valid_long, category: category.uuid, description: valid_description}
         expect(last_response.status).to eq(400)
       end
       it '400 without valid latitude' do
@@ -131,7 +136,20 @@ describe 'Reports' do
         Mail::TestMailer.deliveries.clear
         post '/reports', params
         expect(Mail::TestMailer.deliveries.length).to eq(1)
+      end
+    end
 
+    describe 'with a base64 image' do
+      it 'should return status 201 (created)' do
+        post '/reports', params_with_image
+        expect(last_response.status).to eq(201)
+      end
+
+      it 'should create a report with a url in the image field' do
+        post '/reports', params_with_image
+        report = Report.first
+
+        expect(report.image).to include(report.uuid)
       end
     end
 

@@ -9,11 +9,14 @@ describe 'Report' do
   user = User.create(name: 'liam', email: 'l@l.com')
   category = Category.create(name: 'category1Name', description: 'valid description')
   location = Location.create(lat: '-37.8165501', long: '144.9638398')
-  image = 'someimagelink.com'
 
+  params_with_image = {}
+  image = File.read('spec/files/base64_image.txt')
 
   before(:each) do
-    params = {user: user, category: category, location: location, description: valid_description, image: image}
+    params = {user: user, category: category, location: location, description: valid_description}
+
+    params_with_image = {user: user, category: category, location: location, description: valid_description, image: image}
   end
 
   describe 'generate_uuid' do
@@ -47,8 +50,22 @@ describe 'Report' do
       it 'category reference' do
         expect(Report.first.category_id).to eq(category.id)
       end
-      it 'image' do
-        expect(Report.first.image).to eq(report.image)
+
+      describe 'image' do
+        it 'should contain no url with no image' do
+          expect(Report.first.image).to be_nil
+        end
+
+        it 'should contain a url with a image' do
+          report = Report.create(params_with_image)
+          expected = report.uuid
+          gotten = report.image
+
+          ImageUpload.delete(report.uuid)
+
+          expect(gotten).to include(expected)
+        end
+
       end
     end
 
@@ -78,7 +95,7 @@ describe 'Report' do
   end
 
   describe 'json' do
-    params = {user: user, category: category, location: location, description: valid_description, image: image}
+    params = {user: user, category: category, location: location, description: valid_description}
 
     report = Report.create(params)
     expected_as_hash_auth = JSON.parse(Report.json(true))
