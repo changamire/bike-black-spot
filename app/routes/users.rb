@@ -21,19 +21,29 @@ get '/users/?' do
   return [confirmed: user.confirmed].to_json
 end
 
+get '/users/confirm/?', :agent => /iPhone/ do
+  params.delete(:agent)
+  return status 400 unless confirm_user(params)
+  redirect 'bikeblackspot://'
+end
+
 get '/users/confirm/?' do
+  return status 400 unless confirm_user(params)
+  redirect '/'
+end
+
+def confirm_user(params)
   permitted = %w(token)
   required = %w(token)
-  return status 400 unless validate_params?(params, permitted, required)
+  return false unless validate_params?(params, permitted, required)
 
   confirmation = Confirmation.find_by(token: params[:token])
-  return status 400 if confirmation.nil?
+  return false if confirmation.nil?
 
   user = User.find_by(uuid: confirmation.user)
-  return status 400 if user.nil?
+  return false if user.nil?
   user.confirmed = true
   user.save!
-
   reports = Report.where(user: user)
   reports.each do |report|
     puts report.user.email
@@ -41,6 +51,5 @@ get '/users/confirm/?' do
       Mailer.send_reports(report)
     end
   end
-
-  redirect '/'
+  return true
 end
