@@ -84,8 +84,10 @@ describe 'Reports' do
     category = {}
     user = {}
 
+    Location.create(lat: '-37.816684', long: '144.963962')
+
     before(:each) do
-      Location.create(lat: '-37.816684', long: '144.963962')
+
       Recipient.create(name: 'Rec Pient', email: 'VICrecipient@gmail.com', state: 'VIC')
       user = User.create(name: 'Tom', email: 't@l.com')
       category = Category.create(name: 'category1', description: 'valid description')
