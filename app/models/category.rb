@@ -10,7 +10,7 @@ class Category < ActiveRecord::Base
   def self.json
     result = []
     Category.all.each do |category|
-      result.push({name: category[:name], description: category[:description]})
+      result.push({name: category[:name], description: category[:description], uuid: category[:uuid]})
     end
     result.to_json
   end

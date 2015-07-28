@@ -38,7 +38,8 @@ describe 'Category' do
                     {name: 'category3', description: 'This is a description'}]
 
       categories.each do |category|
-        Category.create(name: category[:name], description: category[:description])
+        newUUID = Category.create(name: category[:name], description: category[:description]).uuid
+        category[:uuid] = newUUID
       end
       expect(JSON.parse(Category.json)).to eq(JSON.parse(categories.to_json))
     end
@@ -46,8 +47,8 @@ describe 'Category' do
     it 'should return single category as json when only one exists' do
       categories = [{name: 'category1', description: 'valid description'}]
 
-      Category.create(name: categories[0][:name], description: categories[0][:description])
-
+      newCat = Category.create(name: categories[0][:name], description: categories[0][:description])
+      categories[0][:uuid] = newCat.uuid
       expect(JSON.parse(Category.json)).to eq(JSON.parse(categories.to_json))
     end
 
