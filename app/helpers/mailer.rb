@@ -41,8 +41,8 @@ class Mailer
   end
 
   def self.send_reports(report)
-    self.send_state_report(report)
     self.send_user_report(report)
+    self.send_state_report(report)
   end
 
   def self.send_state_report(report)

@@ -30,7 +30,7 @@ post '/reports/?' do
 
   return status 400 unless report.valid?
 
-  Mailer.send_reports(report) if user.confirmed
+  Mailer.send_reports(report) if user.confirmed?
 
   return status 201
 end

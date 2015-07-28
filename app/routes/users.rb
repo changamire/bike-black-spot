@@ -31,12 +31,12 @@ get '/users/confirm/?' do
 
   user = User.find_by(uuid: confirmation.user)
   return status 400 if user.nil?
-
   user.confirmed = true
   user.save!
 
   reports = Report.where(user: user)
   reports.each do |report|
+    puts report.user.email
     if report.sent_at.nil?
       Mailer.send_reports(report)
     end
