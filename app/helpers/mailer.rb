@@ -65,12 +65,9 @@ class Mailer
 
     mail_list.each do |mail|
       mail.deliver
+      report.sent_at = Time.now
+      report.save!
     end
-
-    report.sent_at = Time.now
-    report.save!
-
-    return mail_list
   end
 
 
