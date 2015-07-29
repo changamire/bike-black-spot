@@ -2,6 +2,7 @@ var LATITUDE = 0, LONGITUDE = 1;
 var MAP_MARKER = 0;
 
 var ActiveInfoWindow = null;
+var Melbourne = [-37.817443, 144.960140];
 
 function getMapsDataFromReports() {
 	var rawLocations = [];
@@ -13,7 +14,7 @@ function getMapsDataFromReports() {
 		async: false,
 		success: function(reports) {
 			reports.forEach(function(report){
-				markerData.push([report.latitude, report.longitude, report.category, report.description, report.image]);
+				markerData.push([report.latitude, report.longitude, report.category, report.description, report.address, report.image]);
 			})
 		}
 	});
@@ -21,17 +22,26 @@ function getMapsDataFromReports() {
 }
 
 function generateInfoWindowHtml(markerData) {
+	description = '';
+	if (markerData[2] != null) {
+		description = '<h4>' + 'Description' + '</h4>'
+		+ '<p>' + markerData[2] + '</p>'
+	}
+
 	var textDiv = '<div class="info-window-text">'
 	+ '<h4>' + 'Issue' + '</h4>' 
 	+ '<p>' + markerData[1] + '</p>' 
-	+ '<h4>' + 'Description' + '</h4>'
-	+ '<p>' + markerData[2] + '</p>'
+	+ description
 	+ '<h4>' + 'Address' + '</h4>'
-	+ '<p>' + 'Test street' + '</p>'
+	+ '<p>' + markerData[3] + '</p>'
 	+ '</div>';
-	var imageDiv = '<div class="info-window-image">'
-	+ '<img src="' + markerData[3] + '"></img>'
-	+ '</div>';
+
+	var imageDiv = '';
+	if (markerData[4] != null) {
+		imageDiv = '<div class="info-window-image">'
+		+ '<img src="' + markerData[4] + '"></img>'
+		+ '</div>';
+	}
 
 	return '<div class="info-window">' + textDiv + imageDiv + '</div>';
 }
@@ -60,18 +70,26 @@ function placeReportLocationMarkersOnMap(map, reportData) {
 				position: new google.maps.LatLng(data[LATITUDE], data[LONGITUDE]),
     			map: map
 			}), 
-			data[2], data[3], data[4]]
+			data[2], data[3], data[4], data[5]]
     	)
     })
 
     generateInfoWindowsForReports(map, mapData);
 }
 
+function setMapToUserLocation(map) {
+    if (navigator.geolocation) {
+      	navigator.geolocation.getCurrentPosition(function(position) {
+      		map.panTo(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+      	});
+    }
+}
+
 function initialiseMaps() {
 	var mapCanvas = document.getElementById('map-canvas');
     var mapOptions = {
 		scrollwheel: false,
-		center: new google.maps.LatLng(-27.4667, 153.0333),
+		center: new google.maps.LatLng(Melbourne[LATITUDE], Melbourne[LONGITUDE]),
 		zoom: 14,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
     }
@@ -83,5 +101,7 @@ function initialiseMaps() {
 		if(ActiveInfoWindow != null) ActiveInfoWindow.close(); 
 		ActiveInfoWindow = null;
 	});
+
+	setMapToUserLocation(map);
 
 }

@@ -50,8 +50,9 @@ location1 = {lat: '-37.4338', long: '144.5713'}
 location2 = {lat: '-37.566769', long: '144.027677'}
 location3 = {lat: '-27.467092', long: '153.027141'}
 location4 = {lat: '-36.471462', long: '143.025269'}
+location5 = {lat: '-27.465940', long: '153.025907'}
 
-locations = [location1, location2, location3, location4]
+locations = [location1, location2, location3, location4, location5]
 
 locations.each do |location|
   Location.create(location)
@@ -62,8 +63,9 @@ report1 = {user: User.where(user1).first, category: Category.where(category_dang
 report2 = {user: User.where(user2).first, category: Category.where(category_vehicle).first, location: Location.where(location2).first, description: 'There\'s a vehicle parked in my way.', image: 'http://i.imgur.com/BFyQ5wL.jpg'}
 report3 = {user: User.where(user1).first, category: Category.where(category_path).first, location: Location.where(location3).first, description: 'A new path here would be really great, please add one asap.', image: 'http://i.imgur.com/BFyQ5wL.jpg'}
 report4 = {user: User.where(user1).first, category: Category.where(category_maintenance).first, location: Location.where(location4).first, description: 'Some maintenance here would be really nice, this one time my friend rode their bike into a pothole and really hurt their foot so I\'m worried about other people also having this problem', image: 'http://i.imgur.com/BFyQ5wL.jpg'}
+report5 = {user: User.where(user2).first, category: Category.where(category_vehicle).first, location: Location.where(location5).first}
 
-reports = [report1, report2, report3, report4]
+reports = [report1, report2, report3, report4, report5]
 
 reports.each do |report|
   Report.create(report)
