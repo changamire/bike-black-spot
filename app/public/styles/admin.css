@@ -121,7 +121,7 @@ table {
 .hidden {
   display: none; }
 
-#export-csv {
+#export-users-csv, #export-reports-csv {
   padding: 10px 15px;
   font-size: 1.25em;
   margin: 10px 10px 10px 0;

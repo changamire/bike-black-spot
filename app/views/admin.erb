@@ -1,108 +1,114 @@
-
 <!DOCTYPE HTML>
 
 <html>
 
-	<head>
-		<title>Bike Blackspot Admin</title>
-		<link rel="stylesheet" href="/styles/admin.css">
-	</head>
+<head>
+  <title>Bike Blackspot Admin</title>
+  <link rel="stylesheet" href="/styles/admin.css">
+</head>
 
-	<body>
-		<header>
+<body>
+<header>
 
-		</header>
+</header>
 
-		<div class="central-col">
-			<h1>Export Data</h1>
-			<p>Here you can download an export of the currently submitted reports as a CSV</p>
-			<button id="export-csv" type="button" onclick="location.href='/exports?users=true'" download>Export CSV</button>
+<div class="central-col">
+  <h1>Export Data</h1>
 
-			<h1>Email List</h1>
-			<table id="recipients">
-				<colgroup>
-			        <col width="45%">
-			        <col width="45%">
-			        <col width="5%">
-			        <col width="5%">
-			    </colgroup>
-				<thead>
-					<th>Name</th>
-					<th>Email</th>
-					<th>State</th>
-					<th></th>
-				</thead>
-				<tbody>
-					<% rowCount = 0 %>
-					<% @recipients.each do |recipient| %>
-						<tr id='recipient-row-<%= rowCount %>'>
-							<td><%= recipient['name'] %></td>
-							<td><%= recipient['email'] %></td>
-							<td><%= recipient['state'] %></td>
-							<td class="hidden uuid"><%= recipient['uuid'] %></td>
-							<td class="delete"><img src="/images/iconmonstr-trash-can-9-icon-blue.png" alt="Delete recipient" onclick="deleteRecipient(<%= rowCount %>)"></td>
-							<% rowCount += 1 %>
-						</tr>
-					<% end %>
-				</tbody>
-			</table>
+  <p>Here you can download an export of the currently submitted reports as a CSV</p>
+  <button id="export-users-csv" type="button" onclick="location.href='/exports?users=true'" download>Export Users CSV</button>
+  <button id="export-reports-csv" type="button" onclick="location.href='/exports?reports=true'" download>Export Reports CSV</button>
 
-			<h2>Add new recipient</h2>
-			<form action="/recipients" method="POST">
-				<table id="add-recipient">
-					<colgroup>
-				        <col width="40%">
-				        <col width="40%">
-				        <col width="10%">
-				        <col width="10%">
-				    </colgroup>
-					<thead>
-						<th>Name</th>
-						<th>Email</th>
-						<th>State</th>
-						<th></th>
-					</thead>
-					<tbody>
-						<tr>
-							<td><input type="text" name="name" placeholder="Name" data-validate="required,min(2),max(32)"></td>
-							<td><input type="text" name="email" placeholder="someone@email.com" data-validate="required,email"></td>
-							<td>
-								<select name="state">
-									<option value="ACT" selected="selected">ACT</option>
-									<option value="NSW">NSW</option>
-									<option value="VIC">VIC</option>
-									<option value="QLD">QLD</option>
-									<option value="SA">SA</option>
-									<option value="TAS">TAS</option>
-									<option value="NT">NT</option>
-								</select>
-							</td>
-							<td><button type="submit">Add</button></td>
-						</tr>
-					</tbody>
-				</table>
-			</form>
-		</div>
+  <h1>Email List</h1>
+  <table id="recipients">
+    <colgroup>
+      <col width="45%">
+      <col width="45%">
+      <col width="5%">
+      <col width="5%">
+    </colgroup>
+    <thead>
+    <th>Name</th>
+    <th>Email</th>
+    <th>State</th>
+    <th></th>
+    </thead>
+    <tbody>
+    <% rowCount = 0 %>
+    <% @recipients.each do |recipient| %>
+        <tr id='recipient-row-<%= rowCount %>'>
+          <td><%= recipient['name'] %></td>
+          <td><%= recipient['email'] %></td>
+          <td><%= recipient['state'] %></td>
+          <td class="hidden uuid"><%= recipient['uuid'] %></td>
+          <td class="delete">
+            <img src="/images/iconmonstr-trash-can-9-icon-blue.png" alt="Delete recipient" onclick="deleteRecipient(<%= rowCount %>)">
+          </td>
+          <% rowCount += 1 %>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
 
-	</body>
+  <h2>Add new recipient</h2>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="/vendor/verify.notify.min.js"></script>
-	<script type="text/javascript">
-		function deleteRecipient(rowId) {
-			var selectedElementHtml = $('#recipient-row-' + rowId + ' .uuid');
-			var uuid = selectedElementHtml[0].innerHTML;
-			var formData = { uuid: uuid };
-			$.ajax({
-			    url: '/recipients',
-			    type: 'DELETE',
-			    data: formData,
-			    success: function(result) {
-			        $('#recipient-row-' + rowId).remove();
-			    }
-			});
-		}
-	</script>
+  <form action="/recipients" method="POST">
+    <table id="add-recipient">
+      <colgroup>
+        <col width="40%">
+        <col width="40%">
+        <col width="10%">
+        <col width="10%">
+      </colgroup>
+      <thead>
+      <th>Name</th>
+      <th>Email</th>
+      <th>State</th>
+      <th></th>
+      </thead>
+      <tbody>
+      <tr>
+        <td><input type="text" name="name" placeholder="Name" data-validate="required,min(2),max(32)"></td>
+        <td><input type="text" name="email" placeholder="someone@email.com" data-validate="required,email"></td>
+        <td>
+          <select name="state">
+            <option value="ACT" selected="selected">ACT</option>
+            <option value="NSW">NSW</option>
+            <option value="VIC">VIC</option>
+            <option value="QLD">QLD</option>
+            <option value="SA">SA</option>
+            <option value="TAS">TAS</option>
+            <option value="NT">NT</option>
+          </select>
+        </td>
+        <td>
+          <button type="submit">Add</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </form>
+</div>
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="/vendor/verify.notify.min.js"></script>
+<script type="text/javascript">
+    function deleteRecipient(rowId) {
+        var selectedElementHtml = $('#recipient-row-' + rowId + ' .uuid');
+        var uuid = selectedElementHtml[0].innerHTML;
+        var formData = {uuid: uuid};
+        $.ajax({
+            url: '/recipients',
+            type: 'DELETE',
+            data: formData,
+            success: function (result) {
+                $('#recipient-row-' + rowId).remove();
+            }
+        });
+    }
+</script>
 
 </html>
 
