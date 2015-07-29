@@ -88,7 +88,6 @@ describe 'Location' do
 end
 
 describe 'geocode location' do
-
   location = Location.create({lat: '-37.8165501',
                               long: '144.9638398'})
   it 'should set street number' do

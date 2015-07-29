@@ -11,9 +11,10 @@ class Location < ActiveRecord::Base
   before_create :generate_uuid
   after_create :geocode
 
-  def self.object_to_lat_long(hash, location)
+  def self.object_to_lat_long_address(hash, location)
     hash['latitude'] = Location.find(location).lat
     hash['longitude'] = Location.find(location).long
+    hash['address'] = Location.find(location).formatted_address
     hash.delete('location_id')
   end
 

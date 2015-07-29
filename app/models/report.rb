@@ -21,7 +21,7 @@ class Report < ActiveRecord::Base
       reportHash.delete('id')
       Category.ID_to_name_hash(reportHash, report['category_id'])
       User.ID_to_UUID_hash(reportHash, report['user_id'])
-      Location.object_to_lat_long(reportHash, report['location_id'])
+      Location.object_to_lat_long_address(reportHash, report['location_id'])
 
       unless authorised
         reportHash = reportHash.reject { |key| @fields_that_require_auth.include?(key) }
