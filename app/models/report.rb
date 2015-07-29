@@ -31,17 +31,30 @@ class Report < ActiveRecord::Base
     return result.to_json
   end
 
+  def as_csv
+    return [self.user.uuid, self.location.formatted_address, self.location.lat, self.location.long, self.category.name, self.description, self.image, self.created_at, self.sent_at].to_csv
+  end
+
+
+  def self.export
+    result = %w(user_uuid address latitude longitude category description image created_at sent_at).to_csv
+    Report.all.each do |report|
+      result+=(report.as_csv) if report.user.confirmed?
+    end
+    return result
+  end
+
+
   def generate_uuid
     self.uuid = SecureRandom.uuid
 
     unless image.nil?
-      url = ImageUpload.upload_base64(image,uuid)
+      url = ImageUpload.upload_base64(image, uuid)
       self.image = url
     end
   end
 
   def requires_auth?(field)
-    puts "hitting here" + field
     # @fields_that_require_auth.include?(field)
     [:user, :category].include?(field)
   end
