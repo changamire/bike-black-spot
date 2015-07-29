@@ -25,7 +25,10 @@ class Location < ActiveRecord::Base
 
   def geocode
     # return
-      @result = call_geocoder
+    @result = call_geocoder
+    if @result.nil?
+      self.formatted_address = 'Address unavailable.'
+    else
       self.number = @result.street_number
       self.street = @result.street_name
       self.suburb = @result.city
@@ -33,10 +36,15 @@ class Location < ActiveRecord::Base
       self.postcode = @result.zip
       self.country = @result.country
       self.formatted_address = @result.full_address
-      self.save!
     end
+    self.save!
+  end
 
-    def call_geocoder
+  def call_geocoder
+    begin
+      Geokit::Geocoders::request_timeout = 3
+      Geokit::Geocoders::provider_order = [:google, :bing]
+
       # Disable HTTPS globally.  This option can also be set on individual
       # geocoder classes.
       Geokit::Geocoders::secure = false
@@ -45,6 +53,9 @@ class Location < ActiveRecord::Base
       Geokit::Geocoders::ssl_verify_mode = OpenSSL::SSL::VERIFY_NONE
 
       @latlong = "#{self.lat}, #{self.long}"
-      Geokit::Geocoders::GoogleGeocoder.reverse_geocode(@latlong)
+      Geokit::Geocoders::MultiGeocoder.reverse_geocode(@latlong)
+    rescue
+      return nil
     end
   end
+end
