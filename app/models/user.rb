@@ -4,7 +4,7 @@ require_relative '../helpers/mailer'
 class User < ActiveRecord::Base
   has_many :reports
   validates :name, :email, presence: true
-  validates :name, format: {with: /\A.(?!\s*$).{1,32}\Z/,
+  validates :name, format: {with: /\A.(?!\s*$).{0,32}\Z/,
                             message: 'Must be under 32 chars'}
   # "^[\\w+\\-.]+@[a-z\\d\\-]+(\\.[a-z]+)*\\.[a-z]+$"
   validates :email, format: {with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i,
