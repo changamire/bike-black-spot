@@ -52,8 +52,7 @@ table {
   font-family: 'greens-body-font';
   src: url("/fonts/Swiss721LightCondensedBT.ttf"); }
 .info-window {
-  clear: both;
-  overflow: auto; }
+  clear: both; }
 
 .info-window-text {
   float: left;
