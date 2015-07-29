@@ -78,10 +78,11 @@ describe 'User' do
       User.create(name: 'TestNameTwo', email: 'test_two@test.com', confirmed: true)
       User.create(name: 'TestNameThree', email: 'test_three@test.com', confirmed: true)
 
+      headings_csv = %w(name email).to_csv
       user_one_csv = %w(TestNameOne test_one@test.com).to_csv
       user_two_csv = %w(TestNameTwo test_two@test.com).to_csv
       user_three_csv = %w(TestNameThree test_three@test.com).to_csv
-      expected = user_one_csv + user_two_csv + user_three_csv
+      expected = headings_csv + user_one_csv + user_two_csv + user_three_csv
 
       expect(User.export).to eq(expected)
     end
@@ -89,7 +90,7 @@ describe 'User' do
       User.create(name: 'TestNameOne', email: 'test_one@test.com', confirmed: true)
       User.create(name: 'TestNameTwo', email: 'test_two@test.com', confirmed: true)
 
-      expected = %w(TestNameOne test_one@test.com).to_csv + %w(TestNameTwo test_two@test.com).to_csv
+      expected = %w(name email).to_csv + %w(TestNameOne test_one@test.com).to_csv + %w(TestNameTwo test_two@test.com).to_csv
 
       expect(User.export).to eq(expected)
     end
@@ -99,7 +100,7 @@ describe 'User' do
       User.create(name: 'TestNameTwo', email: 'test_two@test.com')
       User.create(name: 'TestNameThree', email: 'test_three@test.com')
 
-      expected = ''
+      expected = %w(name email).to_csv
       expect(User.export).to eq(expected)
     end
   end

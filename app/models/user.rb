@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
 
 
   def self.export
-    result = ''
+    result = %w(name email).to_csv
     User.all.each do |user|
       result+=(user.as_csv) if user.confirmed
     end
