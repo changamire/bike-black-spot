@@ -8,6 +8,7 @@ gem 'sinatra-flash'
 gem 'thin'
 gem 'rack-throttle'
 gem 'aws-sdk', '~> 2'
+gem 'rubyzip'
 
 #Auth
 gem 'warden'
