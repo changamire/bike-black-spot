@@ -63,8 +63,9 @@ class Mailer
     recipients.each do |recipient|
       mail_list << Mail.new(
           to: recipient.email,
-          from: 'bikeblackspot@gmail.com',
-          subject: "Bike Black Spot Report for #{report.location.formatted_address}",
+          reply_to: report.user.email,
+          from: generate_from_email,
+          subject: 'Bike Blackspot Report',
           content_type: 'text/html; charset=UTF-8',
           body: erb
       )
@@ -85,8 +86,8 @@ class Mailer
 
     mail = Mail.new(
         to: report.user.email,
-        from: 'bikeblackspot@gmail.com',
-        subject: "Bike Black Spot Report for #{report.location.formatted_address}",
+        from: generate_from_email,
+        subject: 'Bike Blackspot Report',
         content_type: 'text/html; charset=UTF-8',
         body: erb
     )
@@ -111,6 +112,10 @@ class Mailer
   def self.generate_erb(namespace, templateFile)
     template = File.read(templateFile)
     ERB.new(template).result(namespace.instance_eval { binding })
+  end
+
+  def self.generate_from_email
+    "bikeblackspot+#{sprintf('%010d', rand(10**10))}@bikeblackspot.org"
   end
 end
 

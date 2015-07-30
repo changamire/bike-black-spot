@@ -68,14 +68,14 @@ describe 'Mailer' do
       end
       it 'should have the correct from email address' do
         expect(email.from.length).to eq(1)
-        expect(email.from.first).to eq('bikeblackspot@gmail.com')
+        expect(email.from.first).to include('@bikeblackspot.org')
       end
       it 'should have the correct to email address' do
         expect(email.to.length).to eq(1)
         expect(email.to.first).to eq('dumbledont@gmail.com')
       end
       it 'should have the correct subject' do
-        expect(email.subject).to eq("Bike Black Spot Report for #{location.formatted_address}")
+        expect(email.subject).to eq('Bike Blackspot Report')
       end
       it 'should set sent_at time on report' do
         expect(report.sent_at).to_not be_nil
@@ -92,14 +92,14 @@ describe 'Mailer' do
       end
       it 'should have the correct from email address' do
         expect(email.from.length).to eq(1)
-        expect(email.from.first).to eq('bikeblackspot@gmail.com')
+        expect(email.from.first).to include('@bikeblackspot.org')
       end
       it 'should have the correct to email address' do
         expect(email.to.length).to eq(1)
         expect(email.to.first).to eq('hpottz@hogwarts.com')
       end
       it 'should have the correct subject' do
-        expect(email.subject).to eq("Bike Black Spot Report for #{location.formatted_address}")
+        expect(email.subject).to eq('Bike Blackspot Report')
       end
     end
   end
