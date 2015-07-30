@@ -32,5 +32,6 @@ post '/reports/?' do
 
   Mailer.send_reports(report) if user.confirmed?
 
+  response['Location'] = "#{request.url}?uuid=#{report.uuid}"
   return status 201
 end

@@ -10,6 +10,17 @@ describe 'Users' do
       expect(last_response).to be_ok
     end
 
+    it 'should have location header' do
+      params = {
+          name: 'Harry Potter',
+          email: 'imawizard@hogwarts.com',
+          postcode: '9314'
+      }
+      post '/users', params
+      user = User.first
+      expect(last_response.headers['Location']).to eq("http://example.org/users?uuid=#{user.uuid}")
+    end
+
     it 'should return status 500 if incorrect params' do
       params = {
           fail: 'Incorrect Param'

@@ -9,6 +9,7 @@ post '/users/?' do
   user = User.create(params)
   return status 400 unless user.valid?
 
+  response['Location'] = "#{request.url}?uuid=#{user.uuid}"
   return user.uuid.to_json
 end
 

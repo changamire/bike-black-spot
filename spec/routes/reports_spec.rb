@@ -139,6 +139,11 @@ describe 'Reports' do
         post '/reports', params
         expect(Mail::TestMailer.deliveries.length).to eq(2)
       end
+      it 'should have Location header' do
+        post '/reports', params
+        report = Report.first
+        expect(last_response.headers['Location']).to eq("http://example.org/reports?uuid=#{report.uuid}")
+      end
     end
 
     describe 'with a base64 image' do
