@@ -20,7 +20,7 @@ class ImageUpload
   end
 
   def self.upload_base64(image, file_name)
-    file_path = "tmp/#{file_name}"
+    file_path = "temp/#{file_name}"
     File.open(file_path, 'w+') do|f|
       f.write(Base64.decode64(image))
     end
