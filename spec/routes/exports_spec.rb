@@ -26,14 +26,6 @@ describe 'Exports' do
           get '/exports?users=true'
           expect(last_response.status).to be(200)
         end
-        xit 'should return categories csv' do
-          user_one = User.create(name: 'First name', email: 'first@email.com', confirmed: 'true')
-          user_two = User.create(name: 'Second name', email: 'second@email.com', confirmed: 'true')
-
-          get '/exports?users=true'
-
-          expect(CSV.parse(last_response.body)).to eql(CSV.parse(user_one.as_csv+user_two.as_csv))
-        end
       end
     end
   end

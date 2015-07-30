@@ -34,20 +34,5 @@ describe 'Exports' do
         expect(last_response.status).to eq(400)
       end
     end
-
-    xdescribe '/categories.csv' do
-      it 'should return categories csv' do
-        categories.each do |category|
-          Category.create(name: category[:name], description: 'This is a description')
-        end
-        get '/categories.csv'
-
-        expect(CSV.parse(last_response.body)).to eql(CSV.parse(categories.to_csv))
-      end
-      it 'should return 400 when params' do
-        get '/categories.csv?someparam=someparam'
-        expect(last_response.status).to eq(400)
-      end
-    end
   end
 end
