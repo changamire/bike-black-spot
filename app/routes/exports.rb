@@ -14,7 +14,9 @@ get '/exports/?' do
   content_type 'application/csv'
   if params[:users]
     attachment 'users-encrypted.zip'
-    return Zip::OutputStream.write_buffer(::StringIO.new(''), Zip::TraditionalEncrypter.new(ENV['USER_ENCRYPTION_PASSWORD'])) do |out|
+    encrypt_with = ENV['USER_ENCRYPTION_PASSWORD']
+    encrypt_with = 'test' if ENV['RACK_ENV']=='test'
+    return Zip::OutputStream.write_buffer(::StringIO.new(''), Zip::TraditionalEncrypter.new(encrypt_with)) do |out|
       out.put_next_entry('users.csv')
       out.write User.export
     end.string
