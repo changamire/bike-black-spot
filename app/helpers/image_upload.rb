@@ -20,13 +20,14 @@ class ImageUpload
   end
 
   def self.upload_base64(image, file_name)
-    File.open(file_name, 'w+') do|f|
+    file_path = "temp/#{file_name}"
+    File.open(file_path, 'w+') do|f|
       f.write(Base64.decode64(image))
     end
 
-    url = upload(file_name,file_name)
+    url = upload(file_path,file_name)
 
-    File.delete(file_name)
+    File.delete(file_path)
 
     return url
   end
