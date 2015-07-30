@@ -66,7 +66,7 @@ describe 'User' do
   describe 'as_csv' do
     it 'should convert User instance into csv' do
       user = User.create(name: 'TestName', email: 'test@test.com')
-      expected = ['TestName', 'test@test.com'].to_csv
+      expected = "TestName,test@test.com,\n"
 
       expect(user.as_csv).to eq(expected)
     end
@@ -76,12 +76,12 @@ describe 'User' do
     it 'should convert all users into csv' do
       User.create(name: 'TestNameOne', email: 'test_one@test.com', confirmed: true)
       User.create(name: 'TestNameTwo', email: 'test_two@test.com', confirmed: true)
-      User.create(name: 'TestNameThree', email: 'test_three@test.com', confirmed: true)
+      User.create(name: 'TestNameThree', email: 'test_three@test.com', confirmed: true, postcode: '1234')
 
-      headings_csv = %w(name email).to_csv
-      user_one_csv = %w(TestNameOne test_one@test.com).to_csv
-      user_two_csv = %w(TestNameTwo test_two@test.com).to_csv
-      user_three_csv = %w(TestNameThree test_three@test.com).to_csv
+      headings_csv = %w(name email postcode).to_csv
+      user_one_csv = "TestNameOne,test_one@test.com,\n"
+      user_two_csv = "TestNameTwo,test_two@test.com,\n"
+      user_three_csv = "TestNameThree,test_three@test.com,1234\n"
       expected = headings_csv + user_one_csv + user_two_csv + user_three_csv
 
       expect(User.export).to eq(expected)
@@ -90,7 +90,7 @@ describe 'User' do
       User.create(name: 'TestNameOne', email: 'test_one@test.com', confirmed: true)
       User.create(name: 'TestNameTwo', email: 'test_two@test.com', confirmed: true)
 
-      expected = %w(name email).to_csv + %w(TestNameOne test_one@test.com).to_csv + %w(TestNameTwo test_two@test.com).to_csv
+      expected = %w(name email postcode).to_csv + "TestNameOne,test_one@test.com,\n" + "TestNameTwo,test_two@test.com,\n"
 
       expect(User.export).to eq(expected)
     end
@@ -98,9 +98,9 @@ describe 'User' do
     it 'should return empty given no confirmed users' do
       User.create(name: 'TestNameOne', email: 'test_one@test.com')
       User.create(name: 'TestNameTwo', email: 'test_two@test.com')
-      User.create(name: 'TestNameThree', email: 'test_three@test.com')
+      User.create(name: 'TestNameThree', email: 'test_three@test.com', postcode: '1234')
 
-      expected = %w(name email).to_csv
+      expected = %w(name email postcode).to_csv
       expect(User.export).to eq(expected)
     end
   end
