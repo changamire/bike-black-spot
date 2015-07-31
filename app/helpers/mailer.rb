@@ -5,7 +5,7 @@ require 'ostruct'
 class Mailer
 
   Mail.defaults do
-    if ENV['RACK_ENV'] == 'production'
+    if ENV['RACK_ENV'] == 'qa'
       delivery_method :smtp, :user_name => '395687e8aada05c69',
                       :password => '5a507cd7412e26',
                       :address => 'mailtrap.io',
