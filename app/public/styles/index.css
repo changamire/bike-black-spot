@@ -286,3 +286,19 @@ section {
   text-decoration: uppercase; }
 
 /*# sourceMappingURL=index.css.map */
+
+#modal {
+  display: inline-block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 400px;
+  height: 100px;
+  padding: 5%;
+  margin: auto;
+  background-color: #007069;
+  text-align: center;
+  z-index: 1;
+}
