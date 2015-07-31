@@ -30,7 +30,7 @@ end
 
 get '/users/confirm/?' do
   return status 400 unless confirm_user(params)
-  redirect '/'
+  redirect '/?confirm=true'
 end
 
 def confirm_user(params)
