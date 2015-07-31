@@ -7,7 +7,7 @@ configure :test do
                              :expire_after => 3600
 end
 
-configure :production do
+configure :qa do
   use Rack::SSL
   use Rack::Throttle::Minute, :max => 1000
   use Rack::Session::Cookie, :secret => ENV['WARDEN_KEY'],
