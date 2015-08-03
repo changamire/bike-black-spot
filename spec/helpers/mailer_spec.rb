@@ -31,7 +31,7 @@ describe 'Mailer' do
 
     it 'should have the correct from email address' do
       expect(@email.from.length).to eq(1)
-      expect(@email.from.first).to eq('bikeblackspot@gmail.com')
+      expect(@email.from.first).to eq('confirmation-test@test.com')
     end
 
     it 'should have the correct subject' do

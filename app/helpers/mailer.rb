@@ -26,6 +26,10 @@ class Mailer
     end
   end
 
+  @confirmation_email = ENV['CONFIRMATION-ADDRESS'] || 'confirmation-test@test.com'
+
+  @reports_email = ENV['REPORTS_ADDRESS'] || 'reports-test'
+
   def self.send_confirmation(user)
 
     user = user
@@ -41,7 +45,7 @@ class Mailer
     erb = ERB.new(template).result(namespace.instance_eval { binding })
     mail = Mail.new(
         to: user.email,
-        from: 'confirmation@bikeblackspot.org',
+        from: @confirmation_email,
         subject: "Welcome #{user.name} to Bike Black Spot!",
         content_type: 'text/html; charset=UTF-8',
         body: erb
@@ -80,14 +84,12 @@ class Mailer
       )
     end
 
-
     mail_list.each do |mail|
       mail.deliver
       report.sent_at = Time.now
       report.save!
     end
   end
-
 
   def self.send_user_report(report)
     namespace = generate_report(report)
@@ -124,7 +126,7 @@ class Mailer
   end
 
   def self.generate_from_email
-    "bikeblackspot+#{sprintf('%010d', rand(10**10))}@bikeblackspot.org"
+    "#{@reports_email}+#{sprintf('%010d', rand(10**10))}@bikeblackspot.org"
   end
 end
 
