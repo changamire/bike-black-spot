@@ -41,7 +41,7 @@ class Mailer
     erb = ERB.new(template).result(namespace.instance_eval { binding })
     mail = Mail.new(
         to: user.email,
-        from: 'bikeblackspot@gmail.com',
+        from: 'confirmation@bikeblackspot.org',
         subject: "Welcome #{user.name} to Bike Black Spot!",
         content_type: 'text/html; charset=UTF-8',
         body: erb
