@@ -109,7 +109,8 @@ table {
       border-radius: 3px;
       background-color: #3cb8c8;
       color: white;
-      width: 80%; }
+      width: 80%;
+      border: none; }
 
 .central-col {
   margin: 0 5vw; }
@@ -121,7 +122,7 @@ table {
 .hidden {
   display: none; }
 
-#export-users-csv, #export-reports-csv {
+#export-csv {
   padding: 10px 15px;
   font-size: 1.25em;
   margin: 10px 10px 10px 0;
