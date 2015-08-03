@@ -51,18 +51,40 @@ table {
 @font-face {
   font-family: 'greens-body-font';
   src: url("/fonts/Swiss721LightCondensedBT.ttf"); }
+body {
+  font-family: greens-body-font; }
+
 h1 {
   display: block;
   font-family: greens-headings-font;
   margin: 20px 0 1vh;
-  font-size: 3em; }
+  font-size: 2.5em; }
 
 h2 {
   font-family: greens-headings-font;
-  font-size: 1.75em; }
+  font-size: 1.75em;
+  margin-top: 20px;
+  margin-bottom: 5px; }
 
 p {
   margin: 0; }
+
+button {
+  border-radius: 3px;
+  background-color: #3cb8c8;
+  color: white;
+  border: none;
+  margin-top: 15px;
+  font-family: greens-body-font;
+  font-size: 0.8em; }
+
+.big-button {
+  padding: 6px 10px;
+  font-size: 1em; }
+
+input {
+  font-family: greens-body-font;
+  font-size: 0.9em; }
 
 table {
   width: 100%;
@@ -72,23 +94,27 @@ table {
     border-right: 1px solid #ABABAB;
     border-left: 1px solid #ABABAB; }
   table thead {
-    font-weight: bold;
     color: white;
     background-color: #ABABAB; }
     table thead th {
       padding: 5px;
       text-align: left;
-      font-size: 1.25em; }
+      font-size: 1em; }
   table tbody tr:hover td {
     background-color: #EAEAEA; }
   table tbody td {
     padding-left: 5px;
     vertical-align: middle;
-    height: 30px; }
+    height: 30px;
+    font-size: 1em; }
     table tbody td img {
-      max-width: 1.75vw;
+      max-width: 1.5vw;
       margin: 2px;
       cursor: pointer; }
+    table tbody td button {
+      width: 80%;
+      margin: 2px auto;
+      display: block; }
 
 #add-recipient {
   border: 1px solid #ABABAB; }
@@ -102,15 +128,7 @@ table {
       height: 100%; }
     #add-recipient tbody tr td select {
       width: 100%;
-      height: 100%; }
-    #add-recipient tbody tr td button {
-      display: block;
-      margin: 2px auto;
-      border-radius: 3px;
-      background-color: #3cb8c8;
-      color: white;
-      width: 80%;
-      border: none; }
+      height: 75%; }
 
 .central-col {
   margin: 0 5vw; }
