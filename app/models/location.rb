@@ -45,13 +45,6 @@ class Location < ActiveRecord::Base
       Geokit::Geocoders::request_timeout = 3
       Geokit::Geocoders::provider_order = [:google, :bing]
 
-      # Disable HTTPS globally.  This option can also be set on individual
-      # geocoder classes.
-      Geokit::Geocoders::secure = false
-
-      # Control verification of the server certificate for geocoders using HTTPS
-      Geokit::Geocoders::ssl_verify_mode = OpenSSL::SSL::VERIFY_NONE
-
       @latlong = "#{self.lat}, #{self.long}"
       Geokit::Geocoders::MultiGeocoder.reverse_geocode(@latlong)
     rescue
