@@ -26,7 +26,7 @@ class Mailer
     end
   end
 
-  @confirmation_email = ENV['CONFIRMATION-ADDRESS'] || 'confirmation-test@test.com'
+  @confirmation_email = ENV['CONFIRMATION_ADDRESS'] || 'confirmation-test@test.com'
 
   @reports_email = ENV['REPORTS_ADDRESS'] || 'reports-test'
 
