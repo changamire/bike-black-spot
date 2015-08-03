@@ -52,12 +52,13 @@ table {
   font-family: 'greens-body-font';
   src: url("/fonts/Swiss721LightCondensedBT.ttf"); }
 .info-window {
-  clear: both; }
+  display: table-row; }
 
 .info-window-text {
-  float: left;
   margin-right: 15px;
-  max-width: 225px; }
+  max-width: 225px;
+  display: table-cell;
+  vertical-align: top; }
   @media (max-width: 768px) {
     .info-window-text {
       max-width: 250px; } }
@@ -75,7 +76,9 @@ table {
         font-size: 1.2em; } }
 
 .info-window-image {
-  float: right; }
+  display: table-cell;
+  vertical-align: middle;
+  width: 140px; }
   .info-window-image img {
     max-width: 140px; }
 
