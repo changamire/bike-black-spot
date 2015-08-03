@@ -19,8 +19,8 @@ class Mailer
                       :address => 'smtp.sendgrid.net',
                       :domain => 'bikeblackspot.org',
                       :port => '587',
-                      :authentication => :cram_md5
-
+                      :authentication => :plain,
+                      :enable_starttls_auto => true
     else
       delivery_method :smtp, address: 'localhost', port: 1025
     end
