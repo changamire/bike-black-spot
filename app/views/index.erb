@@ -23,9 +23,11 @@
     <% if (confirm=='true') %>
     <div id="modal">
       <div class="confirmation">
-        <button onclick="$('#modal').css('display', 'none')">X</button>
-        <h2>Thanks for verifying</h2>
-        <p>Thats super helpful mate. Heaps sick of you.</p>
+        <div class="close" onclick="$('#modal').css('display', 'none')">
+        	<img src="/images/close.png">
+        </div>
+        <h2>SUCCESS! YOUR EMAIL HAS BEEN VERIFIED</h2>
+        <p>Thanks for your help in keeping Australia’s bike paths safe.</p>
       </div>
     </div>
     <% end %>

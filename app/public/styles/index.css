@@ -301,7 +301,13 @@ section {
   height: 100px;
   padding: 5%;
   margin: auto;
-  background-color: #007069;
+  background-color: #fff;
   text-align: center;
   z-index: 1;
+}
+
+.close {
+  float: right;
+  top: 0;
+  padding: 20px;
 }
