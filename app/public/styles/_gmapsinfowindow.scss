@@ -9,7 +9,10 @@
 	display: table-cell;
 	vertical-align: top;
 
-	@include breakpoint(ipad) { max-width: 250px; }
+	@include breakpoint(ipad) { 
+		max-width: 250px;
+		display: table-row;
+	}
 
 	& h4 {
 		font-weight: bold;
@@ -29,7 +32,15 @@
 	vertical-align: middle;
 	width: 140px;
 
+	@include breakpoint(ipad) { 
+		display: table-row;
+	}
+
 	& img {
 		max-width: 140px;
+
+		@include breakpoint(ipad) { 
+			margin-top: 8px;
+		}
 	}
 }

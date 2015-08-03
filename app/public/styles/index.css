@@ -61,7 +61,8 @@ table {
   vertical-align: top; }
   @media (max-width: 768px) {
     .info-window-text {
-      max-width: 250px; } }
+      max-width: 250px;
+      display: table-row; } }
   .info-window-text h4 {
     font-weight: bold;
     margin-top: 0.6vh; }
@@ -79,8 +80,14 @@ table {
   display: table-cell;
   vertical-align: middle;
   width: 140px; }
+  @media (max-width: 768px) {
+    .info-window-image {
+      display: table-row; } }
   .info-window-image img {
     max-width: 140px; }
+    @media (max-width: 768px) {
+      .info-window-image img {
+        margin-top: 8px; } }
 
 h1 {
   display: block;
