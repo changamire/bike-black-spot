@@ -68,7 +68,8 @@ function placeReportLocationMarkersOnMap(map, reportData) {
 		mapData.push( 
 			[new google.maps.Marker({
 				position: new google.maps.LatLng(data[LATITUDE], data[LONGITUDE]),
-    			map: map
+    			map: map,
+    			icon: '/images/blackspot.png'
 			}), 
 			data[2], data[3], data[4], data[5]]
     	)
