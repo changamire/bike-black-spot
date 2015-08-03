@@ -12,6 +12,15 @@ class Mailer
                       :domain => 'mailtap.io',
                       :port => '2525',
                       :authentication => :cram_md5
+
+    elsif ENV['RACK_ENV'] == 'production'
+      delivery_method :smtp, :user_name => ENV['SENDGRID_USERNAME'],
+                      :password => ENV['SENDGRID_PASSWORD'],
+                      :address => 'smtp.sendgrid.net',
+                      :domain => 'bikeblackspot.org',
+                      :port => '587',
+                      :authentication => :cram_md5
+
     else
       delivery_method :smtp, address: 'localhost', port: 1025
     end
