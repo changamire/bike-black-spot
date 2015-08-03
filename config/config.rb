@@ -29,5 +29,4 @@ configure :production do
                              :expire_after => 3600
 
   Geokit::Geocoders::secure = true
-  Geokit::Geocoders::ssl_verify_mode = OpenSSL::SSL::VERIFY_(PEER/NONE)
 end
