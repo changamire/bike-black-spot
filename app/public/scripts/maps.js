@@ -4,21 +4,21 @@ var MAP_MARKER = 0;
 var ActiveInfoWindow = null;
 var Melbourne = [-37.817443, 144.960140];
 
-function getMapsDataFromReports() {
+function getMapsDataFromReports(map) {
 	var rawLocations = [];
 	var markerData = [];
 
 	$.ajax({
 		dataType: "json",
 		url: "/reports",
-		async: false,
 		success: function(reports) {
 			reports.forEach(function(report){
 				markerData.push([report.latitude, report.longitude, report.category, report.description, report.address, report.image]);
 			})
+			placeReportLocationMarkersOnMap(map,markerData);
 		}
 	});
-	return markerData;
+	
 }
 
 function generateInfoWindowHtml(markerData) {
@@ -96,7 +96,7 @@ function initialiseMaps() {
     }
     var map = new google.maps.Map(mapCanvas, mapOptions);
 
-    placeReportLocationMarkersOnMap(map,getMapsDataFromReports());
+    getMapsDataFromReports(map);
 
     google.maps.event.addListener(map, 'click', function() {
 		if(ActiveInfoWindow != null) ActiveInfoWindow.close(); 
