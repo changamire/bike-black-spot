@@ -1,0 +1,46 @@
+#modal {
+	display: inline-block;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 50%;
+	height: 40%;
+	padding: 1%;
+	margin: auto;
+	background-color: #fff;
+	text-align: center;
+	z-index: 1;
+}
+
+.confirmation {
+	vertical-align: middle;
+	margin-top: 8%;
+
+	button {
+		margin: 10px;
+		margin-top: 5%;
+		width: 25%;
+		height: auto;
+		font-family: greens-headings-font;
+		font-size: 1.5em;
+		background-color: #ffcc29;
+		border: none;
+		border-radius: 2px;
+	}
+}
+
+.close {
+	text-align: right;
+	right: 0;
+	top: 0;
+	padding: 10px;
+	border: none;
+	outline: none;
+	background-color: none;
+}
+
+.close:hover {
+	cursor: pointer;
+}
