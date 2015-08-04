@@ -9,30 +9,31 @@
 <body style="margin: 0;">
 
 <div class="header" style="width:100%; height: auto;">
-  <img src="https://s3-ap-southeast-2.amazonaws.com/bikeblackspot2015/static_resources/banner.png" style="width: 100%; height: auto; background-size: cover; display: block;"/>
+  <img src="https://s3-ap-southeast-2.amazonaws.com/bikeblackspot2015/static_resources/banner.png" style="width: 60%; height: auto; background-size: cover; display: block; margin: 0 auto; padding-bottom: 2%"/>
 </div>
 
 <div class="container" style="width: 100%; height: auto; text-align: center;">
 
   <div class="message" style="width: 100%; height: 0 auto; text-align: center; margin-bottom: 3%;">
-    <h1 style="font-family: 'Fjalla One', sans-serif; letter-spacing: 1px;">BIKE BLACKSPOT REPORT LOGGED</h1>
+    <h1 style="font-family: 'Fjalla One', sans-serif; letter-spacing: 1px;">BIKE BLACKSPOT <span style="color:#21BED8;">REPORT LOGGED</span></h1>
   </div>
 
-  <div class="map" style="width: 60%; height: auto; margin: 0 auto;"><img style="width: 100%" src="<%= google_map %>">
+  <div class="map" style="width: 60%; height: auto; margin: 0 auto; margin-bottom: 20px;"><img style="width: 100%; max-height: 300px;" src="<%= google_map %>">
   </div>
 
-  <div class="message" style="width: 100%; height: 0 auto; text-align: center; margin-bottom: 3%;">
-    <h1 style="font-family: 'Fjalla One', sans-serif; letter-spacing: 1px;">
-      <span style="color: #21BED8;"><%= name %> <%= last %></span>&nbsp;<%= date %></h1>
-  </div>
-
-  <div class="report" style="width: 56%; height: auto; padding: 2%; background-color: #eee; margin: 0 auto; text-align: center; overflow: auto;">
+  <div class="report" style="width: 56%; height: auto; padding: 2%; background-color: #eee; margin: 0 auto; text-align: left; overflow: auto;">
 
     <div class="info" style="width: 60%; float: left; text-align: left; ">
-      <h3 style="font-family: 'Fjalla One', sans-serif; letter-spacing: 1px; padding-right: 10px;"><%= title %></h3>
 
-      <h3 style="font-family: 'Fjalla One', sans-serif; letter-spacing: 1px;">
-        <span style="color: #21BED8; padding-right: 10px;"><%= address %></span></h3>
+      <h3 style="font-family: 'Fjalla One', sans-serif; letter-spacing: 1px; padding-right: 10px;"><span style="color: #21BED8; padding-right: 10px;">NAME:</span> <%= name %> <%= last %></h3>
+
+      <h3 style="font-family: 'Fjalla One', sans-serif; letter-spacing: 1px; padding-right: 10px;"><span style="color: #21BED8; padding-right: 10px;">DATE:</span> <%= date %></h3>
+
+      <h3 style="font-family: 'Fjalla One', sans-serif; letter-spacing: 1px; padding-right: 10px;"><span style="color: #21BED8; padding-right: 10px;">ISSUE TYPE:</span> <%= title %></h3>
+
+      <h3 style="font-family: 'Fjalla One', sans-serif; letter-spacing: 1px;"><span style="color: #21BED8; padding-right: 10px;">LOCATION:</span> <%= address %></h3>
+
+      <h3 style="font-family: 'Fjalla One', sans-serif; letter-spacing: 1px;"><span style="color: #21BED8; padding-right: 10px;">DESCRIPTION:</span></h3>
 
       <p style="font-family: 'Quicksand', sans-serif; padding-right: 10px;"><%= description %></p>
     </div>
@@ -45,12 +46,11 @@
 
   </div>
 
-  <footer style="font-family: 'Quicksand', sans-serif; font-size: 12px; width: 100%; height: auto; margin: 0 auto; padding-top: 3%; padding-bottom: 3%;">
+  <footer style="font-family: 'Quicksand', sans-serif; font-size: 14px; width: 100%; height: auto; margin: 0 auto; padding-top: 3%; padding-bottom: 3%;">
 
     <div class="disc">
-      <div class="text" style="width: 32%; margin: 0 auto; padding-top: 10px; text-align: center;">
-        <img src="https://s3-ap-southeast-2.amazonaws.com/bikeblackspot2015/static_resources/greens.jpg" style="width: 10%; padding-right: 2%; float: left;">
-        <span>This is a campaign of the Australian Greens. Authorised by Senator Janet Rice, 240 Sydney Rd Coburg VIC 3058.</span>
+      <div class="text" style="width: 60%; margin: 0 auto; padding-top: 10px; text-align: center;">
+        <span>This report was generated via the Bike Blackspot App </br> <a href="" style="text-decoration: none; color: #21BED8; font-weight: bold;">bikeblackspot.org</a></span>
       </div>
     </div>
 
