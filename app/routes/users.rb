@@ -10,6 +10,7 @@ post '/users/?' do
   return status 400 unless user.valid?
 
   response['Location'] = "#{request.url}?uuid=#{user.uuid}"
+  status 201
   return user.uuid.to_json
 end
 
