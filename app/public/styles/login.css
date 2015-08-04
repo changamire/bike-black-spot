@@ -4,4 +4,19 @@
     padding: 10px 10px 10px 10px;
     color: #D8000C;
     background-color: #FFBABA;
+    border-radius: 4px;
+}
+
+.margin-top {
+	margin-top: 10px;
+}
+
+.margin-bottom {
+	margin-bottom: 15px;
+}
+
+.login-container {
+	width: 350px;
+	padding-top: 40px;
+	margin: 0 auto;
 }
