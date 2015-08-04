@@ -103,6 +103,26 @@ table {
   background-color: #fff;
   text-align: center;
   z-index: 1; }
+  @media (max-width: 768px) {
+    #modal {
+      width: 75%;
+      height: 65%; }
+      #modal h2 {
+        font-size: 2.6em; } }
+  @media (max-width: 400px) {
+    #modal {
+      width: 75%;
+      height: 55%; }
+      #modal h2 {
+        font-size: 2.3em; } }
+  @media (max-width: 640px) and (max-height: 320px) {
+    #modal {
+      width: 75%;
+      height: 65%; }
+      #modal h2 {
+        font-size: 1.8em; }
+      #modal p {
+        font-size: 1.1em; } }
 
 .confirmation {
   vertical-align: middle;
@@ -135,7 +155,7 @@ h1 {
   font-family: greens-headings-font;
   margin: 0 0 2vh;
   font-size: 3.3em; }
-  @media (max-width: 640px) {
+  @media (max-width: 400px) {
     h1 {
       font-size: 2.8em; } }
 
@@ -144,7 +164,7 @@ h1 {
   text-align: center;
   font-size: 3.5em;
   margin: 0 0 2vh; }
-  @media (max-width: 640px) {
+  @media (max-width: 400px) {
     #main-heading {
       font-size: 2.9em;
       margin: 0 1vw 2vh 1vw; } }
@@ -152,7 +172,7 @@ h1 {
 #main-description {
   margin: 0 auto;
   max-width: 60vw; }
-  @media (max-width: 640px) {
+  @media (max-width: 400px) {
     #main-description {
       max-width: 80vw; } }
 
@@ -162,7 +182,7 @@ h2 {
   font-size: 2.8em;
   color: #3CB8C8;
   margin-bottom: 5px; }
-  @media (max-width: 640px) {
+  @media (max-width: 400px) {
     h2 {
       font-size: 2.3em; } }
 
@@ -174,7 +194,7 @@ h3 {
   font-size: 1.3em;
   line-height: 1.3em;
   text-shadow: 2px 2px 6px #555555; }
-  @media (max-width: 640px) {
+  @media (max-width: 400px) {
     h3 {
       font-size: 1.1em; } }
 
@@ -228,7 +248,7 @@ footer p {
   font-size: 0.8em;
   position: relative;
   top: 7px; }
-  @media (max-width: 640px) {
+  @media (max-width: 400px) {
     footer p {
       font-size: 0.7em;
       top: 0px;
@@ -253,7 +273,7 @@ footer p {
 
 .left_column {
   width: 60vw; }
-  @media (max-width: 640px) {
+  @media (max-width: 400px) {
     .left_column {
       width: 100%; } }
 
@@ -279,7 +299,7 @@ footer p {
 #up-arrow {
   float: right;
   color: #3CB8C8; }
-  @media (max-width: 640px) {
+  @media (max-width: 400px) {
     #up-arrow {
       position: relative;
       bottom: 60px;
