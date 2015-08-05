@@ -1,13 +1,13 @@
 describe 'Users' do
   describe 'Post to /users' do
-    it 'should return status 200(OK) if correct params' do
+    it 'should return status 201(OK) if correct params' do
       params = {
           name: 'Harry Potter',
           email: 'imawizard@hogwarts.com',
           postcode: '9314'
       }
       post '/users', params
-      expect(last_response).to be_ok
+      expect(last_response.status).to be(201)
     end
 
     it 'should have location header' do
@@ -29,13 +29,13 @@ describe 'Users' do
       expect(last_response.status).to eq(400)
     end
 
-    it 'should still return status 200(OK) if no optional param' do
+    it 'should still return status 201(OK) if no optional param' do
       params = {
           name: 'No postcode',
           email: 'no@postcode.com'
       }
       post '/users', params
-      expect(last_response).to be_ok
+      expect(last_response.status).to be(201)
     end
 
     it 'should return UUID' do
