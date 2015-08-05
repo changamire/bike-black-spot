@@ -192,7 +192,7 @@ describe 'Report' do
     it 'should return empty given no confirmed users' do
       user = User.create(name: 'TestNameOne', email: 'test_one@test.com')
       category = Category.create(name: 'category1Name', description: 'valid description')
-      location = Location.create(lat: '-37.8165501', long: '144.9638398')
+      # location = Location.create(lat: '-37.8165501', long: '144.9638398')
 
       Report.create({user: user, category: category, location: location, description: valid_description+'1'})
 

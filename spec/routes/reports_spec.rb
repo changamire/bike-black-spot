@@ -1,12 +1,31 @@
+require_relative '../spec_helper'
 describe 'Reports' do
   describe 'Get /reports' do
     params = {}
     user = {}
 
+
+    mocked_location = OpenStruct.new
+    mocked_location.street_number = '1'
+    mocked_location.street_name = 'mocked_name'
+    mocked_location.city = 'mocked_suburb'
+    mocked_location.state_code = 'VICMocked'
+    mocked_location.zip = '1234'
+    mocked_location.country = 'Australia'
+    mocked_location.full_address = mocked_location.street_number + ' ' + mocked_location.street_name + ' ' + mocked_location.city +
+        ', ' + mocked_location.state_code + ', ' + mocked_location.zip + ', ' + mocked_location.country
+
+
+
+
+
     before(:each) do
       user = User.create(name: 'liam', email: 'l@l.com')
       category = Category.create(name: 'category1Name', description: 'valid description')
+
+      allow_any_instance_of(Location).to receive(:call_geocoder).and_return(mocked_location)
       location = Location.create(lat: '-37.8165501', long: '144.9638398')
+
       params = {user: user, category: category, location: location, description: 'x'}
     end
 
