@@ -7,11 +7,15 @@
 	right: 0;
 	width: 50%;
 	height: 33%;
-	padding: 1%;
+	// padding: 1%;
 	margin: auto;
 	background-color: #fff;
 	text-align: center;
 	z-index: 1;
+	min-width: 250px;
+	min-height: 200px;
+	max-height: 250px;
+	max-width: 500px;
 
 	@include breakpoint(ipad) {
 		width: 75%;
@@ -29,7 +33,7 @@
 		h2 {
 			font-size: 2.3em;
 		}
-	}	
+	}
 
 	@include breakpoint(iphone5-landscape) {
 		width: 75%;
@@ -47,7 +51,8 @@
 
 .confirmation {
 	vertical-align: middle;
-	margin-top: 2%;
+	padding-right: 1%;
+  padding-left: 1%;
 
 	button {
 		margin: 10px;
@@ -63,7 +68,6 @@
 }
 
 .close {
-	text-align: right;
 	right: 0;
 	top: 0;
 	padding: 10px;
@@ -74,4 +78,8 @@
 
 .close:hover {
 	cursor: pointer;
+}
+
+.shift-right {
+	text-align: right;
 }
