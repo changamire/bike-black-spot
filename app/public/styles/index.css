@@ -97,15 +97,13 @@ table {
   left: 0;
   right: 0;
   width: 50%;
-  height: 33%;
+  height: 235px;
   margin: auto;
   background-color: #fff;
   text-align: center;
   z-index: 1;
-  min-width: 250px;
-  min-height: 200px;
-  max-height: 250px;
-  max-width: 500px; }
+  min-height: 235px;
+  max-height: 240px; }
   @media (max-width: 768px) {
     #modal {
       width: 75%;

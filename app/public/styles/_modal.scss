@@ -6,16 +6,16 @@
 	left: 0;
 	right: 0;
 	width: 50%;
-	height: 33%;
+	height: 235px;
 	// padding: 1%;
 	margin: auto;
 	background-color: #fff;
 	text-align: center;
 	z-index: 1;
-	min-width: 250px;
-	min-height: 200px;
-	max-height: 250px;
-	max-width: 500px;
+	//min-width: 250px;
+	min-height: 235px;
+	max-height: 240px;
+	//max-width: 500px;
 
 	@include breakpoint(ipad) {
 		width: 75%;
