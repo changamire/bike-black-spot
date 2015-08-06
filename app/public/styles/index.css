@@ -270,9 +270,12 @@ footer p {
   overflow: hidden;
   width: 100%;
   color: #fff; }
+  @media (max-width: 768px) {
+    #page-1 {
+      background-image: url("/images/bike_background_medium_compressed.jpg"); } }
   @media (max-width: 400px) {
     #page-1 {
-      background-image: url("/images/bike_background_compressed.jpg"); } }
+      background-image: url("/images/bike_background_small_compressed.jpg"); } }
 
 #page-2 {
   padding: 1px;
