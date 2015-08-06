@@ -296,6 +296,9 @@ footer p {
   display: block;
   margin: 40px auto;
   width: 30px; }
+  @media (max-width: 400px) {
+    #arrow-img {
+      margin: 20px auto; } }
 
 #arrow-img img {
   width: 30px; }
@@ -353,7 +356,7 @@ footer p {
   top: 33.34%; }
   @media (max-width: 768px) {
     .text-wrapper {
-      top: 25%; } }
+      top: 15%; } }
 
 .blue {
   color: #3CB8C8; }

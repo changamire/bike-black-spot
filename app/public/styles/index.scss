@@ -173,6 +173,9 @@ footer p {
 	display: block;
 	margin: 40px auto;
 	width: 30px;
+	@include breakpoint(iphone5-portrait) {
+		margin: 20px auto;
+	}
 }
 
 #arrow-img img {
@@ -241,7 +244,7 @@ footer p {
 .text-wrapper {
 	position: relative;
 	top: 33.34%;
-	@include breakpoint(ipad) { top: 25%; }
+	@include breakpoint(ipad) { top: 15%; }
 }
 
 .blue {
