@@ -290,7 +290,7 @@ footer p {
   width: 100%; }
 
 #app-download-link-wrapper {
-  margin-top: 5vh; }
+  margin-top: 3vh; }
 
 #arrow-img {
   display: block;
@@ -335,6 +335,14 @@ footer p {
 
 #info {
   padding-top: 30px; }
+
+#app-icon {
+  margin: 0 auto;
+  width: 50px;
+  margin-top: 3vh; }
+
+#app-icon img {
+  width: 50px; }
 
 .page-container {
   padding: 1px;
