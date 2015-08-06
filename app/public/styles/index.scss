@@ -141,6 +141,9 @@ footer p {
 	overflow: hidden;
 	width: 100%;
 	color: #fff;
+	@include breakpoint(iphone5-portrait) {
+		background-image: url("/images/bike_background_compressed.jpg")
+	}
 }
 
 #page-2 {

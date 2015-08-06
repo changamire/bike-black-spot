@@ -270,6 +270,9 @@ footer p {
   overflow: hidden;
   width: 100%;
   color: #fff; }
+  @media (max-width: 400px) {
+    #page-1 {
+      background-image: url("/images/bike_background_compressed.jpg"); } }
 
 #page-2 {
   padding: 1px;
