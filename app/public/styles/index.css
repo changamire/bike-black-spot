@@ -272,10 +272,10 @@ footer p {
   color: #fff; }
   @media (max-width: 768px) {
     #page-1 {
-      background-image: url("/images/bike_background_medium_compressed.jpg"); } }
+      background-image: url("https://s3-ap-southeast-2.amazonaws.com/bikeblackspot2015/static_resources/bike_background_medium_compressed.jpg"); } }
   @media (max-width: 400px) {
     #page-1 {
-      background-image: url("/images/bike_background_small_compressed.jpg"); } }
+      background-image: url("https://s3-ap-southeast-2.amazonaws.com/bikeblackspot2015/static_resources/bike_background_small_compressed.jpg"); } }
 
 #page-2 {
   padding: 1px;

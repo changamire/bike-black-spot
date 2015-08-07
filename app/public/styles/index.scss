@@ -142,10 +142,10 @@ footer p {
 	width: 100%;
 	color: #fff;
 	@include breakpoint(ipad) {
-		background-image: url("/images/bike_background_medium_compressed.jpg")
+		background-image: url("https://s3-ap-southeast-2.amazonaws.com/bikeblackspot2015/static_resources/bike_background_medium_compressed.jpg")
 	}
 	@include breakpoint(iphone5-portrait) {
-		background-image: url("/images/bike_background_small_compressed.jpg")
+		background-image: url("https://s3-ap-southeast-2.amazonaws.com/bikeblackspot2015/static_resources/bike_background_small_compressed.jpg")
 	}
 }
 
