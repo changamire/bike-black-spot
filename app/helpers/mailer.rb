@@ -131,10 +131,5 @@ class Mailer
 end
 
 def generate_static_google_map(lat, long, zoom, size, scale)
-  "https://maps.googleapis.com/maps/api/staticmap?
-        center=#{lat},#{long}
-        &zoom=#{zoom}
-        &size=#{size}
-        &scale=#{scale}
-        &markers=color:black%7Clabel:%7C#{lat},#{long}"
+  "https://maps.googleapis.com/maps/api/staticmap?center=#{lat},#{long}&zoom=#{zoom}&size=#{size}&scale=#{scale}&markers=color:black%7Clabel:%7C#{lat},#{long}"
 end
