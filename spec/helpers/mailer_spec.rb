@@ -35,7 +35,7 @@ describe 'Mailer' do
     end
 
     it 'should have the correct subject' do
-      expect(@email.subject).to eq('Welcome Harry Potter to Bike Black Spot!')
+      expect(@email.subject).to eq('Welcome Harry Potter to Bike Blackspot!')
     end
 
     it 'should generate link with token to confirm' do
@@ -75,7 +75,7 @@ describe 'Mailer' do
         expect(email.to.first).to eq('dumbledont@gmail.com')
       end
       it 'should have the correct subject' do
-        expect(email.subject).to eq('Bike Black Spot Report for 11 Nicholson Street, Carlton VIC 3053, Australia')
+        expect(email.subject).to eq('Bike Blackspot Report for 11 Nicholson Street, Carlton VIC 3053, Australia')
       end
       it 'should set sent_at time on report' do
         expect(report.sent_at).to_not be_nil
@@ -99,7 +99,7 @@ describe 'Mailer' do
         expect(email.to.first).to eq('hpottz@hogwarts.com')
       end
       it 'should have the correct subject' do
-        expect(email.subject).to eq('Bike Black Spot Report for 11 Nicholson Street, Carlton VIC 3053, Australia')
+        expect(email.subject).to eq('Bike Blackspot Report for 11 Nicholson Street, Carlton VIC 3053, Australia')
       end
     end
   end

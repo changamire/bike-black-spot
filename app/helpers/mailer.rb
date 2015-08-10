@@ -46,7 +46,7 @@ class Mailer
     mail = Mail.new(
         to: user.email,
         from: @confirmation_email,
-        subject: "Welcome #{user.name} to Bike Black Spot!",
+        subject: "Welcome #{user.name} to Bike Blackspot!",
         content_type: 'text/html; charset=UTF-8',
         body: erb
     )
@@ -78,7 +78,7 @@ class Mailer
           to: recipient.email,
           reply_to: report.user.email,
           from: generate_from_email,
-          subject: "Bike Black Spot Report for #{report.location.formatted_address}",
+          subject: "Bike Blackspot Report for #{report.location.formatted_address}",
           content_type: 'text/html; charset=UTF-8',
           body: erb
       )
@@ -98,7 +98,7 @@ class Mailer
     mail = Mail.new(
         to: report.user.email,
         from: generate_from_email,
-        subject: "Bike Black Spot Report for #{report.location.formatted_address}",
+        subject: "Bike Blackspot Report for #{report.location.formatted_address}",
         content_type: 'text/html; charset=UTF-8',
         body: erb
     )
