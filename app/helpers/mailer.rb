@@ -108,7 +108,7 @@ class Mailer
 
   def self.generate_report(report)
     location = report.location
-    google_map = generate_static_google_map(location.lat, location.long, 14, '475x200', 2)
+    google_map = generate_static_google_map(location.lat, location.long, 14, '580x313', 2)
     return OpenStruct.new(
         address: location.formatted_address,
         description: report.description,
