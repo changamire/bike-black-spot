@@ -130,12 +130,17 @@ describe 'Users' do
   end
   describe 'Get users' do
     it 'should return 400 given too many params' do
-      get '/users?uuid=2134324,test=no'
+      get '/users?uuid=2134324&test=no'
       expect(last_response.status).to be(400)
     end
     it 'should return 400 given no uuid' do
       get '/users'
       expect(last_response.status).to be(400)
+    end
+    it 'should return null given non existent uuid' do
+      user = User.create(name: 'name1', email: 'email1@email.com')
+      get "/users?uuid=#{user.uuid}100"
+      expect(last_response.body).to eql('null')
     end
     it 'should return false given unconfirmed user' do
       user = User.create(name: 'name1', email: 'email1@email.com')

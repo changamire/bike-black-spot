@@ -8,7 +8,7 @@ describe 'Login' do
     test_admin = Admin.create(username: 'userCat', password: 'userPass')
 
     post '/login', params={username: 'userCat', password: 'userPass'}
-    
+
     test_admin.delete
     expect(last_response.redirect?).to be(true)
     expect(last_response.location).to eql(LOCAL + '/admin')

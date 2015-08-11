@@ -19,7 +19,7 @@ get '/users/?' do
   required = %w(uuid)
   return status 400 unless validate_params?(params, permitted, required)
   user = User.find_by(uuid: params[:uuid])
-  return status 400 if user.nil?
+  return user.to_json if user.nil?
   return [confirmed: user.confirmed].to_json
 end
 
