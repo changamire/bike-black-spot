@@ -6,7 +6,14 @@ get '/login/?' do
 end
 
 post '/login' do
+
+  permitted = %w(username password)
+  required = %w(username password)
+
+  return status 400 unless validate_params?(params, permitted, required)
+
   warden.authenticate!
+
   redirect '/admin'
 end
 
