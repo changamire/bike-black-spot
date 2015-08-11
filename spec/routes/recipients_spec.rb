@@ -20,6 +20,15 @@ describe 'Recipients' do
       expect(last_response.status).to be(400)
     end
 
+    it 'should return error with empty params' do
+      login_as :Admin
+
+      post '/recipients', {name: '',
+                           email: 'myemail@email.com',
+                           state: 'Vic'}
+      expect(last_response.status).to be(400)
+    end
+
     it 'should allow recipient creation' do
       login_as :Admin
       post '/recipients', params
