@@ -3,7 +3,7 @@ require_relative '../models/user'
 require 'csv'
 require 'zip'
 
-get '/exports/users?' do
+get '/exports/users/?' do
 
   permitted = %w()
   required = %w()
@@ -22,7 +22,7 @@ get '/exports/users?' do
   end.string
   return
 end
-get '/exports/reports?' do
+get '/exports/reports/?' do
   permitted = %w()
   required = %w()
 
@@ -30,10 +30,8 @@ get '/exports/reports?' do
   return status 401 unless warden.authenticated?
 
   content_type 'application/csv'
-  if params[:reports]
-    attachment 'reports.csv'
-    reports = Report.export
-    return reports
-  end
+  attachment 'reports.csv'
+  reports = Report.export
+  return reports
 end
 
