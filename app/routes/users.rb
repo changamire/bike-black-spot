@@ -23,7 +23,7 @@ get '/users/?' do
   return [confirmed: user.confirmed].to_json
 end
 
-get '/users/confirm/?', :agent => /iPhone/ do
+get '/users/confirm/?', :agent => /iPhone|Android/ do
   params.delete(:agent)
   return status 400 unless confirm_user(params)
   redirect 'bikeblackspot://'
