@@ -154,31 +154,33 @@ table {
 .shift-right {
   text-align: right; }
 
-h1 {
+h1, h4 {
   display: block;
   font-family: greens-headings-font;
   margin: 0 0 2vh;
   font-size: 3.3em; }
   @media (max-width: 400px) {
-    h1 {
+    h1, h4 {
       font-size: 2.8em; } }
 
-#main-heading {
+#main-heading, #sub-heading {
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
-  text-align: center;
-  font-size: 3.5em;
-  margin: 0 0 2vh; }
+  text-align: center; }
   @media (max-width: 400px) {
-    #main-heading {
+    #main-heading, #sub-heading {
       font-size: 2.9em;
       margin: 0 1vw 2vh 1vw; } }
 
-#main-description {
-  margin: 0 auto;
-  max-width: 60vw; }
-  @media (max-width: 400px) {
-    #main-description {
-      max-width: 80vw; } }
+#main-heading {
+  font-size: 2.5em;
+  margin: 0; }
+
+#main-heading-1 {
+  font-size: 2.6em; }
+
+#sub-heading {
+  font-size: 1.5em;
+  margin: 1vw; }
 
 h2 {
   display: block;
@@ -346,9 +348,8 @@ footer p {
   padding-top: 30px; }
 
 #app-icon {
-  margin: 0 auto;
-  width: 50px;
-  margin-top: 3vh; }
+  margin: 5vh auto;
+  width: 50px; }
 
 #app-icon img {
   width: 50px; }
@@ -359,7 +360,8 @@ footer p {
 
 .text-wrapper {
   position: relative;
-  top: 33.34%; }
+  top: 22%;
+  margin: 0px 10px; }
   @media (max-width: 768px) {
     .text-wrapper {
       top: 15%; } }
@@ -377,6 +379,9 @@ section {
 .capitalise {
   text-decoration: uppercase; }
 
+@media screen and (max-width: 800px) {
+  #main-heading-1 {
+    font-size: 1.5em; } }
 /*# sourceMappingURL=index.css.map */
 
 /*# sourceMappingURL=index.css.map */

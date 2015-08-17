@@ -4,7 +4,7 @@
 @import 'gmapsinfowindow';
 @import 'modal';
 
-h1 {
+h1, h4 {
 	display: block;
 	font-family: greens-headings-font;
 	margin: 0 0 2vh;
@@ -15,11 +15,9 @@ h1 {
 	}
 }
 
-#main-heading {
+#main-heading, #sub-heading {
 	text-shadow: 2px 2px 6px rgba(0,0,0, 0.5);
 	text-align: center;
-	font-size: 3.5em;
-	margin: 0 0 2vh;
 
 	@include breakpoint(iphone5-portrait) {
 		font-size: 2.9em;
@@ -27,13 +25,15 @@ h1 {
 	}
 }
 
-#main-description {
-	margin: 0 auto;
-	max-width: 60vw;
+#main-heading {
+	font-size: 2.5em;
+	margin: 0;
+}
+#main-heading-1 { font-size: 2.6em; }
 
-	@include breakpoint(iphone5-portrait) {
-		max-width: 80vw;
-	}
+#sub-heading {
+	font-size: 1.5em;
+	margin: 1vw;
 }
 
 h2 {
@@ -233,9 +233,8 @@ footer p {
 }
 
 #app-icon {
-	margin: 0 auto;
+	margin: 5vh auto;
 	width: 50px;
-	margin-top: 3vh;
 }
 
 #app-icon img {
@@ -249,7 +248,8 @@ footer p {
 
 .text-wrapper {
 	position: relative;
-	top: 33.34%;
+	top: 22%;
+	margin: 0px 10px;
 	@include breakpoint(ipad) { top: 15%; }
 }
 
@@ -268,6 +268,10 @@ section {
 
 .capitalise {
 	text-decoration: uppercase;
+}
+
+@media screen and (max-width: 800px) {
+	#main-heading-1 { font-size: 1.5em; }
 }
 
 /*# sourceMappingURL=index.css.map */
