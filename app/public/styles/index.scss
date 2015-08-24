@@ -161,18 +161,18 @@ footer p {
 	}
 }
 
-#itunes-link {
-	display: block;
-	width: 170px;
-	margin: 0 auto;
+#itunes-link, #gplay-link {
+	display: inline-block;
+	margin: 0 5px;
 }
 
-#itunes-link img {
-	width: 100%;
+#itunes-link img, #gplay-link img {
+	height: 40px;
 }
 
 #app-download-link-wrapper {
 	margin-top: 3vh;
+	text-align: center;
 }
 
 #arrow-img {
