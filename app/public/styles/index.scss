@@ -148,7 +148,9 @@ footer p {
 
 #footer-text {
 	margin-left: 5em;
+	top: 0px;
 	position: absolute;
+	p { top: 0px; }
 }
 
 #page-1 {

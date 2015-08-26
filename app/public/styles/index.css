@@ -276,7 +276,10 @@ footer p {
 
 #footer-text {
   margin-left: 5em;
+  top: 0px;
   position: absolute; }
+  #footer-text p {
+    top: 0px; }
 
 #page-1 {
   background-image: url("https://s3-ap-southeast-2.amazonaws.com/bikeblackspot2015/static_resources/bike_background.jpg");
