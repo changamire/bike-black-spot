@@ -76,8 +76,7 @@ class Mailer
     recipients.each do |recipient|
       mail_list << Mail.new(
           to: recipient.email,
-          reply_to: report.user.email,
-          cc: 'reports@bikeblackspot.org',
+          reply_to: "#{report.user.email}; reports@bikeblackspot.org",
           from: generate_from_email,
           subject: "Bike Blackspot Report for #{report.location.formatted_address}",
           content_type: 'text/html; charset=UTF-8',
@@ -99,7 +98,7 @@ class Mailer
     mail = Mail.new(
         to: report.user.email,
         from: generate_from_email,
-        cc: 'reports@bikeblackspot.org',
+        reply_to: 'reports@bikeblackspot.org',
         subject: "Bike Blackspot Report for #{report.location.formatted_address}",
         content_type: 'text/html; charset=UTF-8',
         body: erb
