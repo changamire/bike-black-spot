@@ -373,12 +373,13 @@ footer p {
 
 .page-container {
   padding: 1px;
-  height: 100vh; }
+  overflow: auto; }
 
 .text-wrapper {
   position: relative;
   top: 22%;
-  margin: 0px 10px; }
+  margin: 0px 10px;
+  padding: 120px 0px 70px 0px; }
   @media (max-width: 768px) {
     .text-wrapper {
       top: 15%; } }
@@ -397,7 +398,10 @@ section {
   text-decoration: uppercase; }
 
 @media screen and (max-width: 800px) {
-  #main-heading-1 {
+  #main-heading {
+    font-size: 3em; }
+
+  #sub-heading {
     font-size: 1.5em; } }
 /*# sourceMappingURL=index.css.map */
 

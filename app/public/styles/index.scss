@@ -263,13 +263,14 @@ footer p {
 
 .page-container {
 	padding: 1px;
-	height: 100vh;
+	overflow:auto; 
 }
 
 .text-wrapper {
 	position: relative;
 	top: 22%;
 	margin: 0px 10px;
+	padding: 120px 0px 70px 0px;
 	@include breakpoint(ipad) { top: 15%; }
 }
 
@@ -291,7 +292,8 @@ section {
 }
 
 @media screen and (max-width: 800px) {
-	#main-heading-1 { font-size: 1.5em; }
+	#main-heading { font-size: 3em; }
+	#sub-heading { font-size: 1.5em; }
 }
 
 /*# sourceMappingURL=index.css.map */
