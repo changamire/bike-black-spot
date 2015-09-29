@@ -6,5 +6,8 @@ test:
   database: 'app_test'
   encoding: 'UTF8'
 
+qa:
+  url: <%= ENV['DATABASE_URL'] %>
+
 production:
   url: <%= ENV['DATABASE_URL'] %>
