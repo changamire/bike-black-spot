@@ -5,3 +5,6 @@ test:
   password: 'go'
   database: 'app_test'
   encoding: 'UTF8'
+
+production:
+  url: <%= ENV['DATABASE_URL'] %>
