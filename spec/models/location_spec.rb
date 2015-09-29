@@ -109,7 +109,7 @@ describe 'geocode location' do
     expect(location.country).to eq('Australia')
   end
   it 'should set formatted_address' do
-    expect(location.formatted_address).to eq('303 Collins Street, Melbourne VIC 3000, Australia')
+    expect(location.formatted_address).to eq('303 Collins St, Melbourne VIC 3000, Australia')
   end
 end
 
