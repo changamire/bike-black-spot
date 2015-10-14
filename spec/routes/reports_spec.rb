@@ -50,6 +50,19 @@ describe 'Reports' do
       end
     end
 
+    describe 'while getting reports of confirmed users' do
+      it 'should return correct reports' do
+        login_as :Admin
+
+        Report.create(params)
+
+        get '/reports/confirmed'
+        response = JSON.parse(last_response.body)
+
+        expect(response.size).to eq(0)
+      end
+    end
+
     it 'should return all reports on no params' do
       Report.create(params)
       params['description'] = 'y'
@@ -185,4 +198,6 @@ describe 'Reports' do
       expect(report.description).to eq(valid_description)
     end
   end
+
+
 end

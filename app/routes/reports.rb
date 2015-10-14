@@ -12,6 +12,14 @@ get '/reports/?' do
   return report.to_json
 end
 
+get '/reports/confirmed/?' do
+  permitted = %w()
+  required = %w()
+  return status 400 unless validate_params?(params, permitted, required)
+
+  return Report.json(warden.authenticated?, confirmed: true)
+end
+
 
 post '/reports/?' do
   permitted = %w(uuid lat long category description image)

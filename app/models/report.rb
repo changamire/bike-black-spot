@@ -14,19 +14,21 @@ class Report < ActiveRecord::Base
 
   @fields_that_require_auth = %w(user_uuid updated_at sent_at)
 
-  def self.json(authorised)
+  def self.json(authorised, confirmed = false)
     result = []
     Report.all.each do |report|
-      reportHash = JSON.parse(report.to_json)
-      reportHash.delete('id')
-      Category.ID_to_name_hash(reportHash, report['category_id'])
-      User.ID_to_UUID_hash(reportHash, report['user_id'])
-      Location.object_to_lat_long_address(reportHash, report['location_id'])
+      if !confirmed || (confirmed && report.user.confirmed)
+        reportHash = JSON.parse(report.to_json)
+        reportHash.delete('id')
+        Category.ID_to_name_hash(reportHash, report['category_id'])
+        User.ID_to_UUID_hash(reportHash, report['user_id'])
+        Location.object_to_lat_long_address(reportHash, report['location_id'])
 
-      unless authorised
-        reportHash = reportHash.reject { |key| @fields_that_require_auth.include?(key) }
+        unless authorised
+          reportHash = reportHash.reject { |key| @fields_that_require_auth.include?(key) }
+        end
+        result.push(reportHash)
       end
-      result.push(reportHash)
     end
     return result.to_json
   end

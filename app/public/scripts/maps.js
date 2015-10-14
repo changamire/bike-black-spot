@@ -10,8 +10,9 @@ function getMapsDataFromReports(map) {
 
 	$.ajax({
 		dataType: "json",
-		url: "/reports",
+		url: "/reports/confirmed",
 		success: function(reports) {
+			console.log(reports);
 			reports.forEach(function(report){
 				markerData.push([report.latitude, report.longitude, report.category, report.description, report.address, report.image]);
 			})
