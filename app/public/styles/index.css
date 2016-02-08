@@ -307,11 +307,21 @@ footer p {
     .left_column {
       width: 100%; } }
 
-#itunes-link, #gplay-link {
+#itunes-link{
   display: inline-block;
-  margin: 0 5px; }
+  margin: 0 5px;
+  margin-top: 3px;}
 
-#itunes-link img, #gplay-link img {
+#gplay-link {
+  display: inline-block;
+  margin: 0 5px;
+  height: 38px;
+  border: white 1px groove;}
+
+#gplay-link img {
+  height: 38px; }
+
+#itunes-link img {
   height: 40px; }
 
 #app-download-link-wrapper {
