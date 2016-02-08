@@ -182,13 +182,24 @@ footer p {
 	}
 }
 
-#itunes-link, #gplay-link {
+#itunes-link{
 	display: inline-block;
 	margin: 0 5px;
 }
 
-#itunes-link img, #gplay-link img {
+#gplay-link {
+	display: inline-block;
+	margin: 0 5px;
+	height: 38px;
+	border: white 1px groove;
+}
+
+#itunes-link img {
 	height: 40px;
+}
+
+#gplay-link img {
+	height: 38px;
 }
 
 #app-download-link-wrapper {
