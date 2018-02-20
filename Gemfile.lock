@@ -128,7 +128,7 @@ DEPENDENCIES
   aws-sdk (~> 2)
   bcrypt
   bson
-  bundler (= 1.10.5)
+  bundler (= 1.16.1)
   bundler-audit
   database_cleaner
   geokit
@@ -149,3 +149,9 @@ DEPENDENCIES
   thin
   tux
   warden
+
+RUBY VERSION
+   ruby 2.1.3p242
+
+BUNDLED WITH
+   1.16.1
