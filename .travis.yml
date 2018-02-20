@@ -10,5 +10,5 @@ env:
 services:
   - postgresql
 before_script:
-  - psql -c "create user go with password go;" -U postgres
+  - psql -c "create user go with password 'go';" -U postgres
   - psql -c 'create database app_test;' -U go
