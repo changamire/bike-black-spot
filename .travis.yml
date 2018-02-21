@@ -10,5 +10,5 @@ env:
 services:
   - postgresql
 before_script:
-  - createuser -P -s -e go
+  - psql -d postgres -c "create role go password 'go' SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN;"
   - createdb -h localhost -p 5432 -U go app_test
