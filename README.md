@@ -1,7 +1,7 @@
 # BikeBlackspot app
 
-## Snap build status
-[![Build Status](https://snap-ci.com/z7lcGNV4bQa9IfbBPAH7m3nBVAcgdY7P-J9lkQQYqr8/build_image)](https://snap-ci.com/ThoughtWorksInc/bike-black-spot/branch/master)
+## Travis-CI build status
+[![Build Status](https://travis-ci.org/changamire/bike-black-spot.svg?branch=master)](https://travis-ci.org/changamire/bike-black-spot)
 
 ## Sensitive information
 The file for storing sensitive information (passwords,environment variables, etc) is secrets.yml and is encrypted using [transcrypt] - (https://github.com/elasticdog/transcrypt).
@@ -65,3 +65,10 @@ The file for storing sensitive information (passwords,environment variables, etc
 #Checking mailcatcher
 1. Open browser
 2. go to localhost:1080
+
+#Troubleshooting
+If you are using Mac OS High Sierra, and encounter this error
+
+ +[__NSPlaceholderDictionary initialize] may have been in progress in another thread when fork() was called.
+ 
+Read background and solution here []https://blog.phusion.nl/2017/10/13/why-ruby-app-servers-break-on-macos-high-sierra-and-what-can-be-done-about-it/ 
